@@ -19,9 +19,7 @@ export function Navbar() {
           <Link href="/#who-we-are" className="text-lg text-gray-300 hover:text-white transition">
             Quiénes Somos
           </Link>
-          <Link href="/contact" className="text-lg text-gray-300 hover:text-white transition">
-            Contacto
-          </Link>
+          
         </div>
 
         {/* Botón a la derecha */}
