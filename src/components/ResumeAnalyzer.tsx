@@ -16,7 +16,7 @@ export default function ResumeAnalyzer() {
   const [error, setError] = useState<string | null>(null);
 
   // URL de la API desde variables de entorno (Railway en producción, localhost en desarrollo)
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+  //const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
   const handleSubmit = async () => {
     if (!file || !jobDesc) {
@@ -32,7 +32,7 @@ export default function ResumeAnalyzer() {
     formData.append("job_desc", jobDesc);
 
     try {
-      const response = await fetch(`${API_URL}/analyze/`,  {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/analyze/`,  {
         method: "POST",
         body: formData,
       });
