@@ -15,8 +15,8 @@ export default function ResumeAnalyzer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // URL de la API desde variables de entorno (Railway en producción, localhost en desarrollo)
-  //const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+  // URL de la API desde variables de entorno (vercel en producción, localhost en desarrollo)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
   const handleSubmit = async () => {
     if (!file || !jobDesc) {
@@ -31,11 +31,16 @@ export default function ResumeAnalyzer() {
     formData.append("file", file);
     formData.append("job_desc", jobDesc);
 
+    console.log("API URL:", API_URL);
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/analyze/`,  {
+      
+      const response = await fetch(`${API_URL}/analyze/`,  {
         method: "POST",
         body: formData,
       });
+      
+
 
       if (!response.ok) {
         throw new Error("Error en la API. Verifica que el backend esté en línea.");
