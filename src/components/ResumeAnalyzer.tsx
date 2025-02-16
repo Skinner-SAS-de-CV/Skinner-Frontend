@@ -32,7 +32,7 @@ export default function ResumeAnalyzer() {
     formData.append("job_desc", jobDesc);
 
     try {
-      const response = await fetch(`${API_URL}/analyze/`, {
+      const response = await fetch(`${API_URL}analyze/`, {
         method: "POST",
         body: formData,
       });
