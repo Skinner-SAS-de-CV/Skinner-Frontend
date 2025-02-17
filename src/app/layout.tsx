@@ -6,8 +6,8 @@ import type React from "react" // Import React
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "CV Analyzer",
-  description: "Upload your CV and compare it with job offers",
+  title: "Skinnerr",
+  description: "Sistemas Inteligentes de Reclutamiento de Empleados.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
