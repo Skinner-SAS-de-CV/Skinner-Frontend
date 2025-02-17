@@ -15,7 +15,7 @@ const features = [
   {
     title: "Análisis basado en IA",
     description:
-      "Nuestros algoritmos avanzados de IA brindan un analizis profundo de la experiencia y conocimientos de los candidatos a evaluar, asegurando que puedan cumplir con las exigencias del puesto.",
+      "Nuestros algoritmos avanzados de IA brindan un analisis profundo de la experiencia y conocimientos de los candidatos a evaluar, asegurando que puedan cumplir con las exigencias del puesto.",
     image: "/analisis.jpg",
   },
   {
