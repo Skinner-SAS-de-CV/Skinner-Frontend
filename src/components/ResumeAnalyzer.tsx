@@ -15,7 +15,6 @@ export default function ResumeAnalyzer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // URL de la API desde variables de entorno (vercel en producción, localhost en desarrollo)
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
   const handleSubmit = async () => {
@@ -23,7 +22,7 @@ export default function ResumeAnalyzer() {
       setError("⚠️ Por favor, sube un archivo y escribe una descripción del trabajo.");
       return;
     }
-    
+
     setError(null);
     setLoading(true);
 
@@ -34,13 +33,10 @@ export default function ResumeAnalyzer() {
     console.log("API URL:", API_URL);
 
     try {
-      
-      const response = await fetch(`${API_URL}/analyze/`,  {
+      const response = await fetch(`${API_URL}/analyze/`, {
         method: "POST",
         body: formData,
       });
-      
-
 
       if (!response.ok) {
         throw new Error("Error en la API. Verifica que el backend esté en línea.");
@@ -57,34 +53,38 @@ export default function ResumeAnalyzer() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
-      <Card className="w-full max-w-2xl bg-white p-6 rounded-lg shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6">
+      <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center text-blue-600">
+          <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
             📄 Subir Currículum para Análisis
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           {/* Cargar Archivo */}
-          <label className="text-gray-700 font-medium">Sube tu CV (PDF/DOCX):</label>
+          <label className="text-gray-300 font-medium">Sube tu CV (PDF/DOCX):</label>
           <Input
             type="file"
             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
             accept=".pdf,.docx"
-            className="input"
+            className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
           />
 
           {/* Descripción del Trabajo */}
-          <label className="text-gray-700 font-medium">Descripción del Trabajo:</label>
+          <label className="text-gray-300 font-medium">Descripción del Trabajo:</label>
           <Textarea
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
             placeholder="Escribe la descripción del trabajo aquí..."
-            className="input"
+            className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
           />
 
           {/* Botón de Análisis */}
-          <Button onClick={handleSubmit} className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
+          <Button 
+            onClick={handleSubmit} 
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg" 
+            disabled={loading}
+          >
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -96,22 +96,22 @@ export default function ResumeAnalyzer() {
           </Button>
 
           {/* Mensajes de error */}
-          {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+          {error && <p className="text-red-400 text-center mt-2">{error}</p>}
 
           {/* Resultados */}
           {result && (
-            <Card className="mt-6 bg-gray-100 p-4 rounded-lg shadow-sm">
+            <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-gray-700">Resultados</CardTitle>
+                <CardTitle className="text-lg font-semibold text-blue-400">Resultados</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2">
+              <CardContent className="space-y-3">
                 <p><strong>📄 Archivo:</strong> {result.file_name}</p>
                 <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
                 <p><strong>🛠 Habilidades:</strong> {result.skills?.length ? result.skills.join(", ") : "No detectadas"}</p>
                 <p><strong>📅 Experiencia:</strong> {result.experience?.length ? result.experience.join(" años") : "No detectada"}</p>
                 <p>
                   <strong>✅ Decisión:</strong>{" "}
-                  <span className={result.decision === "Selected" ? "text-green-600 font-bold" : "text-red-600 font-bold"}>
+                  <span className={result.decision === "Selected" ? "text-green-400 font-bold" : "text-red-400 font-bold"}>
                     {result.decision}
                   </span>
                 </p>
