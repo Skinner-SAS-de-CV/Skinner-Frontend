@@ -60,7 +60,7 @@ export default function ResumeAnalyzer() {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("job_desc", jobDesc);
+    formData.append("job_title", jobDesc);
     // Se incluye el cliente seleccionado en el envío
     formData.append("client_name", selectedClient);
 
