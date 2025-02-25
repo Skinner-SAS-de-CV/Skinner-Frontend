@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "https://fastapi-resume-analyzer-production.up.railway.app";

@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import { getClients, Client as ApiClient } from "@/lib/api";
 
-// Definimos el tipo para el dropdown (puede ser el mismo que ApiClient)
+// Definino el dropdown
 interface DropdownClient {
   id: number;
   name: string;
@@ -36,7 +36,7 @@ export default function ResumeAnalyzer() {
     const fetchClients = async () => {
       try {
         const data: ApiClient[] = await getClients();
-        // Mapeamos directamente si la estructura es la misma
+        // Mapeo directamente si la estructura es la misma
         setClients(data);
         if (data.length > 0) {
           setSelectedClient(data[0].name);
@@ -154,24 +154,24 @@ export default function ResumeAnalyzer() {
                 <CardTitle className="text-lg font-semibold text-blue-400">Resultados</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p><strong>📄 Archivo:</strong> {result.file_name}</p>
-                <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
+                <p><strong>Archivo:</strong> {result.file_name}</p>
+                <p><strong>Puntaje:</strong> {result.match_score}</p>
                 <p>
-                  <strong>🛠 Habilidades:</strong>{" "}
+                  <strong>Habilidades:</strong>{" "}
                   {result.skills?.length ? result.skills.join(", ") : "No detectadas"}
                 </p>
                 <p>
-                  <strong>📅 Experiencia:</strong>{" "}
+                  <strong>Experiencia:</strong>{" "}
                   {result.experience?.length ? result.experience.join(" años") : "No detectada"}
                 </p>
                 <p>
-                  <strong>✅ Decisión:</strong>{" "}
+                  <strong>Decisión:</strong>{" "}
                   <span className={result.decision === "Selected" ? "text-green-400 font-bold" : "text-red-400 font-bold"}>
                     {result.decision}
                   </span>
                 </p>
-                <p><strong>📌 Razón:</strong> {result.reason}</p>
-                <p><strong>💡 Feedback de IA:</strong> {result.feedback}</p>
+                <p><strong>Razón:</strong> {result.reason}</p>
+                <p><strong>Feedback de IA:</strong> {result.feedback}</p>
               </CardContent>
             </Card>
           )}
