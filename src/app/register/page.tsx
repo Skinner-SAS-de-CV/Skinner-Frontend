@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import RegisterJobForm from "@/components/RegisterJobForm"
+import RegisterJobForm from "../register/RegisterJobForm"
 
 export default function AnalyzePage() {
   return (
