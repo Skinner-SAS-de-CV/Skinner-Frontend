@@ -1,13 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
+import { getClients, Client as ApiClient } from "@/lib/api";
+
+// Definimos el tipo para el dropdown (puede ser el mismo que ApiClient)
+interface DropdownClient {
+  id: number;
+  name: string;
+}
 
 export default function ResumeAnalyzer() {
+  // Estados del formulario
   const [file, setFile] = useState<File | null>(null);
   const [jobDesc, setJobDesc] = useState<string>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,11 +23,35 @@ export default function ResumeAnalyzer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+  // Estados para clientes y cliente seleccionado
+  const [clients, setClients] = useState<DropdownClient[]>([]);
+  const [selectedClient, setSelectedClient] = useState<string>("");
 
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://fastapi-resume-analyzer-production.up.railway.app";
+
+  // Obtener la lista de clientes al montar el componente
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const data: ApiClient[] = await getClients();
+        // Mapeamos directamente si la estructura es la misma
+        setClients(data);
+        if (data.length > 0) {
+          setSelectedClient(data[0].name);
+        }
+      } catch (err) {
+        console.error("Error al obtener clientes:", err);
+      }
+    };
+    fetchClients();
+  }, []);
+
+  // Función para enviar el formulario al backend
   const handleSubmit = async () => {
-    if (!file || !jobDesc) {
-      setError("⚠️ Por favor, sube un archivo y escribe una descripción del trabajo.");
+    if (!file || !jobDesc || !selectedClient) {
+      setError("Por favor, sube un archivo, escribe la descripción y selecciona un cliente.");
       return;
     }
 
@@ -29,6 +61,8 @@ export default function ResumeAnalyzer() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("job_desc", jobDesc);
+    // Se incluye el cliente seleccionado en el envío
+    formData.append("client_name", selectedClient);
 
     console.log("API URL:", API_URL);
 
@@ -61,7 +95,23 @@ export default function ResumeAnalyzer() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Cargar Archivo */}
+          {/* Dropdown para seleccionar cliente */}
+          <div>
+            <label className="text-gray-300 font-medium">Selecciona el Cliente:</label>
+            <select
+              value={selectedClient}
+              onChange={(e) => setSelectedClient(e.target.value)}
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            >
+              {clients.map((client) => (
+                <option key={client.id} value={client.name}>
+                  {client.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Cargar archivo */}
           <label className="text-gray-300 font-medium">Sube tu CV (PDF/DOCX):</label>
           <Input
             type="file"
@@ -70,7 +120,7 @@ export default function ResumeAnalyzer() {
             className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
           />
 
-          {/* Descripción del Trabajo */}
+          {/* Descripción del trabajo */}
           <label className="text-gray-300 font-medium">Descripción del Trabajo:</label>
           <Textarea
             value={jobDesc}
@@ -79,10 +129,10 @@ export default function ResumeAnalyzer() {
             className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
           />
 
-          {/* Botón de Análisis */}
-          <Button 
-            onClick={handleSubmit} 
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg" 
+          {/* Botón para enviar */}
+          <Button
+            onClick={handleSubmit}
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
             disabled={loading}
           >
             {loading ? (
@@ -95,10 +145,9 @@ export default function ResumeAnalyzer() {
             )}
           </Button>
 
-          {/* Mensajes de error */}
           {error && <p className="text-red-400 text-center mt-2">{error}</p>}
 
-          {/* Resultados */}
+          {/* Mostrar resultados */}
           {result && (
             <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <CardHeader>
@@ -107,8 +156,14 @@ export default function ResumeAnalyzer() {
               <CardContent className="space-y-3">
                 <p><strong>📄 Archivo:</strong> {result.file_name}</p>
                 <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
-                <p><strong>🛠 Habilidades:</strong> {result.skills?.length ? result.skills.join(", ") : "No detectadas"}</p>
-                <p><strong>📅 Experiencia:</strong> {result.experience?.length ? result.experience.join(" años") : "No detectada"}</p>
+                <p>
+                  <strong>🛠 Habilidades:</strong>{" "}
+                  {result.skills?.length ? result.skills.join(", ") : "No detectadas"}
+                </p>
+                <p>
+                  <strong>📅 Experiencia:</strong>{" "}
+                  {result.experience?.length ? result.experience.join(" años") : "No detectada"}
+                </p>
                 <p>
                   <strong>✅ Decisión:</strong>{" "}
                   <span className={result.decision === "Selected" ? "text-green-400 font-bold" : "text-red-400 font-bold"}>
