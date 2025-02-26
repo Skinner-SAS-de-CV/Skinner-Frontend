@@ -77,7 +77,22 @@ export default function HeroSection() {
           transition={{ duration: 1 }}
           className="flex justify-center mb-6"
         >
-          <Image src="/skinner-logo.png" alt="Empresa Logo" width={340} height={340} className="rounded-full shadow-lg" />
+          <div
+            className="rounded-full shadow-lg"
+            style={{
+              width: 228,     // Ajusta este valor
+              height: 259,    // Ajusta este valor
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src="/skinner-logo4.png"
+              alt="Empresa Logo"
+              width={260}
+              height={235}
+              className="object-contain w-200 h-200"
+            />
+          </div>
         </motion.div>
 
         <motion.h1
