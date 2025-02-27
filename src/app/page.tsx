@@ -74,14 +74,14 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
           className="flex justify-center mb-6"
         >
           <div
             className="rounded-full shadow-lg"
             style={{
-              width: 228,     // Ajusta este valor
-              height: 259,    // Ajusta este valor
+              width: 230,     // Ajusta este valor
+              height: 226,    // Ajusta este valor
               overflow: "hidden",
             }}
           >
