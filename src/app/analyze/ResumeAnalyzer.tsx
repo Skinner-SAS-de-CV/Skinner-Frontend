@@ -151,7 +151,7 @@ export default function ResumeAnalyzer() {
           {result && (
             <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-white-400">Resultados</CardTitle>
+                <CardTitle className="text-lg font-semibold text-white">Resultados</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <p><strong>Archivo:</strong> {result.file_name}</p>
