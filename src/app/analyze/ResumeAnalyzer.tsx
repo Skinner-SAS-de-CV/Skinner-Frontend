@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import { getClients, Client as ApiClient } from "@/lib/api";
 
-// Definino el dropdown
+// Definición del dropdown
 interface DropdownClient {
   id: number;
   name: string;
@@ -36,7 +36,6 @@ export default function ResumeAnalyzer() {
     const fetchClients = async () => {
       try {
         const data: ApiClient[] = await getClients();
-        // Mapeo directamente si la estructura es la misma
         setClients(data);
         if (data.length > 0) {
           setSelectedClient(data[0].name);
@@ -51,7 +50,7 @@ export default function ResumeAnalyzer() {
   // Función para enviar el formulario al backend
   const handleSubmit = async () => {
     if (!file || !jobDesc || !selectedClient) {
-      setError("Por favor, sube un archivo, escribe la descripción y selecciona un cliente.");
+      setError("⚠️ Por favor, sube un archivo, escribe la descripción y selecciona un cliente.");
       return;
     }
 
@@ -61,8 +60,7 @@ export default function ResumeAnalyzer() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("job_title", jobDesc);
-    // Se incluye el cliente seleccionado en el envío
-    formData.append("client_name", selectedClient);
+    formData.append("client_name", selectedClient); // Enviar el cliente seleccionado
 
     console.log("API URL:", API_URL);
 
@@ -153,18 +151,18 @@ export default function ResumeAnalyzer() {
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-white">Resultados</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <p><strong>Archivo:</strong> {result.file_name}</p>
-                <p><strong>Puntaje:</strong> {result.match_score}</p>
+              <CardContent className="space-y-3 text-white">
+                <p><strong>📄 Archivo:</strong> {result.file_name}</p>
+                <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
                 
                 <p>
-                  <strong>Decisión:</strong>{" "}
+                  <strong>✅ Decisión:</strong>{" "}
                   <span className={result.decision === "Selected" ? "text-green-400 font-bold" : "text-red-400 font-bold"}>
                     {result.decision}
                   </span>
                 </p>
-                <p><strong>Razón:</strong> {result.reason}</p>
-                <p><strong>Feedback de IA:</strong> {result.feedback}</p>
+                <p><strong>📌 Razón:</strong> {result.reason}</p>
+                <p><strong>💡 Feedback de IA:</strong> {result.feedback}</p>
               </CardContent>
             </Card>
           )}
