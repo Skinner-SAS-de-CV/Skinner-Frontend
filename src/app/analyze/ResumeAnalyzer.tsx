@@ -4,39 +4,33 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
-import { getClients, Client as ApiClient } from "@/lib/api";
-
-// Definición del dropdown
-interface DropdownClient {
-  id: number;
-  name: string;
-}
+import { getClients, getJobsByClient, Client as ApiClient, Job as ApiJob } from "@/lib/api";
 
 export default function ResumeAnalyzer() {
-  // Estados del formulario
+  // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
-  const [jobDesc, setJobDesc] = useState<string>("");
+  // Estados para errores y resultados
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Estados para clientes y cliente seleccionado
-  const [clients, setClients] = useState<DropdownClient[]>([]);
+  // Estados para manejar clientes, trabajos y selecciones
+  const [clients, setClients] = useState<ApiClient[]>([]);
   const [selectedClient, setSelectedClient] = useState<string>("");
+  const [jobs, setJobs] = useState<ApiJob[]>([]);
+  const [selectedJob, setSelectedJob] = useState<string>("");
 
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
-    "https://fastapi-resume-analyzer-production.up.railway.app";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://fastapi-resume-analyzer-production.up.railway.app";
 
-  // Obtener la lista de clientes al montar el componente
+  // 1. Al montar, obtener la lista de clientes
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const data: ApiClient[] = await getClients();
+        const data = await getClients(); 
         setClients(data);
+        // Selecciona el primer cliente si hay alguno
         if (data.length > 0) {
           setSelectedClient(data[0].name);
         }
@@ -47,22 +41,41 @@ export default function ResumeAnalyzer() {
     fetchClients();
   }, []);
 
-  // Función para enviar el formulario al backend
+  // 2. Cada vez que cambie selectedClient, obtener los trabajos para ese cliente
+  useEffect(() => {
+    const fetchJobs = async () => {
+      if (!selectedClient) return;
+      try {
+        const data = await getJobsByClient(selectedClient);
+        setJobs(data);
+        // Selecciona el primer trabajo si existe
+        if (data.length > 0) {
+          setSelectedJob(data[0].title);
+        } else {
+          setSelectedJob("");
+        }
+      } catch (err) {
+        console.error("Error al obtener trabajos:", err);
+      }
+    };
+    fetchJobs();
+  }, [selectedClient]);
+
+  // 3. Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {
-    if (!file || !jobDesc || !selectedClient) {
-      setError("⚠️ Por favor, sube un archivo, escribe la descripción y selecciona un cliente.");
+    if (!file || !selectedClient || !selectedJob) {
+      setError("⚠️ Por favor, sube un archivo, elige un cliente y un trabajo.");
       return;
     }
-
     setError(null);
     setLoading(true);
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("job_title", jobDesc);
-    formData.append("client_name", selectedClient); // Enviar el cliente seleccionado
-
-    console.log("API URL:", API_URL);
+    // Enviamos el trabajo seleccionado
+    formData.append("job_title", selectedJob);
+    // Enviamos el cliente seleccionado
+    formData.append("client_name", selectedClient);
 
     try {
       const response = await fetch(`${API_URL}/analyze/`, {
@@ -93,7 +106,7 @@ export default function ResumeAnalyzer() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Dropdown para seleccionar cliente */}
+          {/* 1er Dropdown: Cliente */}
           <div>
             <label className="text-gray-300 font-medium">Selecciona el Cliente:</label>
             <select
@@ -109,23 +122,32 @@ export default function ResumeAnalyzer() {
             </select>
           </div>
 
-          {/* Cargar archivo */}
-          <label className="text-gray-300 font-medium">Sube tu CV (PDF/DOCX):</label>
-          <Input
-            type="file"
-            onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
-            accept=".pdf,.docx"
-            className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-          />
+          {/* 2do Dropdown: Trabajo */}
+          <div>
+            <label className="text-gray-300 font-medium">Selecciona el Trabajo:</label>
+            <select
+              value={selectedJob}
+              onChange={(e) => setSelectedJob(e.target.value)}
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            >
+              {jobs.map((job) => (
+                <option key={job.id} value={job.title}>
+                  {job.title}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          {/* Descripción del trabajo */}
-          <label className="text-gray-300 font-medium">Descripción del Trabajo:</label>
-          <Textarea
-            value={jobDesc}
-            onChange={(e) => setJobDesc(e.target.value)}
-            placeholder="Escribe la descripción del trabajo aquí..."
-            className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-          />
+          {/* Cargar archivo */}
+          <div>
+            <label className="text-gray-300 font-medium">Sube tu CV (PDF/DOCX):</label>
+            <Input
+              type="file"
+              onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+              accept=".pdf,.docx"
+              className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
           {/* Botón para enviar */}
           <Button
@@ -154,10 +176,15 @@ export default function ResumeAnalyzer() {
               <CardContent className="space-y-3 text-white">
                 <p><strong>📄 Archivo:</strong> {result.file_name}</p>
                 <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
-                
                 <p>
                   <strong>✅ Decisión:</strong>{" "}
-                  <span className={result.decision === "Selected" ? "text-green-400 font-bold" : "text-red-400 font-bold"}>
+                  <span
+                    className={
+                      result.decision === "Selected"
+                        ? "text-green-400 font-bold"
+                        : "text-red-400 font-bold"
+                    }
+                  >
                     {result.decision}
                   </span>
                 </p>
