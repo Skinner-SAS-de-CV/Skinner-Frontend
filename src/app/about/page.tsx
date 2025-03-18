@@ -44,7 +44,7 @@ export default function AboutPage() {
           variants={fadeInUpVariants}
           className="relative py-20 px-6 max-w-6xl mx-auto text-center overflow-hidden"
         >
-          {/* Fondo abstracto (opcional) */}
+          {/* Fondo abstracto */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 0.15, scale: 1 }}
@@ -75,7 +75,7 @@ export default function AboutPage() {
         </motion.div>
         </motion.section>
 
-        {/* Wave Transition (opcional) */}
+        {/* Wave Transition  */}
         <div className="relative">
           <svg
             className="absolute left-0 right-0 -top-1 text-gray-800"
@@ -105,7 +105,7 @@ export default function AboutPage() {
           </p>
         </motion.section>
 
-        {/* Wave Transition (opcional) */}
+        {/* Wave Transition */}
         <div className="relative">
           <svg
             className="absolute left-0 right-0 -top-1 text-gray-800"

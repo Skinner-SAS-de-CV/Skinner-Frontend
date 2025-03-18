@@ -17,7 +17,7 @@ const RegisterJobForm = () => {
   const [habilidades, setHabilidades] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(true); // 🔹 Estado para mostrar/ocultar el formulario
+  const [showForm, setShowForm] = useState(true); // Estado para mostrar/ocultar el formulario
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +35,7 @@ const RegisterJobForm = () => {
       });
 
       toast.success("✅ Trabajo registrado exitosamente.");
-      setShowForm(false); // 🔹 Ocultar el formulario después de registrar
+      setShowForm(false); // Ocultar el formulario después de registrar
       router.push(
         `/analyze?client=${encodeURIComponent(nombre_del_cliente)}&job=${encodeURIComponent(
           titulo_de_trabajo
@@ -50,7 +50,7 @@ const RegisterJobForm = () => {
   };
 
   return (
-    showForm && ( // 🔹 Renderiza el formulario solo si `showForm` es `true`
+    showForm && ( //Renderiza el formulario solo si `showForm` es `true`
       <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6">
         <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
           <CardHeader>

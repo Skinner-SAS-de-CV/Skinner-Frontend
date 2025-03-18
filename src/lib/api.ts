@@ -50,7 +50,7 @@ export interface Job {
 }
 
 // Esta función utiliza el endpoint para obtener trabajos por cliente,
-// pero recuerda: tu endpoint /obtener_trabajos_por_cliente/{nombre_del_cliente}
+// el endpoint /obtener_trabajos_por_cliente/{nombre_del_cliente}
 // devuelve los trabajos asociados a ese cliente.
 export const getJobsByClient = async (
   nombre_del_cliente: string

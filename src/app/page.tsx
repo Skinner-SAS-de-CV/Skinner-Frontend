@@ -80,8 +80,8 @@ export default function HeroSection() {
           <div
             className="rounded-full shadow-lg"
             style={{
-              width: 230,     // Ajusta este valor
-              height: 226,    // Ajusta este valor
+              width: 230,     
+              height: 226,    
               overflow: "hidden",
             }}
           >

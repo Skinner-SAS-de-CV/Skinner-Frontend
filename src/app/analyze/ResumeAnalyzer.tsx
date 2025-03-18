@@ -24,7 +24,7 @@ export default function ResumeAnalyzer() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://fastapi-resume-analyzer-production.up.railway.app";
 
-  // 1. Al montar, obtener la lista de clientes
+  
   useEffect(() => {
     const fetchClients = async () => {
       try {
@@ -41,7 +41,7 @@ export default function ResumeAnalyzer() {
     fetchClients();
   }, []);
 
-  // 2. Cada vez que cambie selectedClient, obtener los trabajos para ese cliente
+  // Cada vez que cambie selectedClient, obtener los trabajos para ese cliente
   useEffect(() => {
     const fetchJobs = async () => {
       if (!selectedClient) return;
@@ -61,10 +61,10 @@ export default function ResumeAnalyzer() {
     fetchJobs();
   }, [selectedClient]);
 
-  // 3. Función para enviar el CV al endpoint /analyze/
+  //Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {
     if (!file || !selectedClient || !selectedJob) {
-      setError("⚠️ Por favor, sube un archivo, elige un cliente y un trabajo.");
+      setError("Sube un archivo, elige un cliente y un trabajo.");
       return;
     }
     setError(null);
@@ -90,7 +90,7 @@ export default function ResumeAnalyzer() {
       const data = await response.json();
       setResult(data);
     } catch (err) {
-      setError("❌ Hubo un problema al analizar el CV. Inténtalo de nuevo.");
+      setError(" Hubo un problema al analizar el CV. Inténtalo de nuevo.");
       console.error("Error al analizar el currículum:", err);
     } finally {
       setLoading(false);
