@@ -26,11 +26,6 @@ export function Navbar() {
           <Link href="/about" className="text-lg text-gray-300 hover:text-white transition">
             Quiénes Somos
           </Link>
-          <Link href="/analyze">
-            <Button className="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg">
-              App
-            </Button>
-          </Link>
         </div>
 
         {/* Botón de menú para móviles estilo hamburguesa */}
