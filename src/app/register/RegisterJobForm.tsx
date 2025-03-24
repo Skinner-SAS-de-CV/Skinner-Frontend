@@ -51,8 +51,8 @@ const RegisterJobForm = () => {
 
   return (
     showForm && ( //Renderiza el formulario solo si `showForm` es `true`
-      <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6 max-w-[1000px] mx-auto m-0">
-        <Card className="w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
+      <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6 max-w-[9/10] mx-auto m-0">
+        <Card className="w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 max-w-[1000px]">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
               📝 Registrar Nuevo Cliente
