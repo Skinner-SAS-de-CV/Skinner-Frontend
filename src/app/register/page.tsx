@@ -6,7 +6,7 @@ export default function AnalyzePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow flex items-center justify-center bg-gray-100 p-6">
+      <main className="bg-gray-800 p-6">
         <RegisterJobForm />
       </main>
       

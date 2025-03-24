@@ -84,8 +84,7 @@ export const getClients = async (): Promise<Client[]> => {
   try {
     const response = await axios.get(`${API_URL}/clients/`);
     return response.data;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error al obtener clientes:", error);
     throw error;
   }
