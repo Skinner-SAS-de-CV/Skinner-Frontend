@@ -145,7 +145,7 @@ export default function ResumeAnalyzer() {
               type="file"
               onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
               accept=".pdf,.docx"
-              className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="file:text-white file:bg-gradient-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
