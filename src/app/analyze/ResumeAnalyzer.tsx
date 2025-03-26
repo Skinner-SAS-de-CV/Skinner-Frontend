@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { getClients, getJobsByClient, Client as ApiClient, Job as ApiJob } from "@/lib/api";
+import Markdown from 'react-markdown';
 
 export default function ResumeAnalyzer() {
   // Estados para subir archivo
@@ -174,9 +175,9 @@ export default function ResumeAnalyzer() {
                 <CardTitle className="text-lg font-semibold text-white">Resultados</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-white">
-                <p><strong>📄 Archivo:</strong> {result.file_name}</p>
-                <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
-                <p>
+                <div><strong>📄 Archivo:</strong> {result.file_name}</div>
+                <div><strong>📊 Puntaje:</strong> {result.match_score}</div>
+                <div>
                   <strong>✅ Decisión:</strong>{" "}
                   <span
                     className={
@@ -187,9 +188,13 @@ export default function ResumeAnalyzer() {
                   >
                     {result.decision}
                   </span>
-                </p>
-                <p><strong>📌 Razón:</strong> {result.reason}</p>
-                <p><strong>💡 Feedback de IA:</strong> {result.feedback}</p>
+                </div>
+                <div><strong>📌 Razón:</strong> {result.reason}</div>
+                <div><strong>💡 Feedback de IA:</strong>
+                  <div className="pl-6">
+                    <Markdown>{result.feedback}</Markdown>
+                    </div>
+                </div>
               </CardContent>
             </Card>
           )}
