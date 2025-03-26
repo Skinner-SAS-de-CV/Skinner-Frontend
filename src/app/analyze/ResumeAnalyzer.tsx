@@ -5,7 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
-import { getClients, getJobsByClient, Client as ApiClient, Job as ApiJob } from "@/lib/api";
+import {
+  getClients,
+  getJobsByClient,
+  Client as ApiClient,
+  Job as ApiJob,
+} from "@/lib/api";
+import Markdown from "react-markdown";
 
 export default function ResumeAnalyzer() {
   // Estados para subir archivo
@@ -22,13 +28,14 @@ export default function ResumeAnalyzer() {
   const [jobs, setJobs] = useState<ApiJob[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://fastapi-resume-analyzer-production.up.railway.app";
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://fastapi-resume-analyzer-production.up.railway.app";
 
-  
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const data = await getClients(); 
+        const data = await getClients();
         setClients(data);
         // Selecciona el primer cliente si hay alguno
         if (data.length > 0) {
@@ -84,7 +91,9 @@ export default function ResumeAnalyzer() {
       });
 
       if (!response.ok) {
-        throw new Error("Error en la API. Verifica que el backend esté en línea.");
+        throw new Error(
+          "Error en la API. Verifica que el backend esté en línea."
+        );
       }
 
       const data = await response.json();
@@ -108,7 +117,9 @@ export default function ResumeAnalyzer() {
         <CardContent className="space-y-6">
           {/* 1er Dropdown: Cliente */}
           <div>
-            <label className="text-gray-300 font-medium">Selecciona el Cliente:</label>
+            <label className="text-gray-300 font-medium">
+              Selecciona el Cliente:
+            </label>
             <select
               value={selectedClient}
               onChange={(e) => setSelectedClient(e.target.value)}
@@ -124,7 +135,9 @@ export default function ResumeAnalyzer() {
 
           {/* 2do Dropdown: Trabajo */}
           <div>
-            <label className="text-gray-300 font-medium">Selecciona el Trabajo:</label>
+            <label className="text-gray-300 font-medium">
+              Selecciona el Trabajo:
+            </label>
             <select
               value={selectedJob}
               onChange={(e) => setSelectedJob(e.target.value)}
@@ -140,10 +153,14 @@ export default function ResumeAnalyzer() {
 
           {/* Cargar archivo */}
           <div>
-            <label className="text-gray-300 font-medium">Sube tu CV (PDF/DOCX):</label>
+            <label className="text-gray-300 font-medium">
+              Sube tu CV (PDF/DOCX):
+            </label>
             <Input
               type="file"
-              onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+              onChange={(e) =>
+                setFile(e.target.files ? e.target.files[0] : null)
+              }
               accept=".pdf,.docx"
               className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
@@ -171,12 +188,18 @@ export default function ResumeAnalyzer() {
           {result && (
             <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-white">Resultados</CardTitle>
+                <CardTitle className="text-lg font-semibold text-white">
+                  Resultados
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-white">
-                <p><strong>📄 Archivo:</strong> {result.file_name}</p>
-                <p><strong>📊 Puntaje:</strong> {result.match_score}</p>
-                <p>
+                <div>
+                  <strong>📄 Archivo:</strong> {result.file_name}
+                </div>
+                <div>
+                  <strong>📊 Puntaje:</strong> {result.match_score}
+                </div>
+                <div>
                   <strong>✅ Decisión:</strong>{" "}
                   <span
                     className={
@@ -187,9 +210,16 @@ export default function ResumeAnalyzer() {
                   >
                     {result.decision}
                   </span>
-                </p>
-                <p><strong>📌 Razón:</strong> {result.reason}</p>
-                <p><strong>💡 Feedback de IA:</strong> {result.feedback}</p>
+                </div>
+                <div>
+                  <strong>📌 Razón:</strong> {result.reason}
+                </div>
+                <div>
+                  <strong>💡 Feedback de IA:</strong>
+                  <div className="pl-6">
+                    <Markdown>{result.feedback}</Markdown>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           )}
