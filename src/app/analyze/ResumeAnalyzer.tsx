@@ -39,7 +39,7 @@ export default function ResumeAnalyzer() {
         setClients(data);
         // Selecciona el primer cliente si hay alguno
         if (data.length > 0) {
-          setSelectedClient(data[0].name);
+          setSelectedClient(String(data[0].id));
         }
       } catch (err) {
         console.error("Error al obtener clientes:", err);
@@ -57,7 +57,7 @@ export default function ResumeAnalyzer() {
         setJobs(data);
         // Selecciona el primer trabajo si existe
         if (data.length > 0) {
-          setSelectedJob(data[0].title);
+          setSelectedJob(String(data[0].id));
         } else {
           setSelectedJob("");
         }
@@ -80,9 +80,9 @@ export default function ResumeAnalyzer() {
     const formData = new FormData();
     formData.append("file", file);
     // Enviamos el trabajo seleccionado
-    formData.append("job_title", selectedJob);
+    formData.append("job_id", selectedJob);
     // Enviamos el cliente seleccionado
-    formData.append("client_name", selectedClient);
+    formData.append("client_id", selectedClient);
 
     try {
       const response = await fetch(`${API_URL}/analyze/`, {
@@ -126,7 +126,7 @@ export default function ResumeAnalyzer() {
               className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
             >
               {clients.map((client) => (
-                <option key={client.id} value={client.name}>
+                <option key={client.id} value={client.id}>
                   {client.name}
                 </option>
               ))}
@@ -144,7 +144,7 @@ export default function ResumeAnalyzer() {
               className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
             >
               {jobs.map((job) => (
-                <option key={job.id} value={job.title}>
+                <option key={job.id} value={job.id}>
                   {job.title}
                 </option>
               ))}

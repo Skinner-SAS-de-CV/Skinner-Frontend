@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "https://fastapi-resume-analyzer-production.up.railway.app";
@@ -30,7 +29,7 @@ export const addJob = async ({
   try {
     const response = await axios.post(`${API_URL}/agregar_trabajo/`, formData);
     console.log("Respuesta del servidor:", response.data);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.response) {
       console.error("Error en la respuesta del servidor:", error.response.data);
@@ -50,19 +49,15 @@ export interface Job {
 }
 
 // Esta función utiliza el endpoint para obtener trabajos por cliente,
-// el endpoint /obtener_trabajos_por_cliente/{nombre_del_cliente}
+// el endpoint /obtener_trabajos_por_cliente/{id}
 // devuelve los trabajos asociados a ese cliente.
-export const getJobsByClient = async (
-  nombre_del_cliente: string
-): Promise<Job[]> => {
+export const getJobsByClient = async (id: string): Promise<Job[]> => {
   try {
     const response = await axios.get(
-      `${API_URL}/obtener_trabajos_por_cliente/${encodeURIComponent(
-        nombre_del_cliente
-      )}`
+      `${API_URL}/obtener_trabajos_por_cliente/${id}`
     );
     return response.data;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.response) {
       console.error("Error en la respuesta del servidor:", error.response.data);
@@ -89,4 +84,3 @@ export const getClients = async (): Promise<Client[]> => {
     throw error;
   }
 };
-
