@@ -212,9 +212,6 @@ export default function ResumeAnalyzer() {
                   </span>
                 </div>
                 <div>
-                  <strong>📌 Razón:</strong> {result.reason}
-                </div>
-                <div>
                   <strong>💡 Feedback de IA:</strong>
                   <div className="pl-6">
                     <Markdown>{result.feedback}</Markdown>
