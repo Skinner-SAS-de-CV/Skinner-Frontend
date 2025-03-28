@@ -69,7 +69,7 @@ export default function AboutPage() {
           <motion.div>
           <Link href="/register">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              Empieza Ahora <ArrowRight className="ml-2" />
+              Contáctanos <ArrowRight className="ml-2" />
             </Button>
           </Link>
         </motion.div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
           variants={fadeLeftVariants}
           className="py-16 px-6 max-w-5xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-blue-400 mb-6 text-center">
+          <h2 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             Nuestra Misión
           </h2>
           <p className="text-lg text-gray-300 text-center">
@@ -127,7 +127,7 @@ export default function AboutPage() {
         >
           <motion.h2
             variants={fadeInUpVariants}
-            className="text-4xl font-bold text-blue-400 mb-10 text-center"
+            className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6"
           >
             Nuestros valores fundamentales
           </motion.h2>
@@ -163,7 +163,7 @@ export default function AboutPage() {
           variants={fadeInUpVariants}
           className="py-16 px-6 max-w-5xl mx-auto text-center"
         >
-          <h3 className="text-4xl font-bold text-blue-400 mb-6">
+          <h3 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             ¿Por qué elegirnos?
           </h3>
           <p className="text-lg text-gray-300 mb-8">
@@ -173,7 +173,7 @@ export default function AboutPage() {
           </p>
           <motion.div
             variants={containerVariants}
-            className="grid md:grid-cols-2 gap-6"
+            className="grid md:grid-cols-2 gap-6 "
           >
             {[
               {
