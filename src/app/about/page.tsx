@@ -32,20 +32,7 @@ export default function AboutPage() {
 
       <main className="flex-grow">
       <section className="relative w-full min-h-[90vh] flex items-center justify-center text-center text-white px-6 overflow-hidden">
-            {/* He puesto las lineas para colocar el video, pero aun no lo he probado si se ve.  */}
-            <div className="absolute inset-0 -z-10 overflow-hidden">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover brightness-[0.4]"
-              >
-                <source src="/video/skinner.mp4" type="video/mp4" />
-                Tu navegador no soporta el video HTML5.
-              </video>
-            </div>
-
+          
             {/* Contenido de about */}
             <motion.div
               initial="hidden"
