@@ -1,14 +1,12 @@
 "use client";
-
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
-// Variantes para fade
+// Variantes para animaciones
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -19,14 +17,11 @@ const fadeLeftVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
 };
 
-// Variantes para contenedor con stagger
 const containerVariants = {
   hidden: { opacity: 1 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15, // Ajusta el retardo entre hijos
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
@@ -36,53 +31,33 @@ export default function AboutPage() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Sección principal */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUpVariants}
-          className="relative py-20 px-6 max-w-6xl mx-auto text-center overflow-hidden"
-        >
-          {/* Fondo abstracto */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.15, scale: 1 }}
-            transition={{ duration: 1.2 }}
-            className="absolute inset-0 -z-10"
-          >
-            <Image
-              src="/placeholder.svg?height=400&width=800"
-              alt="Abstract background"
-              fill
-              className="object-cover opacity-40"
-            />
-          </motion.div>
+      <section className="relative w-full min-h-[90vh] flex items-center justify-center text-center text-white px-6 overflow-hidden">
+          
+            {/* Contenido de about */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+            >
+              <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+                Transformando la adquisición de talentos
+              </h1>
+              <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
+                Aprovechamos la inteligencia artificial avanzada para revolucionar el proceso de contratación.
+              </p>
+              <Link href="/register">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  Contáctanos <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+            </motion.div>
+          </section>
 
-          <motion.h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
-            Transformando la adquisición de talentos
-          </motion.h1>
-          <motion.p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Aprovechamos la inteligencia artificial avanzada para revolucionar el proceso de 
-            contratación y ayudar a las empresas a encontrar la opción perfecta para sus equipos.
-          </motion.p>
-          <motion.div>
-          <Link href="/register">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              Empieza Ahora <ArrowRight className="ml-2" />
-            </Button>
-          </Link>
-        </motion.div>
-        </motion.section>
 
-        {/* Wave Transition  */}
+        {/* Wave Transition */}
         <div className="relative">
-          <svg
-            className="absolute left-0 right-0 -top-1 text-gray-800"
-            viewBox="0 0 1440 50"
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
+          <svg className="absolute left-0 right-0 -top-1 text-gray-800" viewBox="0 0 1440 50" fill="currentColor" preserveAspectRatio="none">
             <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
           </svg>
         </div>
@@ -95,29 +70,16 @@ export default function AboutPage() {
           variants={fadeLeftVariants}
           className="py-16 px-6 max-w-5xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-blue-400 mb-6 text-center">
+          <h2 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             Nuestra Misión
           </h2>
           <p className="text-lg text-gray-300 text-center">
             Nos dedicamos a mejorar los procesos de reclutamiento y contratación a través de inteligencia artificial avanzada. 
-            Nuestro objetivo es ayudar a las empresas a encontrar el mejor talento 
-            de manera eficiente y precisa, transformando la forma en que las organizaciones forman sus equipos.
+            Nuestro objetivo es ayudar a las empresas a encontrar el mejor talento de manera eficiente y precisa.
           </p>
         </motion.section>
 
-        {/* Wave Transition */}
-        <div className="relative">
-          <svg
-            className="absolute left-0 right-0 -top-1 text-gray-800"
-            viewBox="0 0 1440 50"
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
-          </svg>
-        </div>
-
-        {/* Nuestros valores */}
+        {/* Valores */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -127,7 +89,7 @@ export default function AboutPage() {
         >
           <motion.h2
             variants={fadeInUpVariants}
-            className="text-4xl font-bold text-blue-400 mb-10 text-center"
+            className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6"
           >
             Nuestros valores fundamentales
           </motion.h2>
@@ -137,19 +99,17 @@ export default function AboutPage() {
           >
             {[
               { title: "Transparencia", desc: "Operamos con honestidad y claridad en cada paso." },
-              { title: "Innovación", desc: "Implementamos tecnologías de IA de última generación para optimizar la selección de talento." },
-              { title: "Confianza", desc: "Priorizamos la seguridad y privacidad de la información de nuestros clientes." },
-            ].map((value, index) => (
+              { title: "Innovación", desc: "Usamos IA avanzada para mejorar el reclutamiento." },
+              { title: "Confianza", desc: "Protegemos la privacidad de nuestros clientes." },
+            ].map((val, idx) => (
               <motion.li
-                key={index}
+                key={idx}
                 variants={fadeInUpVariants}
                 className="bg-gray-700 p-6 rounded-lg shadow-md"
               >
                 <CheckCircle className="text-blue-400 mb-4 h-8 w-8" />
-                <h3 className="text-xl font-semibold text-blue-300 mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-gray-300">{value.desc}</p>
+                <h3 className="text-xl font-semibold text-blue-300 mb-2">{val.title}</h3>
+                <p className="text-gray-300">{val.desc}</p>
               </motion.li>
             ))}
           </motion.ul>
@@ -163,45 +123,29 @@ export default function AboutPage() {
           variants={fadeInUpVariants}
           className="py-16 px-6 max-w-5xl mx-auto text-center"
         >
-          <h3 className="text-4xl font-bold text-blue-400 mb-6">
+          <h3 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             ¿Por qué elegirnos?
           </h3>
           <p className="text-lg text-gray-300 mb-8">
-            Nuestro equipo de expertos combina tecnología de punta con profundos conocimientos en gestión de talento para brindar un
-            servicio preciso y eficiente. Nos destacamos por nuestra capacidad de analizar datos en profundidad y brindar
-            insights estratégicos para la toma de decisiones en RRHH.
+            Combinamos IA de punta y experiencia en RRHH para ofrecer análisis de candidatos más precisos y decisiones más inteligentes.
           </p>
           <motion.div
             variants={containerVariants}
             className="grid md:grid-cols-2 gap-6"
           >
             {[
-              {
-                title: "Decisiones basadas en datos",
-                desc: "Aproveche los conocimientos impulsados ​​por inteligencia artificial para tomar decisiones de contratación más inteligentes.",
-              },
-              {
-                title: "Eficiencia de tiempo",
-                desc: "Agilice su proceso de reclutamiento y reduzca el tiempo de contratación.",
-              },
-              {
-                title: "Reducción de sesgo",
-                desc: "Minimice los sesgos inconscientes en su proceso de selección de candidatos.",
-              },
-              {
-                title: "Soluciones escalables",
-                desc: "Haga crecer su equipo sin esfuerzo con nuestra plataforma.",
-              },
-            ].map((feature, index) => (
+              { title: "Decisiones basadas en datos", desc: "Contrataciones más inteligentes con IA." },
+              { title: "Eficiencia de tiempo", desc: "Reduce el tiempo de contratación." },
+              { title: "Reducción de sesgo", desc: "Minimiza el sesgo en selección de candidatos." },
+              { title: "Soluciones escalables", desc: "Haz crecer tu equipo con facilidad." },
+            ].map((f, i) => (
               <motion.div
-                key={index}
+                key={i}
                 variants={fadeInUpVariants}
                 className="bg-gray-700 p-6 rounded-lg shadow-md"
               >
-                <h4 className="text-xl font-semibold text-blue-300 mb-2">
-                  {feature.title}
-                </h4>
-                <p className="text-gray-300">{feature.desc}</p>
+                <h4 className="text-xl font-semibold text-blue-300 mb-2">{f.title}</h4>
+                <p className="text-gray-300">{f.desc}</p>
               </motion.div>
             ))}
           </motion.div>

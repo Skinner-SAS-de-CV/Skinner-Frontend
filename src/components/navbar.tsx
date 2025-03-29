@@ -31,6 +31,14 @@ export function Navbar() {
           >
             Quiénes Somos
           </Link>
+
+          <Link
+            href="/contact"
+            onClick={() => setIsOpen(false)}
+            className="block text-lg text-gray-300 hover:text-white transition"
+          >
+            Contáctanos
+          </Link>
         </div>
 
         {/* Botón de menú para móviles estilo hamburguesa */}
@@ -60,6 +68,14 @@ export function Navbar() {
             className="block text-lg text-gray-300 hover:text-white transition"
           >
             Quiénes Somos
+          </Link>
+
+          <Link
+            href="/contact"
+            onClick={() => setIsOpen(false)}
+            className="block text-lg text-gray-300 hover:text-white transition"
+          >
+            Contáctanos
           </Link>
         </div>
       )}
