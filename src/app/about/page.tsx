@@ -86,9 +86,9 @@ export default function AboutPage() {
             Nuestra Misión
           </h2>
           <p className="text-lg text-gray-300 text-center">
-            Nuestro objetivo es ayudar a las empresas a encontrar el mejor
-            talento de manera eficiente y precisa, transformando la forma en que
-            las organizaciones forman sus equipos.
+          Nos dedicamos a mejorar los procesos de reclutamiento y contratación a través de inteligencia artificial avanzada. 
+          Nuestro objetivo es ayudar a las empresas a encontrar el mejor talento 
+          de manera eficiente y precisa, transformando la forma en que las organizaciones forman sus equipos.
           </p>
         </motion.section>
 

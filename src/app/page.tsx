@@ -117,16 +117,12 @@ export default function HeroSection() {
         </motion.p>
 
         <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible" className="mt-8 flex justify-center gap-4">
-          <Link href="/register" className="">
+          <Link href="/about" className="">
             <Button size="lg" className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-lg">
               Empezar
             </Button>
           </Link>
-          <Link href="/about" className="">
-            <Button size="lg" className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full shadow-lg">
-              Quiénes Somos
-            </Button>
-          </Link>
+          
         </motion.div>
       </div>
     </div>
