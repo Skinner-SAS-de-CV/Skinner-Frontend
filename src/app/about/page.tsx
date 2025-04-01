@@ -39,7 +39,7 @@ export default function AboutPage() {
 
       <main className="flex-grow">
 
-        <section className="relative w-full min-h-[90vh]  text-center text-white px-6 overflow-hidden mx-0 px-0">
+        <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0">
           {/* Contenido de about */}
           <motion.div
           className="bg-transparent min-h-[90vh]  flex flex-col justify-center items-center text-center"
@@ -64,7 +64,7 @@ export default function AboutPage() {
             </div>
 
 
-            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
+            <h1 className="md:h-[70px] h-[150px] text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
               Transformando la adquisición de talentos
             </h1>
             <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
@@ -165,7 +165,7 @@ export default function AboutPage() {
           variants={fadeInUpVariants}
           className="py-16 px-6 max-w-5xl mx-auto text-center"
         >
-          <motion.h2 className="h-[60px] text-5xl font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-5 bg-clip-text">
+          <motion.h2 className="md:h-[60px] h-[120px] text-5xl font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-5 bg-clip-text">
             ¿Por qué elegirnos?
           </motion.h2>
           <motion.div className="text-lg text-gray-300 mb-8">
