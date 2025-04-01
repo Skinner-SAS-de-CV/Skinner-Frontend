@@ -39,7 +39,7 @@ export default function AboutPage() {
 
       <main className="flex-grow">
 
-        <section className="relative w-full min-h-[90vh]  text-center text-white px-6 overflow-hidden">
+        <section className="relative w-full min-h-[90vh]  text-center text-white px-6 overflow-hidden mx-0 px-0">
           {/* Contenido de about */}
           <motion.div
           className="bg-transparent min-h-[90vh]  flex flex-col justify-center items-center text-center"
@@ -50,7 +50,7 @@ export default function AboutPage() {
           >
 
             {/* He puesto las lineas para colocar el video, pero aun no lo he probado si se ve.  */}
-            <div className="absolute -z-10 inset-0 overflow-hidden w-screen -mx-10  h-full">
+            <div className="absolute -z-10 inset-0 overflow-hidden w-screen h-full">
               <video
                 autoPlay
                 loop
@@ -58,13 +58,13 @@ export default function AboutPage() {
                 playsInline
                 className="w-full h-full object-cover brightness-[0.4]"
               >
-                <source src="https://res.cloudinary.com/dgqogjfsz/video/upload/v1743527056/msnwbyh9wdqcurbegunf.mp4" type="video/mp4" />
+                <source src="https://res.cloudinary.com/dgqogjfsz/video/upload/ac_none,vc_auto/v1743527056/msnwbyh9wdqcurbegunf.mp4" type="video/mp4" />
                 Tu navegador no soporta el video HTML5.
               </video>
             </div>
 
 
-            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
               Transformando la adquisición de talentos
             </h1>
             <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
