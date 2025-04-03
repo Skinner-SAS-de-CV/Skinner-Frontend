@@ -100,7 +100,7 @@ export default function HeroSection() {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400"
+          className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
         >
           Sistemas inteligentes de gestión de talento humano.
         </motion.h1>
