@@ -64,12 +64,12 @@ export default function AboutUs() {
               Transformando la adquisición de talentos
             </h1>
             <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
-              Aprovechamos la inteligencia artificial avanzada para revolucionar
-              el proceso de contratación y ayudar a las empresas a encontrar la
-              opción perfecta para sus equipos.
+            Aprovechamos la inteligencia artificial avanzada para revolucionar el proceso 
+            de contratación y ayudar a las empresas a encontrar la 
+            opción perfecta para sus equipos.
             </p>
-            <Link href="/register">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Link href="/contact">
+              <Button size="lg" className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-lg">
                 Contáctanos <ArrowRight className="ml-2" />
               </Button>
             </Link>
@@ -94,17 +94,31 @@ export default function AboutUs() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeLeftVariants}
-          className="py-16 px-6 max-w-5xl mx-auto"
+          className="py-16 px-4 max-w-5xl mx-auto"
         >
           <h2 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             Nuestra Misión
           </h2>
           <p className="text-lg text-gray-300 text-center">
-            Nos dedicamos a mejorar los procesos de reclutamiento y contratación
-            a través de inteligencia artificial avanzada. Nuestro objetivo es
-            ayudar a las empresas a encontrar el mejor talento de manera
-            eficiente y precisa, transformando la forma en que las
-            organizaciones forman sus equipos.
+          Transformar y optimizar los procesos de gestión de talento humano 
+          mediante inteligencia artificial avanzada y soluciones estratégicas de gestión tecnológica.        
+          </p>
+        </motion.section>
+
+        {/* Objetivos */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeLeftVariants}
+          className="py-12 px-2 max-w-5xl mx-auto"
+        >
+          <h2 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+          Nuestro Objetivo
+          </h2>
+          <p className="text-lg text-gray-300 text-center">
+          Facilitamos la automatización de los procesos de gestión humana, 
+          redefiniendo la forma en que las organizaciones construyen equipos altamente efectivos.
           </p>
         </motion.section>
 
@@ -129,15 +143,15 @@ export default function AboutUs() {
             {[
               {
                 title: "Transparencia",
-                desc: "Operamos con honestidad y claridad en cada paso.",
+                desc: "Operamos con honestidad y claridad en cada paso del proceso.",
               },
               {
                 title: "Innovación",
-                desc: "Implementamos tecnologías de IA de última generación para optimizar la selección de talento.",
+                desc: "Utilizamos tecnologías de inteligencia artificial de última generación para optimizar continuamente la selección del talento.",
               },
               {
                 title: "Confianza",
-                desc: "Priorizamos la seguridad y privacidad de la información de nuestros clientes.",
+                desc: "Garantizamos la seguridad y privacidad absoluta de la información de nuestros clientes.",
               },
             ].map((val, idx) => (
               <motion.li
@@ -167,11 +181,12 @@ export default function AboutUs() {
             ¿Por qué elegirnos?
           </motion.h2>
           <motion.div className="text-lg text-gray-300 mb-8">
-            Nuestro equipo de expertos combina tecnología de punta con profundos
-            conocimientos en gestión de talento para brindar un servicio preciso
-            y eficiente. Nos destacamos por nuestra capacidad de analizar datos
-            en profundidad y brindar insights estratégicos para la toma de
-            decisiones en RRHH.
+          Nuestro equipo de expertos combina tecnología avanzada con un profundo 
+          conocimiento tanto en gestión estratégica del talento humano como en consultoría 
+          especializada en tecnologías, ofreciendo soluciones integrales, 
+          precisas y eficaces. Nos destacamos por realizar análisis exhaustivos de datos, 
+          proporcionando insights estratégicos que impulsan decisiones inteligentes y 
+          acertadas en Recursos Humanos y fortalecen la infraestructura tecnológica de las organizaciones.
           </motion.div>
           <motion.div
             variants={containerVariants}
@@ -180,22 +195,22 @@ export default function AboutUs() {
             {[
               {
                 title: "Decisiones basadas en datos",
-                desc: "Aproveche los conocimientos impulsados por inteligencia artificial para tomar decisiones de contratación más inteligentes.",
+                desc: "Aproveche insights impulsados por inteligencia artificial para tomar decisiones estratégicas más acertadas.",
                 icon: <Database className="inline align-super text-gray-200" />,
               },
               {
                 title: "Eficiencia de tiempo",
-                desc: "Agilice su proceso de reclutamiento y reduzca el tiempo de contratación.",
+                desc: "Agilice los procesos críticos de su organización, reduciendo significativamente los tiempos de selección, contratación e implementación tecnológica.",
                 icon: <Timer className="inline align-super text-gray-200" />,
               },
               {
                 title: "Reducción de sesgo",
-                desc: "Minimice los sesgos inconscientes en su proceso de selección de candidatos.",
+                desc: "Minimice los sesgos inconscientes, asegurando decisiones más justas, inclusivas y objetivas.",
                 icon: <Scale className="inline align-super text-gray-200" />,
               },
               {
                 title: "Soluciones escalables",
-                desc: "Haga crecer su equipo sin esfuerzo con nuestra plataforma.",
+                desc: "Expanda fácilmente su organización con soluciones flexibles que se adaptan eficientemente al crecimiento de su talento y tecnología.",
                 icon: (
                   <ChartSpline className="inline align-super text-gray-200" />
                 ),

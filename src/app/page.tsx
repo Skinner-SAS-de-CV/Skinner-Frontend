@@ -102,7 +102,7 @@ export default function HeroSection() {
           animate="visible"
           className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400"
         >
-          Sistemas Inteligentes de Reclutamiento de Empleados
+          Sistemas inteligentes de gestión de talento humano.
         </motion.h1>
 
         <motion.p
@@ -112,8 +112,10 @@ export default function HeroSection() {
           animate="visible"
           className="mt-6 text-lg sm:text-xl text-gray-200"
         >
-          Nuestro sistema de reclutamiento, potenciado por inteligencia artificial, identifica y selecciona a los
-          candidatos idóneos, optimizando el proceso y los tiempos de contratación.
+          Nuestra plataforma integra inteligencia artificial avanzada y gestión 
+          estratégica de tecnologías de la información, optimizando procesos clave 
+          como reclutamiento, selección y administración del talento humano, al tiempo que 
+          fortalece la infraestructura tecnológica y operativa de las organizaciones.
         </motion.p>
 
         <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible" className="mt-8 flex justify-center gap-4">
