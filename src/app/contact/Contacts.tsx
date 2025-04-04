@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,7 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const ContactForm = () => {
       setCompanyName("");
       setEmail("");
       setMessage("");
-      router.push("/gracias");
+      // router.push("/gracias");
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
       toast.error("Hubo un problema. Inténtalo de nuevo.");
