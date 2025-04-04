@@ -84,3 +84,24 @@ export const getClients = async (): Promise<Client[]> => {
     throw error;
   }
 };
+
+
+export interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+}
+
+export const addContact = async (
+  contact: { name: string; email: string; message: string; }
+): Promise<Contact> => {
+  try {
+    const response = await axios.post(`${API_URL}/contactanos/`, contact);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Error al enviar el contacto:", error);
+    throw error;
+  }
+};
+
