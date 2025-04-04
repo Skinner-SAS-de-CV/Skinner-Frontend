@@ -94,10 +94,14 @@ export interface Contact {
 }
 
 export const addContact = async (
-  contact: { name: string; email: string; message: string; }
+  contact: { name: string; email: string; message: string }
 ): Promise<Contact> => {
+  const formData = new URLSearchParams();
+  formData.append("name", contact.name);
+  formData.append("email", contact.email);
+  formData.append("message", contact.message);
   try {
-    const response = await axios.post(`${API_URL}/contactanos/`, contact);
+    const response = await axios.post(`${API_URL}/contactanos/`, formData);
     return response.data;
   } catch (error: unknown) {
     console.error("Error al enviar el contacto:", error);
