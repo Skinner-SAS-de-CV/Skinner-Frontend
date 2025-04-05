@@ -8,9 +8,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center md:justify-between">
           {/* Contenedor para el texto con overflow horizontal */}
           <div className="overflow-x-auto flex-row">
-            <p className="whitespace-nowrap text-sm">
-              &copy; 2025 SKINNER S.A.S de C.V. Todos los Derechos Reservados.
-            </p>
+            <p className="text-sm">
+              &copy; 2025 SKINNER S.A.S de C.V.   Todos los Derechos Reservados.</p>
           </div>
           {/* Íconos de redes sociales en una fila */}
           <div className="flex flex-row space-x-4 items-center mt-4 md:mt-0">
