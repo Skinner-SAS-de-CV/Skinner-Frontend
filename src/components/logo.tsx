@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Logo: React.FC = () => {
     return (
-        <Link href={"/"} className="flex items-center">
+        <Link href={"/"} className="flex items-center py-1">
             <Image 
                 src="/skinner-logo.png" 
                 alt="Skinner Logo" 

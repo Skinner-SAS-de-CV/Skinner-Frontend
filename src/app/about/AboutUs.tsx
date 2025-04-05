@@ -37,7 +37,7 @@ export default function AboutUs() {
         <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0">
           {/* Contenido de about */}
           <motion.div
-            className="bg-transparent min-h-[90vh]  flex flex-col justify-center items-center text-center"
+            className="bg-transparent min-h-[90vh] flex flex-col justify-center items-center text-center"
             initial="hidden"
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
