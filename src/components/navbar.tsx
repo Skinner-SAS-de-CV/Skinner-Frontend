@@ -17,25 +17,24 @@ export function Navbar() {
           <Logo />
         </div>
 
-        {/* Menú para escritorio: enlaces y botón juntos los puse en el mismo contenedor*/}
+        {/* Menú para escritorio: enlaces y botón juntos en el mismo contenedor */}
         <div className="hidden sm:flex items-center space-x-6">
           <Link
             href="/"
-            className="text-lg text-gray-300 hover:text-white transition"
+            className="text-lg text-gray-300 hover:text-blue-500"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-lg text-gray-300 hover:text-white transition"
+            className="text-lg text-gray-300 hover:text-blue-500"
           >
             Quiénes Somos
           </Link>
-
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-white transition"
+            className="block text-lg text-gray-300 hover:text-blue-500"
           >
             Contáctanos
           </Link>
@@ -69,7 +68,6 @@ export function Navbar() {
           >
             Quiénes Somos
           </Link>
-
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}

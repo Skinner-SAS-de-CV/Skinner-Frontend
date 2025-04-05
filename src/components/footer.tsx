@@ -2,13 +2,13 @@ import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Contenedor principal en flex-col para apilar elementos en móviles */}
         <div className="flex flex-col md:flex-row items-center md:justify-between">
           {/* Contenedor para el texto con overflow horizontal */}
-          <div className="overflow-x-auto">
-            <p className="text-sm">
+          <div className="text-sm">
+            <p className="break-all">
               &copy; 2025 SKINNER S.A.S de C.V. All Rights Reserved.</p>
           </div>
           {/* Íconos de redes sociales en una fila */}
