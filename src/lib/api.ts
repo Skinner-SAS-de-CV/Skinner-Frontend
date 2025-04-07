@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "https://fastapi-resume-analyzer-production.up.railway.app";
+  process.env.NEXT_PUBLIC_API_URL
 
 interface AddJobParams {
   nombre_del_cliente: string;
@@ -89,15 +88,17 @@ export const getClients = async (): Promise<Client[]> => {
 export interface Contact {
   id: number;
   name: string;
+  name_company: string;
   email: string;
   message: string;
 }
 
 export const addContact = async (
-  contact: { name: string; email: string; message: string }
+  contact: { name: string; name_company: string; email: string; message: string }
 ): Promise<Contact> => {
   const formData = new URLSearchParams();
   formData.append("name", contact.name);
+  formData.append("name_company", contact.name_company);
   formData.append("email", contact.email);
   formData.append("message", contact.message);
   try {
