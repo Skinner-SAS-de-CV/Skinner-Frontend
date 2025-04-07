@@ -9,6 +9,7 @@ import { addContact } from "@/lib/api";
 import { toast } from "react-hot-toast";
 
 const ContactForm = () => {
+  const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -23,12 +24,14 @@ const ContactForm = () => {
 
     try {
       await addContact({
-        name: companyName,
+        name,
+        name_company: companyName,
         email,
         message,
       });
 
       toast.success("Mensaje enviado exitosamente.");
+      setName("");
       setCompanyName("");
       setEmail("");
       setMessage("");
@@ -50,8 +53,19 @@ const ContactForm = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+              <label className="text-gray-300 font-medium">Nombre:</label>
+              <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
             <div>
-              <label className="text-gray-300 font-medium">Nombre de la Empresa:</label>
+              <label className="text-gray-300 font-medium">Empresa:</label>
               <Input
                 type="text"
                 value={companyName}
@@ -71,7 +85,7 @@ const ContactForm = () => {
               />
             </div>
             <div>
-              <label className="text-gray-300 font-medium">Mensaje:</label>
+              <label className="text-gray-300 font-medium">¿Cómo le podemos ayudar hoy?</label>
               <Textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
