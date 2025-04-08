@@ -4,10 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/components/logo";
 import { Menu, X } from "lucide-react";
-import {
-  SignedIn,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +37,20 @@ export function Navbar() {
             Contáctanos
           </Link>
           <SignedIn>
+            <Link
+              href="/register"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Registrar
+            </Link>
+            <Link
+              href="/analyze"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Analizar
+            </Link>
             <UserButton />
           </SignedIn>
         </div>
@@ -61,25 +72,39 @@ export function Navbar() {
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-white transition"
+            className="block text-lg text-gray-300 hover:text-blue-500"
           >
             Home
           </Link>
           <Link
             href="/about"
             onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-white transition"
+            className="block text-lg text-gray-300 hover:text-blue-500"
           >
             Quiénes Somos
           </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-white transition"
+            className="block text-lg text-gray-300 hover:text-blue-500"
           >
             Contáctanos
           </Link>
           <SignedIn>
+            <Link
+              href="/register"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Registrar
+            </Link>
+            <Link
+              href="/analyze"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Analizar
+            </Link>
             <UserButton />
           </SignedIn>
         </div>
