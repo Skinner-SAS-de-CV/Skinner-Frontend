@@ -39,6 +39,9 @@ export function Navbar() {
           >
             Contáctanos
           </Link>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
 
         {/* Botón de menú para móviles estilo hamburguesa */}
