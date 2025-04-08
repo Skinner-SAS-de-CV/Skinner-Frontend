@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/components/logo";
 import { Menu, X } from "lucide-react";
+import {
+  SignedIn,
+  UserButton,
+} from "@clerk/nextjs";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +23,7 @@ export function Navbar() {
 
         {/* Menú para escritorio: enlaces y botón juntos en el mismo contenedor */}
         <div className="hidden sm:flex items-center space-x-6">
-          <Link
-            href="/"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
+          <Link href="/" className="text-lg text-gray-300 hover:text-blue-500">
             Home
           </Link>
           <Link
@@ -75,6 +76,9 @@ export function Navbar() {
           >
             Contáctanos
           </Link>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       )}
     </nav>
