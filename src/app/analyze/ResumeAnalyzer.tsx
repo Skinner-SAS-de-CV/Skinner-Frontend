@@ -19,6 +19,7 @@ export default function ResumeAnalyzer() {
   // Estados para errores y resultados
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<any>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -90,6 +91,7 @@ export default function ResumeAnalyzer() {
         body: formData,
       });
 
+      
       if (!response.ok) {
         throw new Error(
           "Error en la API. Verifica que el backend esté en línea."
@@ -105,6 +107,46 @@ export default function ResumeAnalyzer() {
       setLoading(false);
     }
   };
+
+  const handleFeedbackSubmit = async () => {
+
+    if (!result || !result.analysis_id) {
+      setError("Falta el análisis previo para generar feedback.");
+      return;
+    }
+  
+    setError(null);
+    setLoading(true);
+  
+    // Creamos el FormData con los datos necesarios para el endpoint de feedback.
+    const formData = new FormData();
+    formData.append("analysis_id", result.analysis_id);
+    formData.append("resume_text", result.resume_text);
+    formData.append("client_name", result.client_name);
+    formData.append("funciones_del_trabajo", result.funciones_del_trabajo);
+    formData.append("perfil_del_trabajador", result.perfil_del_trabajador);
+  
+    try {
+      const response = await fetch(`${API_URL}/feedback/`, {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error en la API. Verifica que el backend esté en línea para el feedback.");
+      }
+  
+      const data = await response.json();
+      // Actualizamos el state para mostrar el feedback recibido
+      setFeedback(data.feedback);
+    } catch (err) {
+      setError("Hubo un problema al obtener el feedback. Inténtalo de nuevo.");
+      console.error("Error al obtener feedback:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6">
@@ -132,7 +174,7 @@ export default function ResumeAnalyzer() {
               ))}
             </select>
           </div>
-
+  
           {/* 2do Dropdown: Trabajo */}
           <div>
             <label className="text-gray-300 font-medium">
@@ -150,7 +192,7 @@ export default function ResumeAnalyzer() {
               ))}
             </select>
           </div>
-
+  
           {/* Cargar archivo */}
           <div>
             <label className="text-gray-300 font-medium">
@@ -165,7 +207,7 @@ export default function ResumeAnalyzer() {
               className="file:text-white file:bg-gradient-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
+  
           {/* Botón para enviar */}
           <Button
             onClick={handleSubmit}
@@ -181,9 +223,9 @@ export default function ResumeAnalyzer() {
               "Analizar Currículum"
             )}
           </Button>
-
+  
           {error && <p className="text-red-400 text-center mt-2">{error}</p>}
-
+  
           {/* Mostrar resultados */}
           {result && (
             <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
@@ -214,8 +256,17 @@ export default function ResumeAnalyzer() {
                 <div>
                   <strong>💡 Feedback de IA:</strong>
                   <div className="pl-6">
-                    <Markdown>{result.feedback}</Markdown>
+                    {feedback ? (
+                      <Markdown>{feedback}</Markdown>
+                    ) : (
+                      <span>No hay feedback, presiona el botón para obtenerlo.</span>
+                    )}
                   </div>
+                </div>
+                <div className="mt-4">
+                  <Button onClick={handleFeedbackSubmit} disabled={loading}>
+                    {loading ? "Cargando feedback..." : "Obtener Feedback"}
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -224,4 +275,4 @@ export default function ResumeAnalyzer() {
       </Card>
     </div>
   );
-}
+}  
