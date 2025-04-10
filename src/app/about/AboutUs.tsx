@@ -86,7 +86,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="px-6 py-6 text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                  className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
                 >
                   Contáctanos <ArrowRight className="ml-2" />
                 </Button>
@@ -231,7 +231,7 @@ export default function AboutUs() {
           <div className="container mx-auto max-w-6xl">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
+              className="sm:h-[60px] md:h-[60px] h-[120px] text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
             >
               ¿Por qué elegirnos?
             </motion.h2>
@@ -306,7 +306,7 @@ export default function AboutUs() {
                     <Link href="/demo">
                       <Button
                         size="lg"
-                        className="px-6 py-6 text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                        className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
                       >
                         Solicitar una demo
                       </Button>
@@ -315,7 +315,7 @@ export default function AboutUs() {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                        className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
                       >
                         Contactar con ventas
                       </Button>
