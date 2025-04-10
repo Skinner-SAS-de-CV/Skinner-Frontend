@@ -7,9 +7,12 @@ export function Footer() {
         {/* Contenedor principal en flex-col para apilar elementos en móviles */}
         <div className="flex flex-col md:flex-row items-center md:justify-between">
           {/* Contenedor para el texto con overflow horizontal */}
-          <div className="text-sm">
-            <p className="break-all">
-              &copy; 2025 SKINNER S.A.S de C.V. All Rights Reserved.</p>
+          <div className="text-md">
+            <span>
+              &copy; 2025 SKINNER S.A.S de C.V.  </span>
+
+
+             <div className="md:inline">&nbsp; Todos los Derechos Reservados.</div> 
           </div>
           {/* Íconos de redes sociales en una fila */}
           <div className="flex flex-row space-x-4 items-center mt-4 md:mt-0">
