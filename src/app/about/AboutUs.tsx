@@ -39,10 +39,10 @@ export default function AboutUs() {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
       <main className="flex-grow">
-        <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0">
+        <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0 flex">
           {/* Contenido de about */}
           <motion.div
-            className="bg-transparent min-h-[90vh] flex flex-col justify-center items-center text-center"
+            className="bg-transparent min-h-[90vh]"
             initial="hidden"
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -67,7 +67,7 @@ export default function AboutUs() {
             </motion.div>          
           {/* Contenido Hero centrado */}
           <motion.div
-            className="container mx-auto px-4 relative z-10"
+            className="container m-auto px-4 z-10"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -110,7 +110,7 @@ export default function AboutUs() {
 
         {/* Mission, Vision, Values Section */}
         <section className="py-20 px-4">
-          <div className="container mx-auto max-w-6xl">
+          <div className="mx-auto max-w-6xl lg:pt-20">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -162,6 +162,10 @@ export default function AboutUs() {
             </motion.div>
           </div>
         </section>
+
+        <div className="container mx-auto max-w-6xl px-4">
+          <Separator className="my-8 bg-gray-700/50" />
+        </div>
 
         {/* Valores */}
         <motion.section
@@ -275,6 +279,10 @@ export default function AboutUs() {
           </div>
         </motion.section>
 
+        <div className="container mx-auto max-w-6xl px-4">
+          <Separator className="my-8 bg-gray-700/50" />
+        </div>
+
         {/* CTA Section */}
         <motion.section
           initial="hidden"
@@ -307,7 +315,7 @@ export default function AboutUs() {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="px-6 py-6 border-blue-500/50 text-white hover:bg-blue-900/20 rounded-full w-full sm:w-auto"
+                        className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
                       >
                         Contactar con ventas
                       </Button>
