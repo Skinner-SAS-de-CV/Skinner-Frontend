@@ -39,25 +39,32 @@ export default function AboutUs() {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
       <main className="flex-grow">
-        {/* Contenedor principal con posición relative y Flex para centrar */}
-        <section className="relative flex items-center justify-center overflow-hidden w-full min-h-[90vh] text-center mx-0 px-0">
-          {/* Video de fondo */}
-          <div className="absolute -z-10 inset-0 overflow-hidden w-screen h-full">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover brightness-[0.4]"
-            >
-              <source
-                src="https://res.cloudinary.com/dgqogjfsz/video/upload/ac_none,vc_auto/v1743527056/msnwbyh9wdqcurbegunf.mp4"
-                type="video/mp4"
-              />
-              Tu navegador no soporta el video HTML5.
-            </video>
-          </div>
-          
+        <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0">
+          {/* Contenido de about */}
+          <motion.div
+            className="bg-transparent min-h-[90vh] flex flex-col justify-center items-center text-center"
+            initial="hidden"
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            variants={fadeInUpVariants}
+          >
+            {/* He puesto las lineas para colocar el video, pero aun no lo he probado si se ve.  */}
+            <div className="absolute -z-10 inset-0 overflow-hidden w-screen h-full">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover brightness-[0.4]"
+              >
+                <source
+                  src="https://res.cloudinary.com/dgqogjfsz/video/upload/ac_none,vc_auto/v1743527056/msnwbyh9wdqcurbegunf.mp4"
+                  type="video/mp4"
+                />
+                Tu navegador no soporta el video HTML5.
+              </video>
+            </div>
+            </motion.div>          
           {/* Contenido Hero centrado */}
           <motion.div
             className="container mx-auto px-4 relative z-10"
