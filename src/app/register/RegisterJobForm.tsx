@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { addJob } from "@/lib/api";
 import { toast } from "react-hot-toast";
 
-const RegisterJobForm = () => {
+const RegisterJobForm = ({ token }: { token: string | null }) => {
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -32,18 +32,21 @@ const RegisterJobForm = () => {
         perfil_del_trabajador,
         funciones_del_trabajo,
         habilidades,
+        token,
       });
 
       toast.success("✅ Trabajo registrado exitosamente.");
       setShowForm(false); // Ocultar el formulario después de registrar
       router.push(
-        `/analyze?client=${encodeURIComponent(nombre_del_cliente)}&job=${encodeURIComponent(
-          titulo_de_trabajo
-        )}`
+        `/analyze?client=${encodeURIComponent(
+          nombre_del_cliente
+        )}&job=${encodeURIComponent(titulo_de_trabajo)}`
       );
     } catch (error) {
       console.error("Error al agregar el trabajo:", error);
-      toast.error("❌ Hubo un problema al registrar el trabajo. Inténtalo de nuevo.");
+      toast.error(
+        "❌ Hubo un problema al registrar el trabajo. Inténtalo de nuevo."
+      );
     } finally {
       setLoading(false);
     }
@@ -61,7 +64,9 @@ const RegisterJobForm = () => {
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-gray-300 font-medium">Nombre del Cliente:</label>
+                <label className="text-gray-300 font-medium">
+                  Nombre del Cliente:
+                </label>
                 <Input
                   type="text"
                   value={nombre_del_cliente}
@@ -71,7 +76,9 @@ const RegisterJobForm = () => {
                 />
               </div>
               <div>
-                <label className="text-gray-300 font-medium">Título del Trabajo:</label>
+                <label className="text-gray-300 font-medium">
+                  Título del Trabajo:
+                </label>
                 <Input
                   type="text"
                   value={titulo_de_trabajo}
@@ -81,7 +88,9 @@ const RegisterJobForm = () => {
                 />
               </div>
               <div>
-                <label className="text-gray-300 font-medium">Perfil del Trabajador:</label>
+                <label className="text-gray-300 font-medium">
+                  Perfil del Trabajador:
+                </label>
                 <Textarea
                   value={perfil_del_trabajador}
                   onChange={(e) => setPerfilDelTrabajador(e.target.value)}
@@ -90,7 +99,9 @@ const RegisterJobForm = () => {
                 />
               </div>
               <div>
-                <label className="text-gray-300 font-medium">Funciones del Trabajo:</label>
+                <label className="text-gray-300 font-medium">
+                  Funciones del Trabajo:
+                </label>
                 <Textarea
                   value={funciones_del_trabajo}
                   onChange={(e) => setFuncionesDelTrabajo(e.target.value)}
@@ -99,7 +110,9 @@ const RegisterJobForm = () => {
                 />
               </div>
               <div>
-                <label className="text-gray-300 font-medium">Habilidades:</label>
+                <label className="text-gray-300 font-medium">
+                  Habilidades:
+                </label>
                 <Input
                   type="text"
                   value={habilidades}

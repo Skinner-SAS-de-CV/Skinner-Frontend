@@ -12,11 +12,8 @@ import {
   Job as ApiJob,
 } from "@/lib/api";
 import Markdown from "react-markdown";
-import { useAuth } from "@clerk/nextjs";
 
-export default function ResumeAnalyzer() {
-  // Autenticación
-  const { getToken } = useAuth();
+export default function ResumeAnalyzer({ token }: { token: string | null }) {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   // Estados para errores y resultados
@@ -88,7 +85,6 @@ export default function ResumeAnalyzer() {
     formData.append("client_id", selectedClient);
 
     try {
-      const token = await getToken();
       const response = await fetch(`${API_URL}/analyze/`, {
         method: "POST",
         body: formData,
