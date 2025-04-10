@@ -214,7 +214,7 @@ export default function ResumeAnalyzer() {
                 <div>
                   <strong>💡 Feedback de IA:</strong>
                   <div className="pl-6">
-                    <Markdown>{result.feedback}</Markdown>
+                    <Markdown>{result.feedback.feedback}</Markdown>
                   </div>
                 </div>
               </CardContent>
