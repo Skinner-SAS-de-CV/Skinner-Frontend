@@ -13,7 +13,7 @@ import {
 } from "@/lib/api";
 import Markdown from "react-markdown";
 
-export default function ResumeAnalyzer() {
+export default function ResumeAnalyzer({ token }: { token: string | null }) {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   // Estados para errores y resultados
@@ -88,6 +88,7 @@ export default function ResumeAnalyzer() {
       const response = await fetch(`${API_URL}/analyze/`, {
         method: "POST",
         body: formData,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (!response.ok) {

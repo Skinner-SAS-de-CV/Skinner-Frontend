@@ -9,6 +9,7 @@ interface AddJobParams {
   perfil_del_trabajador: string;
   funciones_del_trabajo: string;
   habilidades: string;
+  token: string | null;
 }
 
 export const addJob = async ({
@@ -17,6 +18,7 @@ export const addJob = async ({
   perfil_del_trabajador,
   funciones_del_trabajo,
   habilidades,
+  token,
 }: AddJobParams): Promise<void> => {
   const formData = new FormData();
   formData.append("nombre_del_cliente", nombre_del_cliente);
@@ -26,7 +28,11 @@ export const addJob = async ({
   formData.append("habilidades", habilidades);
 
   try {
-    const response = await axios.post(`${API_URL}/agregar_trabajo/`, formData);
+    const response = await axios.post(`${API_URL}/agregar_trabajo/`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
     console.log("Respuesta del servidor:", response.data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
