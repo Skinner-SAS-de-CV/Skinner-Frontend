@@ -303,7 +303,7 @@ export default function AboutUs() {
                     para su empresa de manera más rápida y eficiente.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo&body=">
+                    <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
                       <Button
                         size="lg"
                         className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
