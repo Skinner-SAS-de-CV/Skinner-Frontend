@@ -74,7 +74,7 @@ export default function AboutUs() {
             variants={fadeInUpVariants}
           >
             <h1 className="xl:h-[70px] h-[150px] text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
-              Transformando la adquisición de talentos
+              Transformando la adquisición de talentos.
             </h1>
 
             <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
@@ -231,7 +231,7 @@ export default function AboutUs() {
           <div className="container mx-auto max-w-6xl">
             <motion.h2
               variants={fadeInUpVariants}
-              className="sm:h-[60px] md:h-[60px] h-[120px] text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
+              className="md:h-[60px] text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
             >
               ¿Por qué elegirnos?
             </motion.h2>
