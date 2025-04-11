@@ -108,7 +108,7 @@ export default function ResumeAnalyzer({ token }: { token: string | null }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6">
+    <div className="flex items-center justify-center min-h-screen bg-gray-950 md:px-6 py-6">
       <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
@@ -187,7 +187,7 @@ export default function ResumeAnalyzer({ token }: { token: string | null }) {
 
           {/* Mostrar resultados */}
           {result && (
-            <Card className="mt-6 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+            <Card className="mt-6 bg-gray-800 md:p-6  rounded-lg shadow-md border border-gray-700">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-white">
                   Resultados
