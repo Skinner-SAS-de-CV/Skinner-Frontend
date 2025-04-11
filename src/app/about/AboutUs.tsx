@@ -73,7 +73,7 @@ export default function AboutUs() {
             viewport={{ once: true }}
             variants={fadeInUpVariants}
           >
-            <h1 className="2xl:h-[70px] h-[140px] text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
+            <h1 className="2xl:h-[70px] md:h-[175px] h-[140px] text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
               Transformando la adquisición de talentos.
             </h1>
 
