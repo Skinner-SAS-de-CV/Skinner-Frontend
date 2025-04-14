@@ -10,6 +10,7 @@ import {
   Timer,
   Users,
   Lightbulb,
+  Compass,
   Target,
 } from "lucide-react"
 import Link from "next/link"
@@ -21,11 +22,6 @@ const fadeInUpVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
-
-{/*const fadeLeftVariants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
-};*/}
 
 const containerVariants = {
   hidden: { opacity: 1 },
@@ -99,7 +95,7 @@ export default function AboutUs() {
         {/* Wave Transition */}
         <div className="relative">
           <svg
-            className="absolute left-0 right-0 -top-1 text-gray-800 w-full"
+            className="left-0 right-0 -top-1 text-gray-800 w-full z-20"
             viewBox="0 0 1440 50"
             fill="currentColor"
             preserveAspectRatio="none"
@@ -108,63 +104,98 @@ export default function AboutUs() {
           </svg>
         </div>
 
-        {/* Mission, Vision, Values Section */}
-        <section className="py-20 px-4">
-          <div className="mx-auto max-w-6xl lg:pt-20">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="grid md:grid-cols-3 gap-8"
-            >
-              {/* Mission */}
-              <motion.div variants={fadeInUpVariants} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
-                  <Target className="h-8 w-8 text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
-                  Nuestra Misión
-                </h2>
-                <p className="text-gray-300">
-                  Transformar y optimizar los procesos de gestión de talento humano mediante inteligencia artificial
-                  avanzada y soluciones estratégicas de gestión tecnológica.
-                </p>
-              </motion.div>
+        {/* Mision, Vision, Objetivos, Team */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8"
+        >
+          {/* Nuestra Misión */}
+          <motion.div 
+            variants={fadeInUpVariants} 
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
+          >
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+              <Target className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+              Nuestra Misión
+            </h2>
+            <p className="text-gray-300">
+              Ofrecemos soluciones innovadoras y eficientes basadas en inteligencia artificial avanzada, para optimizar y agilizar los procesos de selección, evaluación y gestión del talento humano, impulsando así la productividad y el desarrollo estratégico de las organizaciones.
+            </p>
+          </motion.div>
 
-              {/* Vision */}
-              <motion.div variants={fadeInUpVariants} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
-                  <Lightbulb className="h-8 w-8 text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
-                  Nuestro Objetivo
-                </h2>
-                <p className="text-gray-300">
-                  Facilitamos la automatización de los procesos de gestión humana, redefiniendo la forma en que las
-                  organizaciones construyen equipos altamente efectivos.
-                </p>
-              </motion.div>
+          {/* Nuestra Visión */}
+          <motion.div 
+            variants={fadeInUpVariants} 
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
+          >
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+              <Lightbulb className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+              Nuestra Visión
+            </h2>
+            <p className="text-gray-300">
+              Ser una empresa referente en la transformación digital del talento humano, reconocida por impulsar cambios reales y medibles en cómo las organizaciones locales encuentran, desarrollan y retienen el mejor talento mediante tecnología innovadora y accesible.
+            </p>
+          </motion.div>
 
-              {/* Team */}
-              <motion.div variants={fadeInUpVariants} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
-                  Nuestro Equipo
-                </h2>
-                <p className="text-gray-300">
-                  Contamos con expertos en IA, recursos humanos y tecnología que trabajan juntos para ofrecer soluciones
-                  innovadoras que transforman la forma de gestionar el talento.
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
+          {/* Nuestro Objetivo */}
+          <motion.div 
+            variants={fadeInUpVariants} 
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
+          >
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+              <Compass className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+              Nuestro Objetivo
+            </h2>
+            <p className="text-gray-300">
+              Facilitamos la automatización de los procesos de gestión humana, redefiniendo la forma en que las organizaciones construyen equipos altamente efectivos.
+            </p>
+          </motion.div>
+
+          {/* Nuestro Equipo */}
+          <motion.div 
+            variants={fadeInUpVariants} 
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
+          >
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+              <Users className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+              Nuestro Equipo
+            </h2>
+            <p className="text-gray-300">
+              Contamos con expertos en recursos humanos y tecnología que trabajan juntos para ofrecer soluciones innovadoras que transforman la forma de gestionar el talento.
+            </p>
+          </motion.div>
+        </motion.div>
+
 
         <div className="container mx-auto max-w-6xl px-4">
           <Separator className="my-8 bg-gray-700/50" />
+        </div>
+
+        {/* Wave Transition */}
+        <div className="relative">
+          <svg
+            className="left-0 right-0 -top-1 text-gray-800 w-full z-20"
+            viewBox="0 0 1440 50"
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+          </svg>
         </div>
 
         {/* Valores */}
@@ -218,6 +249,18 @@ export default function AboutUs() {
         {/* Separator */}
         <div className="container mx-auto max-w-6xl px-4">
           <Separator className="my-8 bg-gray-700/50" />
+        </div>
+
+        {/* Wave Transition */}
+        <div className="relative">
+          <svg
+            className="left-0 right-0 -top-1 text-gray-800 w-full z-20"
+            viewBox="0 0 1440 50"
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+          </svg>
         </div>
 
         {/* Por qué elegirnos */}
@@ -281,6 +324,18 @@ export default function AboutUs() {
 
         <div className="container mx-auto max-w-6xl px-4">
           <Separator className="my-8 bg-gray-700/50" />
+        </div>
+
+        {/* Wave Transition */}
+        <div className="relative">
+          <svg
+            className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+            viewBox="0 0 1440 50"
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+          </svg>
         </div>
 
         {/* CTA Section */}
