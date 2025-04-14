@@ -18,7 +18,7 @@ export function Footer() {
           <div className="flex flex-row space-x-4 items-center mt-4 md:mt-0">
             {/* Red social X */}
             <a
-              href="https://x.com/Skinner342585"
+              href="https://x.com/skinner_sv"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500"
