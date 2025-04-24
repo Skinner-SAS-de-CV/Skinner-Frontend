@@ -11,10 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Markdown from "react-markdown";
+import { useAuth } from "@clerk/nextjs";
 
-export default function AnalyzeForm({ token }: { token: string | null }) {
+export default function AnalyzeForm() {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
+  const { getToken } = useAuth();
   // Estados para errores y resultados
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<any>(null);
@@ -84,6 +86,7 @@ export default function AnalyzeForm({ token }: { token: string | null }) {
     formData.append("client_id", selectedClient);
 
     try {
+      const token = await getToken();
       const response = await fetch(`${API_URL}/analyze/`, {
         method: "POST",
         body: formData,

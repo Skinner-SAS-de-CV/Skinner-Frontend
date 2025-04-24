@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { addJob } from "@/lib/api";
 import { toast } from "react-hot-toast";
+import { useAuth } from "@clerk/nextjs";
 
-const RegisterJobForm = ({ token }: { token: string | null }) => {
+const RegisterJobForm = () => {
+  const { getToken } = useAuth();
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -26,6 +28,7 @@ const RegisterJobForm = ({ token }: { token: string | null }) => {
     setError(null);
 
     try {
+      const token = await getToken();
       await addJob({
         nombre_del_cliente,
         titulo_de_trabajo,
