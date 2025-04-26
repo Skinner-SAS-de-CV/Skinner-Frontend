@@ -9,9 +9,10 @@ import {
 } from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
 import Markdown from "react-markdown";
 import { useAuth } from "@clerk/nextjs";
+import { AnalysisResponse } from "./AnalysisResponse";
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
@@ -19,7 +20,7 @@ export default function AnalyzeForm() {
   const { getToken } = useAuth();
   // Estados para errores y resultados
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<AnalysisResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -111,118 +112,120 @@ export default function AnalyzeForm() {
 
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
-            📄 Subir Currículum para Análisis
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* 1er Dropdown: Cliente */}
-          <div>
-            <label className="text-gray-300 font-medium">
-              Selecciona el Cliente:
-            </label>
-            <select
-              value={selectedClient}
-              onChange={(e) => setSelectedClient(e.target.value)}
-              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
-            >
-              {clients.map((client) => (
-                <option key={client.id} value={client.id}>
-                  {client.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* 2do Dropdown: Trabajo */}
-          <div>
-            <label className="text-gray-300 font-medium">
-              Selecciona el Trabajo:
-            </label>
-            <select
-              value={selectedJob}
-              onChange={(e) => setSelectedJob(e.target.value)}
-              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
-            >
-              {jobs.map((job) => (
-                <option key={job.id} value={job.id}>
-                  {job.title}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Cargar archivo */}
-          <div>
-            <label className="text-gray-300 font-medium">
-              Sube tu CV (PDF/DOCX):
-            </label>
-            <Input
-              type="file"
-              onChange={(e) =>
-                setFile(e.target.files ? e.target.files[0] : null)
-              }
-              accept=".pdf,.docx"
-              className="file:text-white file:bg-gradient-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Botón para enviar */}
-          <Button
-            onClick={handleSubmit}
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
-            disabled={loading}
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+          📄 Subir Currículum para Análisis
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {/* 1er Dropdown: Cliente */}
+        <div>
+          <label className="text-gray-300 font-medium">
+            Selecciona el Cliente:
+          </label>
+          <select
+            value={selectedClient}
+            onChange={(e) => setSelectedClient(e.target.value)}
+            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
           >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Analizando...
-              </>
-            ) : (
-              "Analizar Currículum"
-            )}
-          </Button>
+            {clients.map((client) => (
+              <option key={client.id} value={client.id}>
+                {client.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          {error && <p className="text-red-400 text-center mt-2">{error}</p>}
+        {/* 2do Dropdown: Trabajo */}
+        <div>
+          <label className="text-gray-300 font-medium">
+            Selecciona el Trabajo:
+          </label>
+          <select
+            value={selectedJob}
+            onChange={(e) => setSelectedJob(e.target.value)}
+            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+          >
+            {jobs.map((job) => (
+              <option key={job.id} value={job.id}>
+                {job.title}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          {/* Mostrar resultados */}
-          {result && (
-            <Card className="mt-6 bg-gray-800 md:p-6  rounded-lg shadow-md border border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-lg font-semibold text-white">
-                  Resultados
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-white">
-                <div>
-                  <strong>📄 Archivo:</strong> {result.file_name}
-                </div>
-                <div>
-                  <strong>📊 Puntaje:</strong> {result.match_score}
-                </div>
-                <div>
-                  <strong>✅ Decisión:</strong>{" "}
-                  <span
-                    className={
-                      result.decision === "Selected"
-                        ? "text-green-400 font-bold"
-                        : "text-red-400 font-bold"
-                    }
-                  >
-                    {result.decision}
-                  </span>
-                </div>
-                <div>
-                  <strong>💡 Feedback de IA:</strong>
-                  <div className="pl-6">
-                    <Markdown>{result.feedback.feedback}</Markdown>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        {/* Cargar archivo */}
+        <div>
+          <label className="text-gray-300 font-medium">
+            Sube tu CV (PDF/DOCX):
+          </label>
+          <Input
+            type="file"
+            onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+            accept=".pdf,.docx"
+            className="file:text-white file:bg-gradient-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Botón para enviar */}
+        <Button
+          onClick={handleSubmit}
+          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Analizando...
+            </>
+          ) : (
+            "Analizar Currículum"
           )}
-        </CardContent>
-      </Card>
+        </Button>
+
+        {error && <p className="text-red-400 text-center mt-2">{error}</p>}
+
+        {/* Mostrar resultados */}
+        {result && (
+          <Card className="mt-6 bg-gray-800 md:p-5 rounded-lg shadow-md border border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
+                <h1>Resultados</h1>
+                <Button variant="ghost" className="h-[50px] w-[50px]">
+                  {/* https://github.com/shadcn-ui/ui/issues/6316 */}
+                  <Save className="!size-7" />
+                </Button>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-white">
+              <div>
+                <strong>📄 Archivo:</strong> {result.file_name}
+              </div>
+              <div>
+                <strong>📊 Puntaje:</strong> {result.match_score}
+              </div>
+              <div>
+                <strong>✅ Decisión:</strong>{" "}
+                <span
+                  className={
+                    result.decision === "Selected"
+                      ? "text-green-400 font-bold"
+                      : "text-red-400 font-bold"
+                  }
+                >
+                  {result.decision}
+                </span>
+              </div>
+              <div>
+                <strong>💡 Feedback de IA:</strong>
+                <div className="pl-6">
+                  <Markdown>{result.feedback.feedback}</Markdown>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </CardContent>
+    </Card>
   );
 }
