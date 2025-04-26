@@ -9,17 +9,17 @@ import {
 } from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader2, Save } from "lucide-react";
-import Markdown from "react-markdown";
+import { Loader2 } from "lucide-react";
+
 import { useAuth } from "@clerk/nextjs";
 import { AnalysisResponse } from "./AnalysisResponse";
+import Result from "./Result";
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   const { getToken } = useAuth();
   // Estados para errores y resultados
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<AnalysisResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -186,45 +186,7 @@ export default function AnalyzeForm() {
         {error && <p className="text-red-400 text-center mt-2">{error}</p>}
 
         {/* Mostrar resultados */}
-        {result && (
-          <Card className="mt-6 bg-gray-800 md:p-5 rounded-lg shadow-md border border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
-                <h1>Resultados</h1>
-                <Button variant="ghost" className="h-[50px] w-[50px]">
-                  {/* https://github.com/shadcn-ui/ui/issues/6316 */}
-                  <Save className="!size-7" />
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-white">
-              <div>
-                <strong>📄 Archivo:</strong> {result.file_name}
-              </div>
-              <div>
-                <strong>📊 Puntaje:</strong> {result.match_score}
-              </div>
-              <div>
-                <strong>✅ Decisión:</strong>{" "}
-                <span
-                  className={
-                    result.decision === "Selected"
-                      ? "text-green-400 font-bold"
-                      : "text-red-400 font-bold"
-                  }
-                >
-                  {result.decision}
-                </span>
-              </div>
-              <div>
-                <strong>💡 Feedback de IA:</strong>
-                <div className="pl-6">
-                  <Markdown>{result.feedback.feedback}</Markdown>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        {result && <Result result={result} />}
       </CardContent>
     </Card>
   );
