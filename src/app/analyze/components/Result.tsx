@@ -1,18 +1,13 @@
 import Markdown from "react-markdown";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnalysisResponse } from "./AnalysisResponse";
-import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
 import { useRef } from "react";
-import * as html2pdf from "html2pdf.js";
+import dynamic from "next/dynamic";
+
+const GeneratePDF = dynamic(() => import("./GeneratePDF"), { ssr: false });
 
 export default function Result({ result }: { result: AnalysisResponse }) {
   const cardRef = useRef(null);
-  const handleSave = () => {
-    if (cardRef.current) {
-      html2pdf.default(cardRef.current);
-    }
-  };
   return (
     <Card
       ref={cardRef}
@@ -21,14 +16,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
           <h1>Resultados</h1>
-          <Button
-            variant="ghost"
-            className="h-[50px] w-[50px]"
-            onClick={handleSave}
-          >
-            {/* https://github.com/shadcn-ui/ui/issues/6316 */}
-            <Save className="!size-7" />
-          </Button>
+          <GeneratePDF cardRef={cardRef} />
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 text-white">
