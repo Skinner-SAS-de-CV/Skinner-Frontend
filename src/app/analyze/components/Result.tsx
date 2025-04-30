@@ -24,10 +24,10 @@ export default function Result({ result }: { result: AnalysisResponse }) {
           <strong>📄 Archivo:</strong> {result.file_name}
         </div>
         <div>
-          <strong>📊 Puntaje:</strong> {result.match_score}
+          <strong>📊 Calificación:</strong> {result.match_score}
         </div>
         <div>
-          <strong>✅ Decisión:</strong>{" "}
+          <strong>✅ Puntaje:</strong>{" "}
           <span
             className={
               result.decision === "Selected"
@@ -39,9 +39,10 @@ export default function Result({ result }: { result: AnalysisResponse }) {
           </span>
         </div>
         <div>
-          <strong>💡 Feedback de IA:</strong>
-          <div className="pl-6">
+          <strong>💡 Análisis:</strong>
+          <div className="pl-6 text-justify">
             <Markdown>{result.feedback.feedback}</Markdown>
+            <div className="text-center">Información procesada por www.skinnersv.net</div>
           </div>
         </div>
       </CardContent>
