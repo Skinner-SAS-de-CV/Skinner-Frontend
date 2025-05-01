@@ -29,6 +29,7 @@ export default function AnalyzeForm() {
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [jobs, setJobs] = useState<ApiJob[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
+  const [nombre, setNombre] = useState<string>("");
 
   const API_URL =
     process.env.NEXT_PUBLIC_API_URL ||
@@ -85,6 +86,8 @@ export default function AnalyzeForm() {
     formData.append("job_id", selectedJob);
     // Enviamos el cliente seleccionado
     formData.append("client_id", selectedClient);
+    // Enviamos el nombre del cliente
+    formData.append("nombre_del_candidato", nombre);
 
     try {
       const token = await getToken();
@@ -152,6 +155,19 @@ export default function AnalyzeForm() {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Nombre de candidato */}
+        <div>
+          <label className="text-gray-300 font-medium">
+            Nombre de Candidato:
+          </label>
+          <Input
+            type="text"
+            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            value={nombre}
+            onChange={(e) => setNombre(e.currentTarget.value)}
+          />
         </div>
 
         {/* Cargar archivo */}
