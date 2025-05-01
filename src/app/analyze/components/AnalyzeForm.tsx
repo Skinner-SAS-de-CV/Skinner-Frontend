@@ -87,7 +87,7 @@ export default function AnalyzeForm() {
     // Enviamos el cliente seleccionado
     formData.append("client_id", selectedClient);
     // Enviamos el nombre del cliente
-    formData.append("nombre_de_cliente", nombre);
+    formData.append("nombre_de_candidato", nombre);
 
     try {
       const token = await getToken();
