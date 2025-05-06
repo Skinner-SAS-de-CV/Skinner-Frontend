@@ -1,12 +1,12 @@
 import Markdown from "react-markdown";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AnalysisResponse } from "./AnalysisResponse";
+import { AnalysisCandidateResponse } from "./AnalysisCandidateResponse";
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 
-const GeneratePDF = dynamic(() => import("../../../components/GeneratePDF"), { ssr: false });
+const GeneratePDF = dynamic(() => import("../../../../components/GeneratePDF"), { ssr: false });
 
-export default function Result({ result }: { result: AnalysisResponse }) {
+export default function Result({ result }: { result: AnalysisCandidateResponse }) {
   const cardRef = useRef(null);
   return (
     <Card
@@ -21,25 +21,6 @@ export default function Result({ result }: { result: AnalysisResponse }) {
       </CardHeader>
       <CardContent className="space-y-3 text-white">
         <div>
-          <strong>📄 Archivo:</strong> {result.file_name}
-        </div>
-        <div>
-          <strong>📊 Calificación:</strong> {result.match_score}
-        </div>
-        <div>
-          <strong>✅ Puntaje:</strong>{" "}
-          <span
-            className={
-              result.decision === "Selected"
-                ? "text-green-400 font-bold"
-                : "text-red-400 font-bold"
-            }
-          >
-            {result.decision}
-          </span>
-        </div>
-        <div>
-          <strong>💡 Análisis:</strong>
           <div className="pl-6 text-justify">
             <Markdown>{result.feedback.feedback}</Markdown>
             <div className="text-center">Información procesada por www.skinnersv.net</div>
