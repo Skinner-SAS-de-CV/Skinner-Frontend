@@ -45,6 +45,13 @@ export function Navbar() {
               Registrar
             </Link>
             <Link
+              href="/candidate/analyze"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Analizar CV
+            </Link>
+            <Link
               href="/analyze"
               onClick={() => setIsOpen(false)}
               className="block text-lg text-gray-300 hover:text-blue-500"
