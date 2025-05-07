@@ -21,40 +21,19 @@ export default function AnalyzeForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Estados para manejar clientes, trabajos y selecciones
-  // const [jobs, setJobs] = useState<ApiJob[]>([]);
+  const [job, setJob] = useState<string>("");
   const [selectedJob, setSelectedJob] = useState<string>("");
 
   const API_URL =
     process.env.NEXT_PUBLIC_API_URL ||
     "https://fastapi-resume-analyzer-production.up.railway.app";
 
-  // Obtener los trabajos para ese cliente
-  // Usar cuando endpoint de profesiones exista
-  // useEffect(() => {
-  //   const fetchJobs = async () => {
-  //     try {
-  //       // Crear getJobs para obtener lista de profesiones
-  //       const data = await getJobs();
-  //       setJobs(data);
-  //       // Selecciona el primer trabajo si existe
-  //       if (data.length > 0) {
-  //         setSelectedJob(String(data[0].id));
-  //       } else {
-  //         setSelectedJob("");
-  //       }
-  //     } catch (err) {
-  //       console.error("Error al obtener profesiones:", err);
-  //     }
-  //   };
-  //   fetchJobs();
-  // }, []);
-
   //Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {
     // Agregar esta linea cuando tengamos profesiones
     // if (!file || !selectedJob) {
-    if (!file) {
-      setError("Sube un archivo y elige una profesión.");
+    if (!file || !job) {
+      setError("Sube un archivo y ponga una profesión.");
       return;
     }
     setError(null);
@@ -63,7 +42,7 @@ export default function AnalyzeForm() {
     const formData = new FormData();
     formData.append("file", file);
     // Enviamos la profesión seleccionada
-    formData.append("job_id", selectedJob);
+    formData.append("job", job);
 
     try {
       const token = await getToken();
@@ -98,22 +77,15 @@ export default function AnalyzeForm() {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* 1er Dropdown: Profesión */}
+        {/* 1er Campo: Profesión */}
         <div>
-          <label className="text-gray-300 font-medium">
-            Selecciona la Profesión:
-          </label>
-          <select
-            value={selectedJob}
-            onChange={(e) => setSelectedJob(e.target.value)}
+          <label className="text-gray-300 font-medium">Profesión:</label>
+          <Input
+            type="text"
             className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
-          >
-            {/* {jobs.map((job) => (
-              <option key={job.id} value={job.id}>
-                {job.title}
-              </option>
-            ))} */}
-          </select>
+            value={job}
+            onChange={(e) => setJob(e.currentTarget.value)}
+          />
         </div>
 
         {/* Cargar archivo */}
