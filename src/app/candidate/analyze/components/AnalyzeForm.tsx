@@ -22,7 +22,6 @@ export default function AnalyzeForm() {
 
   // Estados para manejar clientes, trabajos y selecciones
   const [job, setJob] = useState<string>("");
-  const [selectedJob, setSelectedJob] = useState<string>("");
 
   const API_URL =
     process.env.NEXT_PUBLIC_API_URL ||
