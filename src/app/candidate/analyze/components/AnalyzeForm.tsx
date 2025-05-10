@@ -10,6 +10,7 @@ import { Loader2 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { AnalysisCandidateResponse } from "./AnalysisCandidateResponse";
 import Result from "./Result";
+import { API_URL } from "@/lib/api";
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
@@ -22,10 +23,6 @@ export default function AnalyzeForm() {
 
   // Estados para manejar clientes, trabajos y selecciones
   const [job, setJob] = useState<string>("");
-
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
-    "https://fastapi-resume-analyzer-production.up.railway.app";
 
   //Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {

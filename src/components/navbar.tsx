@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/components/logo";
 import { Menu, X } from "lucide-react";
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
-
+  const { user } = useUser();
   return (
     <nav className="bg-gray-900 shadow-md">
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
@@ -38,26 +38,30 @@ export function Navbar() {
           </Link>
           <SignedIn>
             <Link
-              href="/register"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Registrar
-            </Link>
-            <Link
               href="/candidate/analyze"
               onClick={() => setIsOpen(false)}
               className="block text-lg text-gray-300 hover:text-blue-500"
             >
               Analizar CV
             </Link>
-            <Link
-              href="/analyze"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Analizar
-            </Link>
+            {user?.publicMetadata.role === "admin" && (
+              <>
+                <Link
+                  href="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Registrar
+                </Link>
+                <Link
+                  href="/analyze"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Analizar
+                </Link>
+              </>
+            )}
             <UserButton />
           </SignedIn>
         </div>

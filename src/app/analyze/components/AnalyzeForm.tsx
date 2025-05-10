@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import {
+  API_URL,
   Client as ApiClient,
   Job as ApiJob,
   getClients,
@@ -30,10 +31,6 @@ export default function AnalyzeForm() {
   const [jobs, setJobs] = useState<ApiJob[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [nombre, setNombre] = useState<string>("");
-
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
-    "https://fastapi-resume-analyzer-production.up.railway.app";
 
   useEffect(() => {
     const fetchClients = async () => {
