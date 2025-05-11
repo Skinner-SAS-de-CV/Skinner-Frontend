@@ -11,15 +11,23 @@ const isPublicRoute = createRouteMatcher([
 ]);
 // Ruta para onboarding de candidatos
 const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
+const isCandidateRoute = createRouteMatcher(["/candidate(.*)"]);
 
 export default clerkMiddleware(
   async (auth, req) => {
+    const { userId, sessionClaims } = await auth();
     if (!isPublicRoute(req)) {
       await auth.protect();
+      // No dejar usuarios entrar en rutas fuera de rutas publicas y /candidate
+      if (!isCandidateRoute(req) && sessionClaims?.metadata?.role !== "admin") {
+        // Enviar usar a analizar cv por ahora
+        const onboardingUrl = new URL("/candidate/analyze", req.url);
+        return NextResponse.redirect(onboardingUrl);
+      }
+
       return;
     }
 
-    const { userId, sessionClaims } = await auth();
     // For users visiting /onboarding, don't try to redirect
     if (userId && isOnboardingRoute(req)) {
       return NextResponse.next();

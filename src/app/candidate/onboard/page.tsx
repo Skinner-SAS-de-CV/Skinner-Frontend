@@ -175,7 +175,7 @@ export default function Onboarding() {
                     {birthday ? (
                       format(birthday, "PPP", { locale: es })
                     ) : (
-                      <span>Escoge el fecha de nacimiento</span>
+                      <span>{calendarOpen ? "" : "DD/MM/AAAA"}</span>
                     )}
                   </Button>
                 </PopoverTrigger>
@@ -208,10 +208,10 @@ export default function Onboarding() {
                 </PopoverContent>
               </Popover>
             </div>
-            {/* 5o Dropdown: Trabajo */}
+            {/* 5o Dropdown: Nivel de educación */}
             <div>
               <label className="text-gray-300 font-medium">
-                Selecciona el Trabajo:
+                Nivel de educación:
               </label>
               <select
                 value={selectedNivel}
