@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://fastapi-resume-analyzer-production.up.railway.app";
 
 interface AddJobParams {
   nombre_del_cliente: string;
@@ -31,7 +32,7 @@ export const addJob = async ({
     const response = await axios.post(`${API_URL}/agregar_trabajo/`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     });
     console.log("Respuesta del servidor:", response.data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,7 +91,6 @@ export const getClients = async (): Promise<Client[]> => {
   }
 };
 
-
 export interface Contact {
   id: number;
   name: string;
@@ -99,9 +99,12 @@ export interface Contact {
   message: string;
 }
 
-export const addContact = async (
-  contact: { name: string; name_company: string; email: string; message: string }
-): Promise<Contact> => {
+export const addContact = async (contact: {
+  name: string;
+  name_company: string;
+  email: string;
+  message: string;
+}): Promise<Contact> => {
   const formData = new URLSearchParams();
   formData.append("name", contact.name);
   formData.append("name_company", contact.name_company);
@@ -115,4 +118,3 @@ export const addContact = async (
     throw error;
   }
 };
-
