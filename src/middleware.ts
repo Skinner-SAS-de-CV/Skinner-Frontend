@@ -34,7 +34,7 @@ export default clerkMiddleware(
     }
     // Catch users who do not have `onboardingComplete: true` in their publicMetadata
     // Redirect them to the /onboarding route to complete onboarding
-    console.log(sessionClaims?.metadata);
+    console.log("userid:", userId, "sessionsclaims: ", sessionClaims?.metadata);
     if (
       userId &&
       !sessionClaims?.metadata?.onboardingComplete &&
