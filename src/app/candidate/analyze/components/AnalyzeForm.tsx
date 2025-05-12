@@ -22,13 +22,13 @@ export default function AnalyzeForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Estados para manejar clientes, trabajos y selecciones
-  const [job, setJob] = useState<string>("");
+  const [profesion, setProfesion] = useState<string>("");
 
   //Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {
     // Agregar esta linea cuando tengamos profesiones
     // if (!file || !selectedJob) {
-    if (!file || !job) {
+    if (!file || !profesion) {
       setError("Sube un archivo y ponga una profesión.");
       return;
     }
@@ -38,7 +38,7 @@ export default function AnalyzeForm() {
     const formData = new FormData();
     formData.append("file", file);
     // Enviamos la profesión seleccionada
-    formData.append("job", job);
+    formData.append("profesion", profesion);
 
     try {
       const token = await getToken();
@@ -79,8 +79,8 @@ export default function AnalyzeForm() {
           <Input
             type="text"
             className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
-            value={job}
-            onChange={(e) => setJob(e.currentTarget.value)}
+            value={profesion}
+            onChange={(e) => setProfesion(e.currentTarget.value)}
           />
         </div>
 
