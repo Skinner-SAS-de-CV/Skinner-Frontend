@@ -3,10 +3,18 @@ import * as html2pdf from "html2pdf.js";
 import { Save } from "lucide-react";
 import { RefObject } from "react";
 
-export default function GeneratePDF({ cardRef }: { cardRef: RefObject<null> }) {
+export default function GeneratePDF({
+  cardRef,
+  name,
+}: {
+  cardRef: RefObject<null>;
+  name?: string;
+}) {
   const handleSave = () => {
     if (cardRef.current) {
-      html2pdf.default(cardRef.current);
+      html2pdf.default(cardRef.current, {
+        filename: name || "analisis",
+      });
     }
   };
   return (
