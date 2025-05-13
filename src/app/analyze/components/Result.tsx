@@ -16,7 +16,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
           <h1>Resultados</h1>
-          <GeneratePDF cardRef={cardRef} />
+          <GeneratePDF cardRef={cardRef} name={result.nombre_de_candidato} />
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 text-white">
