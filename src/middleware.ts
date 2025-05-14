@@ -6,6 +6,7 @@ const isPublicRoute = createRouteMatcher([
   "/login(.*)",
   "/sign-up(.*)",
   "/",
+  "/candidate/home",
   "/about(.*)",
   "/contact",
 ]);
@@ -15,11 +16,11 @@ const isCandidateRoute = createRouteMatcher(["/candidate(.*)"]);
 
 export default clerkMiddleware(
   async (auth, req) => {
-    const { userId, sessionClaims } = await auth();
+    const { userId, sessionClaims } = await auth(); 
     if (!isPublicRoute(req)) {
       await auth.protect();
       // No dejar usuarios entrar en rutas fuera de rutas publicas y /candidate
-      if (!isCandidateRoute(req) && sessionClaims?.metadata?.role !== "admin") {
+      if (userId && !isCandidateRoute(req) && sessionClaims?.metadata?.role !== "admin") {
         // Enviar usar a analizar cv por ahora
         const onboardingUrl = new URL("/candidate/analyze", req.url);
         return NextResponse.redirect(onboardingUrl);
@@ -37,7 +38,7 @@ export default clerkMiddleware(
     if (
       userId &&
       !sessionClaims?.metadata?.onboardingComplete &&
-      sessionClaims?.metadata?.role !== "admin"
+      sessionClaims?.metadata?.role !== "admin" && !isPublicRoute(req)
     ) {
       const onboardingUrl = new URL("/candidate/onboard", req.url);
       return NextResponse.redirect(onboardingUrl);
