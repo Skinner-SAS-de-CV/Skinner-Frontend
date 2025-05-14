@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { Separator } from "@radix-ui/react-separator";
+
 
 export default function Hero() {
   return (
@@ -13,11 +15,11 @@ export default function Hero() {
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">
-                  Bienvenidos a Skinner
+                &quot;Revela el talento que hay debajo del papel.&quot;
                 </h1>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Skinner es una plataforma de análisis profundo de currículums y perfiles profesionales. 
-                Usa modelos de lenguaje, psicometría y machine learning para revelar insights ocultos sobre talento humano y potencial de crecimiento.
+                Tu currículum solo muestra una parte de la historia. La I.A, analiza en 
+                profundidad quién sos, lo que podés lograr y cómo destacar realmente en el mercado laboral.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link href="/candidate/onboard">
@@ -90,8 +92,9 @@ export default function Hero() {
               <div className="space-y-4">
                 <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  ForLabJP is a template repository designed to help developers quickly start new projects with a solid
-                  foundation. It includes all the modern tools and practices to build scalable web applications.
+                Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas, 
+                habilidades ocultas y áreas de mejora para que sepas exactamente dónde estás y cómo avanzar. No solo te muestra lo que dice tu CV, sino lo que dice de vos. 
+                Descubrí tu potencial real y tomá el control de tu crecimiento profesional con datos, no suposiciones.
                 </p>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Created with a focus on developer experience and performance, ForLabJP helps you focus on building
@@ -110,6 +113,23 @@ export default function Hero() {
             </div>
           </div>
         </section>
+
+        <div className="container mx-auto max-w-6xl px-4">
+                  <Separator className="my-8 bg-gray-700/50" />
+                </div>
+        
+                {/* Wave Transition */}
+                <div className="relative">
+                  <svg
+
+                  className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+                  viewBox="0 0 1440 50"
+                  fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
+                  preserveAspectRatio="none"
+                >
+                  <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+                </svg>
+                </div>
       </main>
 
     </>
