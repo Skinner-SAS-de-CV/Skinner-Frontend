@@ -118,10 +118,9 @@ const fadeInUpVariants = {
               </div>
             </motion.section>
 
-        <section id="about" className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="space-y-4">
+        <section id="about" className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32 m-auto">
+            <div className="flex justify-around px-4">
+              <div className="justify-center w-[40%]">
                 <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas, 
@@ -129,7 +128,7 @@ const fadeInUpVariants = {
                 Descubrí tu potencial real y tomá el control de tu crecimiento profesional.
                 </p>
               </div>
-              <div className="mx-auto lg:ml-auto">
+              <div className="justify-self-center w-[40%]">
                 <Image
                   src="/skinner-logo5.png"
                   alt="imagen de Skinner"
@@ -138,8 +137,7 @@ const fadeInUpVariants = {
                   className="rounded-lg object-cover"
                 />
               </div>
-            </div>
-          </div>
+            </div>      
         </section>
 
         <div className="container mx-auto max-w-6xl px-4">

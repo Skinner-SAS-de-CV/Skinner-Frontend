@@ -18,7 +18,7 @@ const features = [
       "La simplicidad por sí sola no basta. Por eso la combinamos con inteligencia artificial de última generación.",
   },
   {
-    title: "Carga sin complicaciones",
+    title: "Cargá sin complicaciones",
     description:
       "Subí tu currículum en PDF o DOCX y dejá que nuestra IA se encargue del resto. Sin formularios tediosos ni pasos innecesarios: solo resultados claros y útiles sobre tu perfil profesional.",
   },
