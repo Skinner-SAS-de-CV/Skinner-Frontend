@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -109,6 +112,9 @@ export default function Hero() {
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
       <motion.h1
         className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r text-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
       >
         Analiza tu CV con nuestra IA.
       </motion.h1>
@@ -121,6 +127,22 @@ export default function Hero() {
         >
           Impulsa tu carrera de forma inteligente.
         </motion.p>
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      className="flex flex-col gap-2 min-[400px]:flex-row mt-8"
+    >
+      <Link href="/candidate/onboard">
+        <Button
+          size="lg"
+          className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+        >
+          Registrate <ArrowRight className="ml-2" />
+        </Button>
+      </Link>
+    </motion.div>
       </div>
     </div>
   )

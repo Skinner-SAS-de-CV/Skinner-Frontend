@@ -1,11 +1,9 @@
 "use client"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
 import { Separator } from "@radix-ui/react-separator";
 import { motion } from "framer-motion";
 import { UserPlus, FileText, CheckCircle } from "lucide-react";
-import Link from "next/link";
+
 
 // Animation variants for framer-motion
 const containerVariants = {
@@ -33,62 +31,57 @@ const fadeInUpVariants = {
   },
 };
 
-export default function Hero() {
-  return (
-    <>
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">
-                &quot;Revela el talento que hay debajo del papel.&quot;
-                </h1>
-                <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Tu currículum solo muestra una parte de tu historia, nosostros te ayudamos a contarla mejor, lo que puedes lograr y cómo destacar realmente en el mercado laboral.
-                </p>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link href="/candidate/onboard">
-                <Button
-                  size="lg"
-                  className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
-                >
-                  Registrate <ArrowRight className="ml-2" />
-                </Button>
-              </Link>
-                </div>
-              </div>
-              <div className="mx-auto lg:ml-auto">
-                <Image
-                  src="/impulsa.jpg"
-                  alt="Hero Image"
-                  width={500}
-                  height={400}
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        export default function Hero() {
+          return (
+            <>
+              <main className="flex-1">
+                <section className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
+                  <div className="container px-4 md:px-6">
+                    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+                      <div className="space-y-4">
+                        <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-justify">
+                          &quot;Revela el talento que hay debajo del papel.&quot;
+                        </h1>
+                        <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                          Tu currículum solo muestra una parte de tu historia. Nosotros te ayudamos a contarla mejor, mostrar lo que podés lograr y cómo destacar realmente en el mercado laboral.
+                        </p>
+                      </div>
+                      {/* div de imagen */}
+                      <div className="mx-auto lg:ml-auto">
+                        <Image
+                          src="/impulsa.jpg"
+                          alt="Hero Image"
+                          width={500}
+                          height={400}
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
             <motion.section
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              className="w-full py-12 md:py-24 lg:py-32 bg-gray-600"
+              className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen"
             >
               <div className="container px-4 md:px-6">
                 <motion.div
                   variants={fadeInUpVariants}
                   className="flex flex-col items-center justify-center space-y-4 text-center"
                 >
+                <div className="container mx-auto max-w-6xl px-4">
+                  <Separator className="my-8 bg-gray-700/50" />
+                </div>       
+              
                   <div className="space-y-2">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">¿Te preguntas cómo hacer un currículum que destaque?</h2>
-                    <p className="max-w-[900px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed items-center">
+                    <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntas cómo hacer un currículum que destaque?</h2>
+                  </div>
+                    <p className="max-w-[900px] text-white text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                       Registrate y sigue los siguientes pasos.
                     </p>
-                  </div>
                 </motion.div>
                 <motion.div
                   variants={containerVariants}
