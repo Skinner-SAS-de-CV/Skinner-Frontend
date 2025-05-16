@@ -37,8 +37,8 @@ const fadeInUpVariants = {
               <main className="flex-1">
                 <section className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
                   <div className="container px-4 md:px-6">
-                    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-                      <div className="space-y-4">
+                    <div className="flex justify-around px-4">
+                      <div className="justify-center w-[40%]">
                         <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-justify">
                           &quot;Revela el talento que hay debajo del papel.&quot;
                         </h1>

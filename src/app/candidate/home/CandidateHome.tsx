@@ -108,7 +108,7 @@ export default function Hero() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full bg-black" />
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full bg-[#141629]" />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
       <motion.h1
         className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r text-white"
