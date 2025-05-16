@@ -39,7 +39,7 @@ const fadeInUpVariants = {
                   <div className="w-full">
                     <div className="flex flex-wrap justify-around px-4 gap-6">
                       <div className="lg:w-[40%]">
-                        <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
+                        <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
                           &quot;Revela el talento que hay debajo del papel.&quot;
                         </h1>
                         <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
