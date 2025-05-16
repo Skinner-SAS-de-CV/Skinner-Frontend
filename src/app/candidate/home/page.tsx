@@ -1,6 +1,6 @@
 import PageContainer from "@/components/pageContainer";
-import CandidateHome from "./CandidateHome";
-import Hero from "./hero"
+import CandidateHome from "./hero";
+import Hero from "./main-hero"
 import Features from "./features";
 
 export default function AboutPage() {

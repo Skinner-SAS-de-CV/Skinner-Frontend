@@ -13,14 +13,14 @@ const fadeInUpVariants = {
 
 const features = [
   {
-    title: "La sencillez se une con la inteligencia",
+    title: "Plataforma amigable y accesible",
     description:
-      "La simplicidad por sí sola no basta. Por eso la combinamos con inteligencia artificial de última generación.",
+      "Con un diseño intuitivo y moderno, cada paso es claro y directo. No más complicaciones.",
   },
   {
-    title: "Cargá sin complicaciones",
+    title: "Carga sin complicaciones",
     description:
-      "Subí tu currículum en PDF o DOCX y dejá que nuestra IA se encargue del resto. Sin formularios tediosos ni pasos innecesarios: solo resultados claros y útiles sobre tu perfil profesional.",
+      "Sube tu currículum en PDF o DOCX y dejá que nuestra IA se encargue del resto. Sin formularios tediosos ni pasos innecesarios: solo resultados claros y útiles sobre tu perfil profesional.",
   },
   {
     title: "Precios transparentes, sin sorpresas",
@@ -28,9 +28,9 @@ const features = [
       "Te mostramos desde el inicio cuánto cuesta y qué obtenés. Nuestro compromiso es con un servicio claro, ético y sin sorpresas desagradables.",
   },
   {
-    title: "Descargá tu análisis en PDF",
+    title: "Descarga tu análisis en PDF",
     description:
-      "Obtené un informe completo de tu perfil profesional listo para descargar en formato PDF. Ideal para compartir, guardar o simplemente tener a mano tu evolución.",
+      "Obten un informe completo de tu perfil profesional listo para descargar en formato PDF. Ideal para compartir, guardar o simplemente tener a mano tu evolución.",
   },
 ];
 
