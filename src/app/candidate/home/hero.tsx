@@ -34,12 +34,12 @@ const fadeInUpVariants = {
         export default function Hero() {
           return (
             <>
-              <main className="flex-1">
+              <main>
                 <section className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
-                  <div className="container px-4 md:px-6">
-                    <div className="flex justify-around px-4">
-                      <div className="justify-center w-[40%]">
-                        <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-justify">
+                  <div className="w-full">
+                    <div className="flex flex-wrap justify-around px-4 gap-6">
+                      <div className="lg:w-[40%]">
+                        <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
                           &quot;Revela el talento que hay debajo del papel.&quot;
                         </h1>
                         <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -47,7 +47,7 @@ const fadeInUpVariants = {
                         </p>
                       </div>
                       {/* div de imagen */}
-                      <div className="mx-auto lg:ml-auto">
+                      <div>
                         <Image
                           src="/impulsa.jpg"
                           alt="Hero Image"
@@ -65,9 +65,9 @@ const fadeInUpVariants = {
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen"
+              className="bg-gradient-to-b from-gray-900 to-gray-800 text-white pb-9"
             >
-              <div className="container px-4 md:px-6">
+              <div className="px-4 md:px-6">
                 <motion.div
                   variants={fadeInUpVariants}
                   className="flex flex-col items-center justify-center space-y-4 text-center"
@@ -77,7 +77,7 @@ const fadeInUpVariants = {
                 </div>       
               
                   <div className="space-y-2">
-                    <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntas cómo hacer un currículum que destaque?</h2>
+                    <h2 className="text-4xl lg:min-h-[55px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntas cómo hacer un currículum que destaque?</h2>
                   </div>
                     <p className="max-w-[900px] text-white text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                       Registrate y sigue los siguientes pasos.
@@ -119,8 +119,8 @@ const fadeInUpVariants = {
             </motion.section>
 
         <section id="about" className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32 m-auto">
-            <div className="flex justify-around px-4">
-              <div className="justify-center w-[40%]">
+            <div className="flex flex-wrap justify-around px-4">
+              <div className="lg:w-[40%]">
                 <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas, 
@@ -128,7 +128,7 @@ const fadeInUpVariants = {
                 Descubrí tu potencial real y tomá el control de tu crecimiento profesional.
                 </p>
               </div>
-              <div className="justify-self-center w-[40%]">
+              <div>
                 <Image
                   src="/skinner-logo5.png"
                   alt="imagen de Skinner"
