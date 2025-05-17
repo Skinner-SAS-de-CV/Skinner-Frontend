@@ -20,12 +20,12 @@ const features = [
   {
     title: "Carga sin complicaciones",
     description:
-      "Sube tu currículum en PDF o DOCX y dejá que nuestra IA se encargue del resto. Sin formularios tediosos ni pasos innecesarios: solo resultados claros y útiles sobre tu perfil profesional.",
+      "Sube tu currículum en PDF o DOCX y deja que nuestra IA se encargue del resto. Sin formularios tediosos ni pasos innecesarios: solo resultados claros y útiles sobre tu perfil profesional.",
   },
   {
     title: "Precios transparentes, sin sorpresas",
     description:
-      "Te mostramos desde el inicio cuánto cuesta y qué obtenés. Nuestro compromiso es con un servicio claro, ético y sin sorpresas desagradables.",
+      "Te mostramos desde el inicio cuánto cuesta y qué obtienes. Nuestro compromiso es con un servicio claro, ético y sin sorpresas desagradables.",
   },
   {
     title: "Descarga tu análisis en PDF",
