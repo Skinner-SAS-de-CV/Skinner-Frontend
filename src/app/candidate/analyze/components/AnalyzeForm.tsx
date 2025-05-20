@@ -58,7 +58,7 @@ export default function AnalyzeForm() {
       const data = await response.json();
       setResult(data);
     } catch (err) {
-      setError(" Hubo un problema al analizar el CV. Inténtalo de nuevo.");
+      setError(" Hubo un problema al analizar el CV. Actualiza la página e inténtalo de nuevo.");
       console.error("Error al analizar el currículum:", err);
     } finally {
       setLoading(false);
