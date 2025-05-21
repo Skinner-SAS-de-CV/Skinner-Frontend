@@ -7,12 +7,15 @@ const isPublicRoute = createRouteMatcher([
   "/sign-up(.*)",
   "/",
   "/candidate/home",
+  "/terms(.*)",
+  "/privacy(.*)",
   "/about(.*)",
   "/contact",
 ]);
 // Ruta para onboarding de candidatos
 const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
 const isCandidateRoute = createRouteMatcher(["/candidate(.*)"]);
+
 
 export default clerkMiddleware(
   async (auth, req) => {
