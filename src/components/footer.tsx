@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -14,6 +15,15 @@ export function Footer() {
 
              <div className="md:inline">&nbsp; Todos los Derechos Reservados.</div> 
           </div>
+          {/* Enlaces a términos y privacidad */}
+            <div className="mt-2 flex flex-col md:flex-row md:space-x-4 text-sm">
+              <Link href="/terms" className="hover:underline">
+                Términos y Condiciones
+              </Link>
+              <Link href="/privacy" className="hover:underline">
+                Política de Privacidad
+              </Link>
+            </div>
           {/* Íconos de redes sociales en una fila */}
           <div className="flex flex-row space-x-4 items-center mt-4 md:mt-0">
             {/* Red social X */}
@@ -23,6 +33,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="hover:text-blue-500"
             >
+              
               <svg
                 role="img"
                 className="fill-white hover:fill-blue-400 h-6 w-6"
