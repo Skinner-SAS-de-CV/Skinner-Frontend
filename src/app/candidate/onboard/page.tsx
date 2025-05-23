@@ -116,8 +116,8 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-gray-800">
-      <main className="min-h-screen bg-gray-800">
-        <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 m-auto">
+      <main className="min-h-screen flex justify-center items-center">
+        <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
               Crea tu perfil
