@@ -104,10 +104,10 @@ export default function AnalyzeForm() {
       setResult(data);
     } catch (err) {
       setError(
-        ` Hubo un problema al analizar el CV. ${
+        `  ${
           typeof err === "object" && err !== null && "detail" in err
-            ? (err as { detail?: string }).detail ?? ""
-            : ""
+            ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
+            : "Hubo un problema al analizar el CV."
         }`
       );
       console.error("Error al analizar el currículum:", err);
