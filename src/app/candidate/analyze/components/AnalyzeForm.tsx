@@ -58,7 +58,13 @@ export default function AnalyzeForm() {
       const data = await response.json();
       setResult(data);
     } catch (err) {
-      setError(" Hubo un problema al analizar el CV. Actualiza la página e inténtalo de nuevo.");
+       setError(
+        `  ${
+          typeof err === "object" && err !== null && "detail" in err
+            ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
+            : "Hubo un problema al analizar el CV."
+        }`
+      );
       console.error("Error al analizar el currículum:", err);
     } finally {
       setLoading(false);
