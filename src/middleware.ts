@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 // Proteger todas las rutas excepto las que definamos acá
 const isPublicRoute = createRouteMatcher([
   "/login(.*)",
-  "/sign-up(.*)",
+  "/candidate/signup(.*)",
   "/",
   "/candidate/home",
   "/terms(.*)",
@@ -13,26 +13,30 @@ const isPublicRoute = createRouteMatcher([
   "/contact",
 ]);
 // Ruta para onboarding de candidatos
-const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
+const isOnboardingRoute = createRouteMatcher(["/candidate/onboard"]);
 const isCandidateRoute = createRouteMatcher(["/candidate(.*)"]);
-
 
 export default clerkMiddleware(
   async (auth, req) => {
-    const { userId, sessionClaims } = await auth(); 
+    const { userId, sessionClaims } = await auth();
     if (!isPublicRoute(req)) {
       await auth.protect();
       // No dejar usuarios entrar en rutas fuera de rutas publicas y /candidate
-      if (userId && !isCandidateRoute(req) && sessionClaims?.metadata?.role !== "admin") {
-        // Enviar usar a analizar cv por ahora
-        const onboardingUrl = new URL("/candidate/analyze", req.url);
-        return NextResponse.redirect(onboardingUrl);
+      if (
+        userId &&
+        !isCandidateRoute(req) &&
+        sessionClaims?.metadata?.role !== "admin" &&
+        !isOnboardingRoute(req)
+      ) {
+        // Enviar usar a analizar cv por ahora, eventualmente irá a home
+        const analyzeUrl = new URL("/candidate/analyze", req.url);
+        return NextResponse.redirect(analyzeUrl);
       }
 
       return;
     }
 
-    // For users visiting /onboarding, don't try to redirect
+    // For users visiting /candidate/onboard, don't try to redirect
     if (userId && isOnboardingRoute(req)) {
       return NextResponse.next();
     }
@@ -41,7 +45,8 @@ export default clerkMiddleware(
     if (
       userId &&
       !sessionClaims?.metadata?.onboardingComplete &&
-      sessionClaims?.metadata?.role !== "admin" && !isPublicRoute(req)
+      sessionClaims?.metadata?.role !== "admin" &&
+      !isPublicRoute(req)
     ) {
       const onboardingUrl = new URL("/candidate/onboard", req.url);
       return NextResponse.redirect(onboardingUrl);
