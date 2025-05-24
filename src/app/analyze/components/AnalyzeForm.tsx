@@ -15,6 +15,7 @@ import { Loader2 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { AnalysisResponse } from "./AnalysisResponse";
 import Result from "./Result";
+import { BlankPDFError } from "@/lib/errors";
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
@@ -94,18 +95,23 @@ export default function AnalyzeForm() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error(
-          "Error en la API. Verifica que el backend esté en línea."
-        );
+        // deberiamos usar otra manera para revisar si es cierto tipo de error
+        if (data?.detail === "El archivo no contiene texto válido.") {
+          throw new BlankPDFError("Error en la API.", data.detail);
+        } else {
+          throw new Error(
+            "Error en la API. Verifica que el backend esté en línea."
+          );
+        }
       }
 
-      const data = await response.json();
       setResult(data);
     } catch (err) {
       setError(
         `  ${
-          typeof err === "object" && err !== null && "detail" in err
+          err instanceof BlankPDFError
             ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
             : "Hubo un problema al analizar el CV."
         }`
