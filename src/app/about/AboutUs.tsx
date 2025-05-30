@@ -125,7 +125,7 @@ export default function AboutUs() {
               Nuestra Misión
             </h2>
             <p className="text-gray-300">
-              Ofrecemos soluciones innovadoras y eficientes basadas en inteligencia artificial avanzada, para optimizar y agilizar los procesos de selección, evaluación y gestión del talento humano, impulsando así la productividad y el desarrollo estratégico de las organizaciones.
+              Brindar soluciones innovadoras y eficientes para la gestión del talento humano.
             </p>
           </motion.div>
 
@@ -142,7 +142,7 @@ export default function AboutUs() {
               Nuestra Visión
             </h2>
             <p className="text-gray-300">
-              Ser una empresa referente en la transformación digital del talento humano, reconocida por impulsar cambios reales y medibles en cómo las organizaciones locales encuentran, desarrollan y retienen el mejor talento mediante tecnología innovadora y accesible.
+              Ser un referente en cuanto a innovación y tecnología aplicada a los procesos administrativos de las organizaciones.
             </p>
           </motion.div>
 
@@ -159,7 +159,7 @@ export default function AboutUs() {
               Nuestro Objetivo
             </h2>
             <p className="text-gray-300">
-              Facilitamos la automatización de los procesos de gestión humana, redefiniendo la forma en que las organizaciones construyen equipos altamente efectivos.
+              Facilitar la automatización de los procesos de gestión del talento humano, haciendolos más eficientes y eficaces.
             </p>
           </motion.div>
 
@@ -176,7 +176,7 @@ export default function AboutUs() {
               Nuestro Equipo
             </h2>
             <p className="text-gray-300">
-              Contamos con expertos en recursos humanos y tecnología que trabajan juntos para ofrecer soluciones innovadoras que transforman la forma de gestionar el talento.
+              Contamos con un equipo de expertos en talento humano y tecnología comprometidos con la innovación y la mejora de procesos.
             </p>
           </motion.div>
         </motion.div>
@@ -237,9 +237,9 @@ export default function AboutUs() {
                   variants={fadeInUpVariants}
                   className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5"
                 >
-                  <div className="mb-6">{val.icon}</div>
-                  <h3 className="text-2xl font-semibold text-blue-300 mb-4">{val.title}</h3>
-                  <p className="text-gray-300 text-lg">{val.desc}</p>
+                  <div className="flex justify-center items-center mb-6">{val.icon}</div>
+                  <h3 className="text-2xl font-semibold text-blue-300 mb-4 text-center">{val.title}</h3>
+                  <p className="text-gray-300 text-lg text-center">{val.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -279,7 +279,7 @@ export default function AboutUs() {
               ¿Por qué elegirnos?
             </motion.h2>
 
-            <motion.p variants={fadeInUpVariants} className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            <motion.p variants={fadeInUpVariants} className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto text-justify">
               Nuestro equipo de expertos combina tecnología avanzada con un profundo conocimiento tanto en gestión
               estratégica del talento humano como en consultoría especializada en tecnologías, ofreciendo soluciones
               integrales, precisas y eficaces.
@@ -289,12 +289,12 @@ export default function AboutUs() {
               {[
                 {
                   title: "Decisiones basadas en datos",
-                  desc: "Aproveche insights impulsados por inteligencia artificial para tomar decisiones estratégicas más acertadas.",
+                  desc: "Recibe insights impulsados por inteligencia artificial para tomar decisiones estratégicas más acertadas.",
                   icon: <Database className="h-10 w-10 text-blue-400" />,
                 },
                 {
                   title: "Eficiencia de tiempo",
-                  desc: "Agilice los procesos críticos de su organización, reduciendo significativamente los tiempos de selección, contratación e implementación tecnológica.",
+                  desc: "Agiliza los procesos críticos de su organización, reduciendo significativamente los tiempos de selección, contratación e implementación tecnológica.",
                   icon: <Timer className="h-10 w-10 text-blue-400" />,
                 },
                 {
@@ -315,7 +315,7 @@ export default function AboutUs() {
                 >
                   <div className="mb-6">{f.icon}</div>
                   <h3 className="text-2xl font-semibold text-blue-300 mb-4">{f.title}</h3>
-                  <p className="text-gray-300 text-lg">{f.desc}</p>
+                  <p className="text-gray-300 text-lg text-justify">{f.desc}</p>
                 </motion.div>
               ))}
             </motion.div>

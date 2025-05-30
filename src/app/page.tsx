@@ -113,9 +113,8 @@ export default function HeroSection() {
           className="mt-6 text-lg sm:text-xl text-gray-200"
         >
           Nuestra plataforma integra inteligencia artificial avanzada y gestión 
-          estratégica de tecnologías de la información, optimizando procesos clave 
-          como reclutamiento, selección y administración del talento humano, al tiempo que 
-          fortalece la infraestructura tecnológica y operativa de las organizaciones.
+          estratégica del talento humano, optimizando los procesos administrativos 
+          y fortaleciendo la infrastructura tecnológica y operativa de las organizaciones.
         </motion.p>
 
         <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible" className="mt-8 flex justify-center gap-4 pb-6">
