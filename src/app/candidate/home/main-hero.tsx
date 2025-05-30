@@ -42,7 +42,7 @@ const fadeInUpVariants = {
                         <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
                           &quot;Revela el talento que hay debajo del papel.&quot;
                         </h1>
-                        <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
                           Tu currículum solo muestra una parte de tu historia. Nosotros te ayudamos a contarla mejor, mostrar lo que puedes lograr y destacar realmente en el mercado laboral.
                         </p>
                       </div>
@@ -107,11 +107,11 @@ const fadeInUpVariants = {
                     <motion.div
                       key={idx}
                       variants={fadeInUpVariants}
-                      className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5 flex flex-col items-center text-center"
+                      className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5 flex flex-col items-center"
                     >
                       {step.icon}
                       <h3 className="text-2xl font-semibold text-blue-300 mb-4">{step.title}</h3>
-                      <p className="text-gray-300 text-lg">{step.desc}</p>
+                      <p className="text-gray-300 text-lg text-center">{step.desc}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -122,7 +122,7 @@ const fadeInUpVariants = {
             <div className="flex flex-wrap justify-around px-4">
               <div className="lg:w-[40%]">
                 <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
-                <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
                 Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas, 
                 habilidades ocultas y áreas de mejora para que sepas exactamente dónde estás y cómo avanzar. 
                 Descubre tu potencial real y toma el control de tu crecimiento profesional.
