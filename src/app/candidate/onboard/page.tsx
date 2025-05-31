@@ -9,7 +9,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { API_URL } from "@/lib/api";
 import { getNiveles } from "@/lib/api/nivel";
 import { useAuth } from "@clerk/nextjs";
 import { format, parse } from "date-fns";
@@ -17,6 +16,7 @@ import { CalendarIcon, Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { es } from "date-fns/locale";
+import { addProfile } from "@/lib/api/perfil";
 
 const MS_IN_YEAR = 60 * 60 * 24 * 365 * 1000;
 const CALENDAY_END = new Date(Date.now() - MS_IN_YEAR * 18);
@@ -92,17 +92,7 @@ export default function Onboarding() {
 
     try {
       const token = await getToken();
-      const response = await fetch(`${API_URL}/perfiles/`, {
-        method: "POST",
-        body: formData,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          "Error en la API. Verifica que el backend esté en línea."
-        );
-      }
+      await addProfile(formData, token);
     } catch (err) {
       setError(" Hubo un problema al salvar tu perfil. Inténtalo de nuevo.");
       console.error("Error al salvar el perfil:", err);
@@ -111,6 +101,7 @@ export default function Onboarding() {
       setLoading(false);
     }
     // redireccionar a página de analisis
+    // TODO: redireccionar a pagina de pago
     redirect("/candidate/analyze");
   };
 
