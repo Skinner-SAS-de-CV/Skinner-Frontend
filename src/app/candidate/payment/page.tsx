@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Loader, CreditCard, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 
 const PaymentPage = () => {
-  const [paymentDetails, setPaymentDetails] = useState({
+  const [paymentDetails] = useState({
     amount: 5.00,
     productName: 'Suscripción Standard',
     description: 'Acceso completo al analizador de CVs de Skinner',
   });
-  const [paymentLink, setPaymentLink] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [, setPaymentLink] = useState('');
+  const [, setLoading] = useState(false);
   const [transactionId, setTransactionId] = useState('');
   const [currentStep, setCurrentStep] = useState<'onboard' | 'processing' | 'redirect' | 'payment' | 'success' | 'error'>('processing');
 
@@ -18,31 +18,6 @@ const PaymentPage = () => {
     setLoading(true);
     
     // Configuración para la API de Wompi(pero obviamente aca lo cambiaremos por la de cubo)
-    const wompiPayload = {
-      idComercio: `USER_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      monto: paymentDetails.amount,
-      nombreProducto: paymentDetails.productName,
-      formaPago: {
-        permitirTarjetaCreditoDebido: true,
-        permitirPagoConPuntoAgricola: true,
-        permitirPagoEnCuotasAgricola: false
-      },
-      infoProducto: {
-        DescripcionProducto: paymentDetails.description,
-        UrlImagenProducto: "https://www.skinnersv.net/_next/image?url=%2Fskinner-logo5.png&w=640&q=75"
-      },
-      configuracion: {
-        urlRedirect: `${window.location.origin}/payment-return`,
-        EsMontoEditable: false,
-        EsCantidadEditable: false,
-        CantidadPorDefecto: 1,
-        duracionInterfazIntentoMinutos: 30,
-        urlRetorno: `${window.location.origin}/cancel-payment`,
-        emailsNotificacion: "info@skinnersv.net",
-        urlWebhook: `${window.location.origin}/api/payment-link`,
-        notificarTransaccionCliente: true
-      }
-    };
 
     try {
       // Aquí iria  la llamada real a la API de Cubo
@@ -91,6 +66,7 @@ const PaymentPage = () => {
   };
 
   // Función para manejar el retorno del pago
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlePaymentReturn = (result: { success: any; transactionId?: string; }) => {
     if (result.success) {
       setCurrentStep('success');
@@ -214,7 +190,7 @@ const PaymentPage = () => {
 
       <div className="bg-blue-50 rounded-lg p-4 mb-6">
         <p className="text-sm text-blue-800">
-          <strong>¡Bienvenido a tu Analizador de CV's Skinner!</strong><br />
+          <strong>¡Bienvenido a tu Analizador de CV s Skinner!</strong><br />
           Redirigiendo a tu dashboard en 3 segundos...
         </p>
       </div>
