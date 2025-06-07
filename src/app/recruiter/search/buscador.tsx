@@ -1,13 +1,5 @@
 'use client';
-import React, { useState, useEffect, useCallback } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import React, { useState, useEffect, useCallback} from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { API_URL } from "@/lib/api";
 import { useAuth } from "@clerk/nextjs";
-import GeneratePDF from "../../../components/GeneratePDF";
+import { PDFCard } from "./components/PDFCard";
 
 interface AnalisisItem {
   id: number;
@@ -38,9 +30,6 @@ export default function ReclutadorDashboard() {
   const [ascending, setAscending] = useState(false);
   const { getToken } = useAuth();
 
-  
-  const rowRefs = React.useRef<Record<number, HTMLTableRowElement | null>>({});
-
   const fetchAnalisis = useCallback(async () => {
     const token = await getToken();
     const res = await fetch(
@@ -56,8 +45,8 @@ export default function ReclutadorDashboard() {
   }, [fetchAnalisis]);
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen p-20">
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
+    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen p-10">
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
         <Input
           placeholder="Nombre del candidato"
           value={name}
@@ -90,39 +79,10 @@ export default function ReclutadorDashboard() {
         <Button onClick={fetchAnalisis}>Buscar</Button>
       </div>
 
-      <div id="analisis" className="mt-12">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nombre</TableHead>
-              <TableHead>Puesto</TableHead>
-              <TableHead>Calificación</TableHead>
-              <TableHead>Fecha</TableHead>
-              <TableHead>Descargar</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {analisis.map((item) => (
-              <TableRow
-                key={item.id}
-                ref={(el) => {
-                  rowRefs.current[item.id] = el;
-                }}
-              >
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.job_title}</TableCell>
-                <TableCell>{item.match_score.toFixed(2)}</TableCell>
-                <TableCell>{new Date(item.created_at).toLocaleDateString()}</TableCell>
-                <TableCell>
-                  <GeneratePDF
-                    cardRef={{ current: rowRefs.current[item.id] }}
-                    name={`candidato_${item.id}.pdf`}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {analisis.map((item) => (
+          <PDFCard key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );
