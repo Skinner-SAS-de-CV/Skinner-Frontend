@@ -1,5 +1,7 @@
 'use client';
 import React, { useRef } from "react";
+import Markdown from "react-markdown";
+
 import {
   Accordion,
   AccordionContent,
@@ -7,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import dynamic from "next/dynamic";
+
 
 const GeneratePDF = dynamic(() => import("../../../../components/GeneratePDF"), { ssr: false });
 
@@ -51,12 +54,17 @@ export const PDFCard = ({ item }: Props) => {
             Ver análisis detallado del candidato
           </AccordionTrigger>
           <AccordionContent>
-            <div className="mt-4 w-full flex flex-end">
-            <GeneratePDF cardRef={cardRef} name={`candidato_${item.id}.pdf`} />
-          </div>
-            <p className="text-sm text-gray-200 whitespace-pre-line">
-              {item.feedback || "Sin análisis disponible."}
-            </p>
+           <div className="flex w-full mb-4">
+              <div className="ml-auto">
+                <GeneratePDF cardRef={cardRef} name={`candidato_${item.id}.pdf`} />
+              </div>
+            </div>
+
+            {item.feedback ? (
+              <Markdown>{item.feedback}</Markdown>
+            ) : (
+              "Sin análisis disponible."
+            )}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
