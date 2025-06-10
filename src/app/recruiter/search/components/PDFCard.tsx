@@ -1,23 +1,32 @@
 'use client';
 import React, { useRef } from "react";
-import GeneratePDF from "../../../../components/GeneratePDF";
-import("../../../../components/GeneratePDF");
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import dynamic from "next/dynamic";
 
-interface AnalisisItem {
+const GeneratePDF = dynamic(() => import("../../../../components/GeneratePDF"), { ssr: false });
+
+type AnalisisItem = {
   id: number;
   name: string;
   job_title: string;
   match_score: number;
   created_at: string;
+  feedback: string;
 }
 
-interface Props {
+type Props= {
   item: AnalisisItem;
 }
 
 export const PDFCard = ({ item }: Props) => {
   const cardRef = useRef (null);
 
+ 
   return (
     <div
       ref={cardRef}
@@ -25,15 +34,34 @@ export const PDFCard = ({ item }: Props) => {
     >
       <h3 className="text-xl font-semibold">{item.name}</h3>
       <p className="text-sm text-gray-300">{item.job_title}</p>
+
       <div className="mt-4 flex flex-col gap-2">
         <span className="text-md">
           <strong>Calificación:</strong> {item.match_score.toFixed(2)}
         </span>
         <span className="text-md">
-          <strong>Fecha:</strong> {new Date(item.created_at).toLocaleDateString()}
+          <strong>Fecha:</strong>{" "}
+          {new Date(item.created_at).toLocaleDateString("es-SV")}
         </span>
-        <GeneratePDF cardRef={cardRef} name={`candidato_${item.id}.pdf`} />
       </div>
+
+      <Accordion type="single" collapsible className="mt-4">
+        <AccordionItem value="analisis">
+          <AccordionTrigger className="text-sm text-blue-400 hover:underline">
+            Ver análisis detallado del candidato
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="mt-4 w-full flex flex-end">
+            <GeneratePDF cardRef={cardRef} name={`candidato_${item.id}.pdf`} />
+          </div>
+            <p className="text-sm text-gray-200 whitespace-pre-line">
+              {item.feedback || "Sin análisis disponible."}
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      
     </div>
   );
 };

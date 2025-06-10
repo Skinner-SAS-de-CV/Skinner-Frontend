@@ -13,13 +13,14 @@ import { API_URL } from "@/lib/api";
 import { useAuth } from "@clerk/nextjs";
 import { PDFCard } from "./components/PDFCard";
 
-interface AnalisisItem {
+type AnalisisItem= {
   id: number;
   name: string;
   job_title: string;
   match_score: number;
   created_at: string;
   decision: string;
+  feedback: string;
 }
 
 export default function ReclutadorDashboard() {
