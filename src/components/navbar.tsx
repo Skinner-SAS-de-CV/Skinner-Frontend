@@ -60,6 +60,13 @@ export function Navbar() {
                 >
                   Analizar
                 </Link>
+                <Link
+              href="/recruiter/search"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Buscador
+            </Link>
               </>
             )}
             <UserButton />
@@ -103,6 +110,15 @@ export function Navbar() {
           </Link>
           <SignedIn>
             <Link
+              href="/candidate/analyze"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Analizar CV
+            </Link>
+            {user?.publicMetadata.role === "admin" && (
+              <> 
+            <Link
               href="/register"
               onClick={() => setIsOpen(false)}
               className="block text-lg text-gray-300 hover:text-blue-500"
@@ -116,6 +132,15 @@ export function Navbar() {
             >
               Analizar
             </Link>
+
+            <Link
+              href="/recruiter/search"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Buscador
+            </Link>
+            </>)}
             <UserButton />
           </SignedIn>
         </div>
