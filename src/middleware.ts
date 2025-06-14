@@ -52,7 +52,7 @@ export default clerkMiddleware(
       return NextResponse.redirect(onboardingUrl);
     }
   },
-  { debug: process.env.NODE_ENV === "production" ? false : true }
+  { debug: process.env.NODE_ENV === "production" ? false : false }
 );
 
 export const config = {
