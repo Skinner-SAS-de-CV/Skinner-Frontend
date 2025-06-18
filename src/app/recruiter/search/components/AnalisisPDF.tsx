@@ -6,7 +6,7 @@ import { AnalysisItem } from "../types/AnalysisItem";
 
 const element = (el: string) => renderToStaticMarkup(<Markdown>{el}</Markdown>);
 
-export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem}) => (
+export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem }) => (
   <Document>
     <Page size="A4" className="w-[90%] pb-10">
       <View className="mx-10 m-10" fixed>
@@ -26,7 +26,7 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem}) => (
           <Text> {analysis.job_title}</Text>
         </Text>
         <Text>
-          <Text className="font-semibold">Match Score:</Text>
+          <Text className="font-semibold">Calificación:</Text>
           <Text> {analysis.match_score}</Text>
         </Text>
         <Text>
@@ -47,12 +47,14 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem}) => (
       </View>
       <View className="m-10">
         {/* Modificar fuente directamente */}
-        <Html style={{ fontSize: 12 }}>
+        <Html style={{ fontSize: 12, textAlign: "justify" }}>
           {element(analysis.feedback)}
         </Html>
       </View>
       <View fixed className="absolute bottom-5">
-        <Text className="text-xs w-full text-center">&copy; 2025 SKINNER S.A.S de C.V.</Text>
+        <Text className="text-xs w-full text-center">
+          &copy; 2025 SKINNER S.A.S de C.V.
+        </Text>
       </View>
     </Page>
   </Document>
