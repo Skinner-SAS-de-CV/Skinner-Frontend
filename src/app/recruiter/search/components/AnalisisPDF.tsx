@@ -18,6 +18,10 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
       </View>
       <View className="grid grid-cols-2 gap-4 bg-gray-100 p-6 rounded-lg mx-10 text-sm">
         <Text>
+          <Text className="font-semibold">Nombre de Candidato:</Text>
+          <Text> {analysis.nombre_del_candidato}</Text>
+        </Text>
+        <Text>
           <Text className="font-semibold">Puesto evaluado:</Text>
           <Text> {analysis.job_title}</Text>
         </Text>
