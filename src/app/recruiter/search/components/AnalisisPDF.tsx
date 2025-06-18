@@ -47,8 +47,8 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
           {element(analysis.feedback.feedback)}
         </Html>
       </View>
-      <View fixed className="absolute bottom-5 left-10">
-        <Text className="text-xs">&copy; 2025 SKINNER S.A.S de C.V.</Text>
+      <View fixed className="absolute bottom-5">
+        <Text className="text-xs w-full text-center">&copy; 2025 SKINNER S.A.S de C.V.</Text>
       </View>
     </Page>
   </Document>
