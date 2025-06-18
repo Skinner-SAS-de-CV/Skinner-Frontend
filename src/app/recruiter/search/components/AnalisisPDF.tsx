@@ -2,11 +2,11 @@ import { Document, Page, Text, View, Image } from "windy-pdf";
 import { renderToStaticMarkup } from "react-dom/server";
 import Markdown from "react-markdown";
 import Html from "react-pdf-html";
-import { AnalysisData } from "./AnalisisDialog";
+import { AnalysisItem } from "../types/AnalysisItem";
 
 const element = (el: string) => renderToStaticMarkup(<Markdown>{el}</Markdown>);
 
-export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
+export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem}) => (
   <Document>
     <Page size="A4" className="w-[90%] pb-10">
       <View className="mx-10 m-10" fixed>
@@ -19,7 +19,7 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
       <View className="grid grid-cols-2 gap-4 bg-gray-100 p-6 rounded-lg mx-10 text-sm">
         <Text>
           <Text className="font-semibold">Nombre de Candidato:</Text>
-          <Text> {analysis.nombre_del_candidato}</Text>
+          <Text> {analysis.name}</Text>
         </Text>
         <Text>
           <Text className="font-semibold">Puesto evaluado:</Text>
@@ -48,7 +48,7 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
       <View className="m-10">
         {/* Modificar fuente directamente */}
         <Html style={{ fontSize: 12 }}>
-          {element(analysis.feedback.feedback)}
+          {element(analysis.feedback)}
         </Html>
       </View>
       <View fixed className="absolute bottom-5">
