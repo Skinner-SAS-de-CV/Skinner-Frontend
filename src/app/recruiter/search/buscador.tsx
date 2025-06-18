@@ -6,22 +6,11 @@ import { useAuth } from "@clerk/nextjs";
 import TablaAnalisis from "./components/TablaAnalisis";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnalysisItem, analysisItemsSchema } from "./types/AnalysisItem";
 
-
-type AnalisisItem = {
-  decision: string;
-  file_name: string;
-  analysis_id: number;
-  id: number;
-  name: string;
-  job_title: string;
-  match_score: number;
-  created_at: string;
-  feedback: string;
-};
 
 export default function ReclutadorDashboard() {
-  const [analisis, setAnalisis] = useState<AnalisisItem[]>([]);
+  const [analisis, setAnalisis] = useState<AnalysisItem[]>([]);
   const [name, setName] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +32,8 @@ export default function ReclutadorDashboard() {
       { headers: { Authorization: `Bearer ${token}` } }
     );
     const data = await res.json();
-    setAnalisis(data);
+    const analisisItems = analysisItemsSchema.parse(data);
+    setAnalisis(analisisItems);
     setTotalPages(Math.ceil(data.length / itemsPerPage)); 
     }
     fetchAnalisis();

@@ -12,20 +12,9 @@ import { Button } from "@/components/ui/button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { AnalisisPDF } from "./AnalisisPDF";
 import { Save } from "lucide-react";
+import { AnalysisItem } from "../types/AnalysisItem";
 
-export type AnalysisData = {
-  analysis_id: number;
-  file_name: string;
-  job_title: string;
-  match_score: number;
-  nombre_del_candidato: string;
-  decision: string;
-  feedback: {
-    feedback: string;
-  };
-}
-
-export function AnalisisDialog({ analysis }: { analysis: AnalysisData }) {
+export function AnalisisDialog({ analysis }: { analysis: AnalysisItem }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,7 +28,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisData }) {
         <DialogHeader>
           <DialogTitle className="flex flex-col space-between">
             <div>
-              Análisis detallado - {analysis.nombre_del_candidato}
+              Análisis detallado - {analysis.name}
               </div>
             <div>
               <PDFDownloadLink document={<AnalisisPDF analysis={analysis} />} fileName={analysis.file_name}>
@@ -60,7 +49,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisData }) {
             </div>
             <div>
               <h3 className="font-semibold">Match Score:</h3>
-              <p>{analysis.match_score.toFixed(2)}</p>
+              <p>{analysis.match_score}</p>
             </div>
             <div>
               <h3 className="font-semibold">Decisión:</h3>
@@ -84,7 +73,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisData }) {
 
           {/* Feedback detallado */}
           <div className="prose dark:prose-invert max-w-none">
-            <Markdown>{analysis.feedback.feedback}</Markdown>
+            <Markdown>{analysis.feedback}</Markdown>
           </div>
         </div>
 
