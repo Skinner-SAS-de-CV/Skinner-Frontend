@@ -48,7 +48,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisItem }) {
               <p>{analysis.job_title}</p>
             </div>
             <div>
-              <h3 className="font-semibold">Match Score:</h3>
+              <h3 className="font-semibold">Calificación:</h3>
               <p>{analysis.match_score}</p>
             </div>
             <div>
