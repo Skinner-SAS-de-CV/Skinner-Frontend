@@ -26,7 +26,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisItem }) {
       </DialogTrigger>
       <DialogContent className="max-h-[80vh] max-w-4xl overflow-auto">
         <DialogHeader>
-          <DialogTitle className="flex flex-col space-between">
+          <DialogTitle className="flex flex-row justify-between mr-5">
             <div>
               Análisis detallado - {analysis.name}
               </div>
