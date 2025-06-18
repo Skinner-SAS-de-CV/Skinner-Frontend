@@ -8,7 +8,7 @@ const element = (el: string) => renderToStaticMarkup(<Markdown>{el}</Markdown>);
 
 export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
   <Document>
-    <Page size="A4" className="w-[90%]">
+    <Page size="A4" className="w-[90%] pb-10">
       <View className="mx-10 m-10" fixed>
         {/* Da un aviso de que requiere alt pero este componente no tiene ese prop */}
         <Image
@@ -47,8 +47,8 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisData }) => (
           {element(analysis.feedback.feedback)}
         </Html>
       </View>
-      <View fixed className="absolute bottom-2 left-10">
-        <Text className="text-sm">&copy; 2025 SKINNER S.A.S de C.V.</Text>
+      <View fixed className="absolute bottom-5">
+        <Text className="text-xs w-full text-center">&copy; 2025 SKINNER S.A.S de C.V.</Text>
       </View>
     </Page>
   </Document>
