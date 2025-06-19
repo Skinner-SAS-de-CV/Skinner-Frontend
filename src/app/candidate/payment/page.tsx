@@ -4,8 +4,7 @@ import { Loader, CreditCard, CheckCircle, AlertCircle } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-const apiUrl = process.env.NEXT_PUBLIC_CUBO_API_URL;
-
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const PaymentPage = () => {
   const { isLoaded, userId, getToken } = useAuth();
@@ -22,7 +21,7 @@ const PaymentPage = () => {
     paymentUrl: string;
   } | null>(null);
 
-   useEffect(() => {
+  useEffect(() => {
     if (!isLoaded) return;
 
     if (!userId) {
@@ -32,37 +31,30 @@ const PaymentPage = () => {
     }
   }, [isLoaded, userId]);
 
-
   // Función corregida para crear el enlace de pago con CUBO
   const createCuboPaymentLink = useCallback(async () => {
-     if (!userId){
-      console.error("User ID no encontrado");
-      return;
-     } 
     try {
-      const token = await getToken({  });
-      const apiKey = process.env.NEXT_PUBLIC_CUBO_API_KEY || "cuboapikey";
+      const token = await getToken();
+      if (!token) {
+        console.error("User token no encontrado")
+        return;
+      }
 
       const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("X-API-KEY", apiKey); 
       myHeaders.append("Authorization", `Bearer ${token}`);
+      myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
         description: "Analizador de CVs de Skinner",
-        amount: paymentDetails.amount * 500, 
+        amount: paymentDetails.amount * 100,
         redirectUri: "http://localhost:3001/candidate/home",
-        metadata: {
-          userId: userId,
-          product: paymentDetails.productName
-        } 
       });
 
-      const response = await fetch(`${apiUrl}/payment`, {
+      const response = await fetch(`${apiUrl}/pagos`, {
         method: "POST",
         headers: myHeaders,
         body: raw,
-        redirect: "follow"
+        redirect: "follow",
       });
 
       const data = await response.json();
@@ -71,12 +63,12 @@ const PaymentPage = () => {
         throw new Error(data.message || "Error al crear enlace de pago");
       }
 
-      
-      if (data.paymentUrl) {
+      if (data.cuboRedirectUri) {
         setPaymentData({
-          paymentUrl: data.paymentUrl,
+          paymentUrl: data.cuboRedirectUri,
         });
-        setTransactionId(data.id || data.transactionId);
+        // Revisar si deberiamos guardar esto
+        setTransactionId(data.paymentIntentToken);
         setCurrentStep("redirect");
       } else {
         throw new Error("No se recibió URL de pago de CUBO");
@@ -85,7 +77,7 @@ const PaymentPage = () => {
       console.error("Error:", error);
       setCurrentStep("error");
     }
-  }, [paymentDetails.amount, paymentDetails.productName, userId, getToken]);
+  }, [paymentDetails.amount, getToken]);
 
   // Componente de redirección
   const RedirectStep = () => {
