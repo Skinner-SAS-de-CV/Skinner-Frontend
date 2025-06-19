@@ -1,10 +1,14 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { Loader, CreditCard, CheckCircle, AlertCircle } from "lucide-react";
+import { useAuth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const apiUrl = process.env.NEXT_PUBLIC_CUBO_API_URL;
 
+
 const PaymentPage = () => {
+  const { isLoaded, userId, getToken } = useAuth();
   const [paymentDetails] = useState({
     amount: 5.0,
     productName: "Suscripción Standard",
@@ -12,30 +16,53 @@ const PaymentPage = () => {
   });
   const [transactionId, setTransactionId] = useState("");
   const [currentStep, setCurrentStep] = useState<
-    "processing" | "redirect" | "success" | "error"
-  >("processing");
+    "processing" | "redirect" | "success" | "error" | "auth-check"
+  >("auth-check");
   const [paymentData, setPaymentData] = useState<{
     paymentUrl: string;
   } | null>(null);
 
-  // Función para crear el enlace de pago con CUBO
-  const createCuboPaymentLink = useCallback(async () => {
-    try {
-      const apiKey = process.env.CUBO_API_KEY || "cuboapikey";
+   useEffect(() => {
+    if (!isLoaded) return;
 
-      const headers: HeadersInit = {
-        "X-API-KEY": apiKey,
-        "Content-Type": "application/json",
-      };
-      const body = JSON.stringify({
-        description: "Analisis de CV, incluye no sé que...",
-        amount: 500,
-        redirectUri: "http://locahost:3001/candidate/home",
+    if (!userId) {
+      redirect("/sign-in?redirect_url=/candidate/payment");
+    } else {
+      setCurrentStep("processing");
+    }
+  }, [isLoaded, userId]);
+
+
+  // Función corregida para crear el enlace de pago con CUBO
+  const createCuboPaymentLink = useCallback(async () => {
+     if (!userId){
+      console.error("User ID no encontrado");
+      return;
+     } 
+    try {
+      const token = await getToken({  });
+      const apiKey = process.env.NEXT_PUBLIC_CUBO_API_KEY || "cuboapikey";
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("X-API-KEY", apiKey); 
+      myHeaders.append("Authorization", `Bearer ${token}`);
+
+      const raw = JSON.stringify({
+        description: "Analizador de CVs de Skinner",
+        amount: paymentDetails.amount * 500, 
+        redirectUri: "http://localhost:3001/candidate/home",
+        metadata: {
+          userId: userId,
+          product: paymentDetails.productName
+        } 
       });
-      const response = await fetch(`${apiUrl}/api/v1/links/one-use`, {
+
+      const response = await fetch(`${apiUrl}/payment`, {
         method: "POST",
-        headers,
-        body,
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
       });
 
       const data = await response.json();
@@ -44,11 +71,12 @@ const PaymentPage = () => {
         throw new Error(data.message || "Error al crear enlace de pago");
       }
 
-      if (data.cuboRedirectUri) {
+      
+      if (data.paymentUrl) {
         setPaymentData({
-          paymentUrl: data.cuboRedirectUri,
+          paymentUrl: data.paymentUrl,
         });
-        setTransactionId(data.paymentIntentToken);
+        setTransactionId(data.id || data.transactionId);
         setCurrentStep("redirect");
       } else {
         throw new Error("No se recibió URL de pago de CUBO");
@@ -57,7 +85,7 @@ const PaymentPage = () => {
       console.error("Error:", error);
       setCurrentStep("error");
     }
-  }, []);
+  }, [paymentDetails.amount, paymentDetails.productName, userId, getToken]);
 
   // Componente de redirección
   const RedirectStep = () => {
@@ -104,7 +132,7 @@ const PaymentPage = () => {
 
   // Efecto para iniciar el proceso al cargar el componente
   useEffect(() => {
-    if (currentStep === "processing") {
+    if (currentStep === "auth-check") {
       createCuboPaymentLink();
     }
   }, [createCuboPaymentLink, currentStep]);
