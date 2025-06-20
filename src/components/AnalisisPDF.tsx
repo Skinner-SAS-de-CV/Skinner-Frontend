@@ -2,7 +2,7 @@ import { Document, Page, Text, View, Image } from "windy-pdf";
 import { renderToStaticMarkup } from "react-dom/server";
 import Markdown from "react-markdown";
 import Html from "react-pdf-html";
-import { AnalysisItem } from "../types/AnalysisItem";
+import { AnalysisItem } from "../app/types/AnalysisItem";
 
 const element = (el: string) => renderToStaticMarkup(<Markdown>{el}</Markdown>);
 

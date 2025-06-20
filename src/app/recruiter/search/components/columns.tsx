@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { AnalisisDialog } from "./AnalisisDialog";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnalysisItem } from "../types/AnalysisItem";
+import { AnalysisItem } from "../../../types/AnalysisItem";
 
 
 export const columns: ColumnDef<AnalysisItem>[] = [
