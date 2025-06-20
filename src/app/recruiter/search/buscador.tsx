@@ -6,7 +6,7 @@ import { useAuth } from "@clerk/nextjs";
 import TablaAnalisis from "./components/TablaAnalisis";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnalysisItem, analysisItemsSchema } from "./types/AnalysisItem";
+import { AnalysisItem, analysisItemsSchema } from "../../types/AnalysisItem";
 
 
 export default function ReclutadorDashboard() {

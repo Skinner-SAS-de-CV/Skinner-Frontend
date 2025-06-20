@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { AnalisisPDF } from "./AnalisisPDF";
+import { AnalisisPDF } from "@/components/AnalisisPDF";
 import { Save } from "lucide-react";
-import { AnalysisItem } from "../types/AnalysisItem";
+import { AnalysisItem } from "../../../types/AnalysisItem";
 
 export function AnalisisDialog({ analysis }: { analysis: AnalysisItem }) {
   const [open, setOpen] = useState(false);

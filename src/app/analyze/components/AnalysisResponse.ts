@@ -1,9 +1,12 @@
 export type AnalysisResponse = {
+  id: number;
   file_name: string;
   match_score: number;
   decision: string; // talvez es un enum?
-  nombre_de_candidato: string;
+  name: string;
+  job_title: string;
   feedback: {
     feedback: string;
   };
+  created_at: string;
 };
