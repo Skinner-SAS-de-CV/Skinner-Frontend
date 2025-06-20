@@ -8,17 +8,17 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
 import { useAuth } from "@clerk/nextjs";
-import { AnalysisCandidateResponse } from "./AnalysisCandidateResponse";
 import Result from "./Result";
 import { API_URL } from "@/lib/api";
 import { BlankPDFError } from "@/lib/errors";
+import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   const { getToken } = useAuth();
   // Estados para errores y resultados
-  const [result, setResult] = useState<AnalysisCandidateResponse | null>(null);
+  const [result, setResult] = useState<CandidateAnalysisItem | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

@@ -11,6 +11,15 @@ export const analysisItemSchema = z.object({
   feedback: z.string(),
 });
 
+
+export const candidateAnalysisItemSchema = analysisItemSchema.pick({name: true}).extend({
+  profesion: z.string(),
+  feedback: z.object({
+    feedback: z.string(),
+  })
+})
+
 export const analysisItemsSchema = z.array(analysisItemSchema);
 
 export type AnalysisItem = z.infer<typeof analysisItemSchema>;
+export type CandidateAnalysisItem = z.infer<typeof candidateAnalysisItemSchema>;
