@@ -102,7 +102,7 @@ export default function Onboarding() {
     }
     // redireccionar a página de analisis
     // TODO: redireccionar a pagina de pago
-    redirect("/candidate/analyze");
+    redirect("/candidate/payment");
   };
 
   return (
