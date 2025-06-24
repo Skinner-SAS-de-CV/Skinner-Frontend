@@ -38,7 +38,6 @@ const pricingFeatures = [
   "Enfoque en diagnóstico con IA",
   "Sugerencias de mejoras",
   "Comparativo competitivo",
-  "Índice de optimización curricular",
   "Reporte descargable en PDF",
 ];
 
@@ -78,7 +77,7 @@ export default function Features() {
                       ANÁLISIS PROFESIONAL
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-2">Paquete Essential</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2">Precio</h3>
                     <div className="mb-6">
                       <span className="text-5xl font-bold text-white">$5.00</span>
                       <span className="text-gray-400 text-lg ml-2">/por 5 evaluaciones</span>
