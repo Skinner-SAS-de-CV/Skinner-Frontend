@@ -134,7 +134,7 @@ export default function Hero() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col gap-2 min-[400px]:flex-row mt-8"
     >
-      <Link href="/candidate/onboard">
+      <Link href="/candidate/signup">
         <Button
           size="lg"
           className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
