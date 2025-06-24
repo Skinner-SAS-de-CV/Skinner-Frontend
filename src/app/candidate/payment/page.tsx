@@ -153,8 +153,8 @@ const PaymentPage = () => {
           </div>
           <p className="text-center text-sm text-gray-600">
             Paso{" "}
-            {["processing", "redirect", "success"].indexOf(currentStep) + 1} de
-            3
+            {["processing", "redirect"].indexOf(currentStep) + 1} de
+            2
           </p>
         </div>
 
