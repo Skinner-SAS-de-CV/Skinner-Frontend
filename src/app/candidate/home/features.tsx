@@ -35,11 +35,11 @@ const features = [
 ];
 
 const pricingFeatures = [
-  "Tablero de análisis avanzado",
-  "Reportes y gráficos personalizables",
-  "Seguimiento de datos en tiempo real",
-  "Integración con herramientas de terceros",
-  "Todo lo incluido en el Plan Básico",
+  "Enfoque en diagnóstico con IA",
+  "Sugerencias de mejoras",
+  "Comparativo competitivo",
+  "Índice de optimización curricular",
+  "Reporte descargable en PDF",
 ];
 
 export default function Features() {
@@ -62,7 +62,7 @@ export default function Features() {
                 <div className="flex items-center justify-center bg-gradient-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 p-4 min-h-[500px] md:min-h-auto">
                   <div className="relative w-full h-full max-w-[400px] mx-auto">
                     <Image
-                      src="/celu.jpg"
+                      src="/celu.png"
                       alt="celular foto"
                       fill
                       className="rounded-lg md:rounded-xl lg:rounded-2xl object-contain shadow-xl"
@@ -75,13 +75,13 @@ export default function Features() {
                 <div className="p-6 md:p-10 flex flex-col justify-center">
                   <motion.div variants={fadeInUpVariants}>
                     <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-                      Destacado
+                      ANÁLISIS PROFESIONAL
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-2">Precio Standard</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2">Paquete Essential</h3>
                     <div className="mb-6">
                       <span className="text-5xl font-bold text-white">$5.00</span>
-                      <span className="text-gray-400 text-lg ml-2">/por cinco análisis</span>
+                      <span className="text-gray-400 text-lg ml-2">/por 5 evaluaciones</span>
                     </div>
 
                     <div className="space-y-4 mb-8">
@@ -98,7 +98,7 @@ export default function Features() {
                         size="lg"
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-700/40"
                       >
-                        Obtener Analizador
+                        Analizar Mi Currículum Ahora
                       </Button>
                     </Link>
                   </motion.div>
