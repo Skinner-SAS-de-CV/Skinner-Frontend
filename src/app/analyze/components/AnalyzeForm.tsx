@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import {
   API_URL,
   Client as ApiClient,
-  Job as ApiJob,
   getClients,
-  getJobsByClient,
 } from "@/lib/api";
+import { getJobsByClient, Job as ApiJob } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
