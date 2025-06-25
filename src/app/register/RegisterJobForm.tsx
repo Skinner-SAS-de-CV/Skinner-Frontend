@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { addJob } from "@/lib/api";
+import { addJob, addJobParamsSchema } from "@/lib/api/trabajo";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 
@@ -29,7 +29,7 @@ const RegisterJobForm = () => {
 
     try {
       const token = await getToken();
-      await addJob({
+      const data = addJobParamsSchema.parse({
         nombre_del_cliente,
         titulo_de_trabajo,
         perfil_del_trabajador,
@@ -37,6 +37,7 @@ const RegisterJobForm = () => {
         habilidades,
         token,
       });
+      await addJob(data);
 
       toast.success("✅ Trabajo registrado exitosamente.");
       setShowForm(false); // Ocultar el formulario después de registrar
