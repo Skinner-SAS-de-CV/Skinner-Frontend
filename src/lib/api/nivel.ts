@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API_URL } from "../api";
 
+// Cuando terminemos la migración a nestjs, cambiar esto por api url
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const getNiveles = async () => {
