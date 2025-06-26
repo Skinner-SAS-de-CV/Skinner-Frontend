@@ -3,10 +3,10 @@ import { API_URL } from "../api";
 import z from "zod/v4";
 
 // Por ahora, mover para schema o type archivo
+// Backend no manda client_id, por ahora
 const jobSchema = z.object({
   id: z.number(),
   title: z.string(),
-  client_id: z.number(),
 });
 
 const jobsSchema = z.array(jobSchema);
