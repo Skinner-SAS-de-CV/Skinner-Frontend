@@ -4,21 +4,6 @@ export const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "https://fastapi-resume-analyzer-production.up.railway.app";
 
-export interface Client {
-  id: number;
-  name: string;
-}
-
-export const getClients = async (): Promise<Client[]> => {
-  try {
-    const response = await axios.get(`${API_URL}/clients/`);
-    return response.data;
-  } catch (error: unknown) {
-    console.error("Error al obtener clientes:", error);
-    throw error;
-  }
-};
-
 export interface Contact {
   id: number;
   name: string;

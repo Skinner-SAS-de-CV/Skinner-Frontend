@@ -1,11 +1,8 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import {
-  API_URL,
-  Client as ApiClient,
-  getClients,
-} from "@/lib/api";
+import { API_URL } from "@/lib/api";
+import { Client, getClients } from "@/lib/api/cliente";
 import { getJobsByClient, Job as ApiJob } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -26,7 +23,7 @@ export default function AnalyzeForm() {
   const [error, setError] = useState<string | null>(null);
 
   // Estados para manejar clientes, trabajos y selecciones
-  const [clients, setClients] = useState<ApiClient[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [jobs, setJobs] = useState<ApiJob[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
