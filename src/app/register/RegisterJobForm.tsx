@@ -117,8 +117,7 @@ const RegisterJobForm = () => {
                 <label className="text-gray-300 font-medium">
                   Habilidades:
                 </label>
-                <Input
-                  type="text"
+                <Textarea
                   value={habilidades}
                   onChange={(e) => setHabilidades(e.target.value)}
                   required
