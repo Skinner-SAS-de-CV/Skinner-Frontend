@@ -1,16 +1,22 @@
+'use client'
 import AnalyzeForm from "./components/AnalyzeForm";
+import { useState } from "react";
 
 export default function ResumeAnalyzer() {
+  const [mostrarDerecha, setMostrarDerecha] = useState<boolean>(false);
+  const [mostarIzquierda, setMostrarIzquierda] = useState<boolean>(false);
+  const toggleDerecha = () => setMostrarDerecha(prevState => !prevState);
+  const toggleIzquierda = () => setMostrarIzquierda(prevState => !prevState);
   return (
-    <div className="grid grid-rows-3 lg:grid-rows-2 xl:grid-rows-1 grid-flow-col gap-4 justify-center min-h-screen bg-gray-950 md:px-6 py-6">
-      <div className="lg:col-start-1">
-        <AnalyzeForm />
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 bg-gray-950 md:px-6 py-6">
+      <div>
+        {mostarIzquierda &&<AnalyzeForm />}
       </div>
-      <div className="lg:col-start-2">
-        <AnalyzeForm />
+      <div>
+        <AnalyzeForm toggleDerecha={toggleDerecha} toggleIzquierda={toggleIzquierda} />
       </div>
-      <div className="xl:col-start-3">
-        <AnalyzeForm />
+      <div>
+        {mostrarDerecha && <AnalyzeForm />}
       </div>
     </div>
   );
