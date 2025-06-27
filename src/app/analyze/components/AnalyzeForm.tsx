@@ -127,8 +127,8 @@ export default function AnalyzeForm({
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
       {(toggleDerecha && toggleIzquierda) &&<div className="flex justify-between -mb-9">
-        <Button onClick={toggleIzquierda}>&lt;</Button>
-        <Button onClick={toggleDerecha}>&gt;</Button>
+        <Button className="bg-gray-900" onClick={toggleIzquierda}>&lt;</Button>
+        <Button className="bg-gray-900" onClick={toggleDerecha}>&gt;</Button>
       </div>
       }
       <CardHeader>
