@@ -13,7 +13,13 @@ import { AnalysisResponse } from "./AnalysisResponse";
 import Result from "./Result";
 import { BlankPDFError } from "@/lib/errors";
 
-export default function AnalyzeForm() {
+export default function AnalyzeForm({
+  toggleDerecha,
+  toggleIzquierda,
+}: {
+  toggleDerecha?: () => void;
+  toggleIzquierda?: () => void;
+}) {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   const { getToken } = useAuth();
@@ -120,6 +126,11 @@ export default function AnalyzeForm() {
 
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
+      {(toggleDerecha && toggleIzquierda) &&<div className="flex justify-between -mb-9">
+        <Button className="bg-gray-900" onClick={toggleIzquierda}>&lt;</Button>
+        <Button className="bg-gray-900" onClick={toggleDerecha}>&gt;</Button>
+      </div>
+      }
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
           📄 Subir Currículum para Análisis
