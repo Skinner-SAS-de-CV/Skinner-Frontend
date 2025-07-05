@@ -1,5 +1,4 @@
 import axios from "axios";
-import { API_URL } from "../api";
 import z from "zod/v4";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
