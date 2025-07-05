@@ -13,6 +13,9 @@ import { API_URL } from "@/lib/api";
 import { BlankPDFError } from "@/lib/errors";
 import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
 
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export default function AnalyzeForm() {
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
@@ -44,7 +47,7 @@ export default function AnalyzeForm() {
     try {
       const token = await getToken();
       // TODO: usar el nuevo endpoint
-      const response = await fetch(`${API_URL}/feedbackCandidate/`, {
+      const response = await fetch(`${BACKEND_URL || API_URL}/feedbackCandidate/`, {
         method: "POST",
         body: formData,
         headers: { Authorization: `Bearer ${token}` },
