@@ -15,7 +15,7 @@ export type Client = z.infer<typeof clientSchema>;
 
 export const getClients = async (): Promise<Client[]> => {
   try {
-    const response = await axios.get(`${BACKEND_URL || API_URL}/clients/`);
+    const response = await axios.get(`${BACKEND_URL}/clients/`);
     return clientsSchema.parse(response.data);
   } catch (error: unknown) {
     console.error("Error al obtener clientes:", error);
