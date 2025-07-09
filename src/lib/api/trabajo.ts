@@ -32,7 +32,7 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 export const getJobsByClient = async (id: string): Promise<Job[]> => {
   try {
     const response = await axios.get(
-      `${BACKEND_URL || API_URL}/obtener_trabajos_por_cliente/${id}`
+      `${BACKEND_URL}/obtener_trabajos_por_cliente/${id}`
     );
     return jobsSchema.parse(response.data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -65,7 +65,7 @@ export const addJob = async ({
   formData.append("habilidades", habilidades);
 
   try {
-    const response = await axios.post(`${BACKEND_URL || API_URL}/agregar_trabajo/`, formData, {
+    const response = await axios.post(`${BACKEND_URL}/agregar_trabajo/`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
