@@ -1,5 +1,4 @@
 import axios from "axios";
-import { API_URL } from "../api";
 import z from "zod/v4";
 
 // Por ahora, mover para schema o type archivo
