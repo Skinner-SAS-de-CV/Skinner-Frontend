@@ -10,8 +10,11 @@ import { Loader2 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import Result from "./Result";
 import { API_URL } from "@/lib/api";
-import { BlankPDFError } from "@/lib/errors";
+import { BlankPDFError, SinSaldoError } from "@/lib/errors";
 import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
+
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function AnalyzeForm() {
   // Estados para subir archivo
@@ -44,7 +47,7 @@ export default function AnalyzeForm() {
     try {
       const token = await getToken();
       // TODO: usar el nuevo endpoint
-      const response = await fetch(`${API_URL}/feedbackCandidate/`, {
+      const response = await fetch(`${BACKEND_URL || API_URL}/feedbackCandidate/`, {
         method: "POST",
         body: formData,
         headers: { Authorization: `Bearer ${token}` },
@@ -53,8 +56,11 @@ export default function AnalyzeForm() {
       const data = await response.json();
       if (!response.ok) {
         // deberiamos usar otra manera para revisar si es cierto tipo de error
+        // también, limpiar esta logica por que está muy confusa ahora
         if (data?.detail === "El archivo no contiene texto válido.") {
           throw new BlankPDFError("Error en la API.", data.detail);
+        } else if (response.status === 403) {
+          throw new SinSaldoError('Error en la API.', data.detail);
         } else {
           throw new Error(
             "Error en la API. Verifica que el backend esté en línea."
@@ -63,11 +69,15 @@ export default function AnalyzeForm() {
       }
       setResult(data);
     } catch (err: unknown) {
+      let errDetail = "Hubo un problema al analizar el CV.";
+      if(err instanceof SinSaldoError) {
+        errDetail = err.detail
+      }
       setError(
         `  ${
           err instanceof BlankPDFError
             ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
-            : "Hubo un problema al analizar el CV."
+            : errDetail
         }`
       );
     } finally {
