@@ -5,6 +5,7 @@ import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const PaymentPage = () => {
   const { isLoaded, userId, getToken } = useAuth();
@@ -47,7 +48,7 @@ const PaymentPage = () => {
       const raw = JSON.stringify({
         description: "Analizador de CVs de Skinner",
         amount: paymentDetails.amount * 100,
-        redirectUri: "http://localhost:3001/candidate/home",
+        redirectUri: `${serverUrl}/candidate/analyze`,
       });
 
       const response = await fetch(`${apiUrl}/pagos`, {
