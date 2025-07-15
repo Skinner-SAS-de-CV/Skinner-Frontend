@@ -25,10 +25,20 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function AnalisisDataTable<AnalysisItem extends { id: number; file_name: string; job_title: string; match_score: string; name: string; created_at: string; decision: string; feedback: string; }, TValue>({
-  columns,
-  data,
-}: DataTableProps<AnalysisItem, TValue>) {
+export function AnalisisDataTable<
+// TODO: investigar por que tenemos que usar extend
+  AnalysisItem extends {
+    id: number;
+    file_name: string;
+    job_title: string;
+    match_score: string;
+    name: string;
+    created_at: string;
+    decision: string;
+    feedback: string;
+  },
+  TValue
+>({ columns, data }: DataTableProps<AnalysisItem, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
 
@@ -44,13 +54,15 @@ export function AnalisisDataTable<AnalysisItem extends { id: number; file_name: 
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onRowSelectionChange: setRowSelection,
-  })
+  });
 
   return (
     <>
-      {Object.keys(rowSelection).length > 1 && (
-        <AnalisisCompareDialog analysises={data.filter((datum, idx) => Object.keys(rowSelection).includes(String(idx)))} />
-      )}
+      <AnalisisCompareDialog
+        analysises={data.filter((_datum, idx) =>
+          Object.keys(rowSelection).includes(String(idx))
+        )}
+      />
       <div className="w-full rounded-md border border-white/20 overflow-x-auto ">
         <Table className="w-full mx-auto">
           <TableHeader className="bg-white/10">
@@ -75,6 +87,7 @@ export function AnalisisDataTable<AnalysisItem extends { id: number; file_name: 
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="data-[state=selected]:bg-gray-500"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
