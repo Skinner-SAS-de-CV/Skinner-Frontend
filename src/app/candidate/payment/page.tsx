@@ -36,8 +36,8 @@ const PaymentPage = () => {
   const createCuboPaymentLink = useCallback(async () => {
     try {
       const token = await getToken();
-      if (!token) {
-        console.error("User token no encontrado")
+      if (!token || !userId) {
+        console.error("UserId o token no encontrado")
         return;
       }
 
