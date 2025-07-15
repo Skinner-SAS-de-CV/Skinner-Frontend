@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Loader, CreditCard, CheckCircle, AlertCircle } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { metadata } from "@/app/layout";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -26,7 +27,7 @@ const PaymentPage = () => {
     if (!isLoaded) return;
 
     if (!userId) {
-      redirect("/sign-in?redirect_url=/candidate/payment");
+      redirect("/signin?redirect_url=/candidate/payment");
     } else {
       setCurrentStep("processing");
     }
@@ -49,6 +50,9 @@ const PaymentPage = () => {
         description: "Analizador de CVs de Skinner",
         amount: paymentDetails.amount * 100,
         redirectUri: `${serverUrl}/candidate/analyze`,
+        metadata: {
+          user_id: userId,
+        }
       });
 
       const response = await fetch(`${apiUrl}/pagos`, {
