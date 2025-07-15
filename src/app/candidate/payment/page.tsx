@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Loader, CreditCard, CheckCircle, AlertCircle } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { metadata } from "@/app/layout";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
