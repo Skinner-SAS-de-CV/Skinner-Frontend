@@ -5,11 +5,13 @@ import { useState } from "react";
 import Logo from "@/components/logo";
 import { Menu, X } from "lucide-react";
 import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const { user } = useUser();
+  const pathname = usePathname();
   return (
     <nav className="bg-gray-900 shadow-md">
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
@@ -42,6 +44,15 @@ export function Navbar() {
           >
             Contáctanos
           </Link>
+          {pathname.split("/").includes("candidate") && (
+            <Link
+              href="/candidate/signin"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-gray-300 hover:text-blue-500"
+            >
+              Entrar
+            </Link>
+          )}
           <SignedIn>
             <Link
               href="/candidate/analyze"
@@ -67,12 +78,12 @@ export function Navbar() {
                   Analizar
                 </Link>
                 <Link
-              href="/recruiter/search"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Buscador
-            </Link>
+                  href="/recruiter/search"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Buscador
+                </Link>
               </>
             )}
             <UserButton />
@@ -119,7 +130,14 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
             className="block text-lg text-gray-300 hover:text-blue-500"
           >
-            Contáctanos
+            Entrar
+          </Link>
+          <Link
+            href="/candidate/signin"
+            onClick={() => setIsOpen(false)}
+            className="block text-lg text-gray-300 hover:text-blue-500"
+          >
+            Candidatos
           </Link>
           <SignedIn>
             <Link
@@ -130,30 +148,31 @@ export function Navbar() {
               Analizar CV
             </Link>
             {user?.publicMetadata.role === "admin" && (
-              <> 
-            <Link
-              href="/register"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Registrar
-            </Link>
-            <Link
-              href="/analyze"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Analizar
-            </Link>
+              <>
+                <Link
+                  href="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Registrar
+                </Link>
+                <Link
+                  href="/analyze"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Analizar
+                </Link>
 
-            <Link
-              href="/recruiter/search"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Buscador
-            </Link>
-            </>)}
+                <Link
+                  href="/recruiter/search"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Buscador
+                </Link>
+              </>
+            )}
             <UserButton />
           </SignedIn>
         </div>
