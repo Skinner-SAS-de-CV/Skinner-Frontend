@@ -130,14 +130,14 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
             className="block text-lg text-gray-300 hover:text-blue-500"
           >
-            Entrar
+            Contáctanos
           </Link>
           <Link
             href="/candidate/signin"
             onClick={() => setIsOpen(false)}
             className="block text-lg text-gray-300 hover:text-blue-500"
           >
-            Candidatos
+            Entrar
           </Link>
           <SignedIn>
             <Link
