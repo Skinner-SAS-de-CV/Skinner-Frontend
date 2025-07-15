@@ -20,14 +20,17 @@ export function AnalisisCompareDialog({
   const canSetOpenDialog = analysises.length >= 2;
 
   return (
-    <Dialog open={open} onOpenChange={(state) => canSetOpenDialog && setOpen(state)}>
-      <DialogTrigger asChild className="mb-6">
-        <div className="flex justify-end">
+    <Dialog
+      open={open}
+      onOpenChange={(state) => canSetOpenDialog && setOpen(state)}
+    >
+      <div className="flex justify-end">
+        <DialogTrigger asChild className="mb-6">
           <Button className="text-blue-400" disabled={analysises.length < 2}>
             Comparar Candidatos
           </Button>
-        </div>
-      </DialogTrigger>
+        </DialogTrigger>
+      </div>
       <DialogContent className="max-h-[80vh] max-w-[90vw] overflow-auto">
         <DialogHeader>
           <DialogTitle className="grid auto-cols-auto grid-flow-col gap-6">
