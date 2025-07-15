@@ -81,7 +81,7 @@ const PaymentPage = () => {
       console.error("Error:", error);
       setCurrentStep("error");
     }
-  }, [paymentDetails.amount, getToken]);
+  }, [paymentDetails.amount, getToken, userId]);
 
   // Componente de redirección
   const RedirectStep = () => {
