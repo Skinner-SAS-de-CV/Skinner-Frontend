@@ -16,7 +16,6 @@ import { CalendarIcon, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { es } from "date-fns/locale";
 import { addProfile } from "@/lib/api/perfil";
-import { useRouter } from "next/navigation";
 
 const MS_IN_YEAR = 60 * 60 * 24 * 365 * 1000;
 const CALENDAY_END = new Date(Date.now() - MS_IN_YEAR * 18);
@@ -36,7 +35,6 @@ export default function Onboarding() {
   const [selectedNivel, setSelectedNivel] = useState<string>("");
   const [niveles, setNiveles] = useState<{ id: string; name: string }[]>([]);
   const { getToken } = useAuth();
-  const router = useRouter();
   const { user } = useUser();
 
   useEffect(() => {
@@ -97,15 +95,13 @@ export default function Onboarding() {
       await addProfile(formData, token);
       // recargar usuario para que actualize el metadata
       await user?.reload();
+      // window.location.href = "/candidate/payment";
+      window.location.href = "/candidate/analyze";
     } catch (err) {
       setError(" Hubo un problema al salvar tu perfil. Inténtalo de nuevo.");
       console.error("Error al salvar el perfil:", err);
       setLoading(false);
     }
-    // como es un event handler, tenemos que usar useRouter
-    // router.replace("/candidate/payment");
-    // redireccionar a página de analisis
-    router.replace("/candidate/analyze");
   };
 
   return (
