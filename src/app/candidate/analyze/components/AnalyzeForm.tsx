@@ -12,6 +12,7 @@ import Result from "./Result";
 import { API_URL } from "@/lib/api";
 import { BlankPDFError, SinSaldoError } from "@/lib/errors";
 import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
+import { Textarea } from "@/components/ui/textarea";
 
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -95,10 +96,10 @@ export default function AnalyzeForm() {
       <CardContent className="space-y-6">
         {/* 1er Campo: Profesión */}
         <div>
-          <label className="text-gray-300 font-medium">Profesión:</label>
-          <Input
-            type="text"
+          <label className="text-gray-300 font-medium">Descripción del puesto de trabajo a aplicar:</label>
+          <Textarea
             className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            // TODO: Cambiar a descripción de trabajo
             value={profesion}
             onChange={(e) => setProfesion(e.currentTarget.value)}
           />
