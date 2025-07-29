@@ -95,8 +95,8 @@ export default function Onboarding() {
       await addProfile(formData, token);
       // recargar usuario para que actualize el metadata
       await user?.reload();
-      // window.location.href = "/candidate/payment";
-      window.location.href = "/candidate/analyze";
+      window.location.href = "/candidate/payment";
+      // window.location.href = "/candidate/analyze";
     } catch (err) {
       setError(" Hubo un problema al salvar tu perfil. Inténtalo de nuevo.");
       console.error("Error al salvar el perfil:", err);
