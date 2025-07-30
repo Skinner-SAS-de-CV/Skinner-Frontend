@@ -37,7 +37,7 @@ const features = [
 const pricingFeatures = [
   "Enfoque en diagnóstico con IA",
   "Sugerencias de mejoras",
-  "Comparativo competitivo",
+  "Currículum enfocado al puesto de trabajo",
   "Reporte descargable en PDF",
 ];
 

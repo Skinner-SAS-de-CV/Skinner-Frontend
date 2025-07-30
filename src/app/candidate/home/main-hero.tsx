@@ -95,12 +95,12 @@ const fadeInUpVariants = {
                     },
                     {
                       title: "Paso 2",
-                      desc: "Escribe tu profesión y sube tu currículum ya sea en PDF o Word.",
+                      desc: "Redacta los requisitos del puesto al que estás aplicando y sube tu currículum ya sea en PDF o Word.",
                       icon: <FileText className="text-blue-400 h-10 w-10 mx-auto mb-4" />,
                     },
                     {
                       title: "Paso 3",
-                      desc: "Recibe un análisis detallado de tu currículum, incluyendo recomendaciones personalizadas según tu profesión.",
+                      desc: "Recibe un análisis detallado de tu currículum, incluyendo recomendaciones personalizadas con base en el puesto de trabajo.",
                       icon: <CheckCircle className="text-blue-400 h-10 w-10 mx-auto mb-4" />,
                     },
                   ].map((step, idx) => (
