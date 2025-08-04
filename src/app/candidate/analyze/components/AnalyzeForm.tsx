@@ -5,19 +5,20 @@ import { useState } from "react";
 // import { Client as ApiClient, Job as ApiJob, getJobsByClient } from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-
+import { Info, Loader2, TriangleAlert } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import Result from "./Result";
 import { API_URL } from "@/lib/api";
 import { BlankPDFError, SinSaldoError } from "@/lib/errors";
 import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
 import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export default function AnalyzeForm() {
+export default function AnalyzeForm({ saldo }: { saldo: number }) {
+  const [saldoRestante, setSaldoRestante] = useState<number>(saldo);
   // Estados para subir archivo
   const [file, setFile] = useState<File | null>(null);
   const { getToken } = useAuth();
@@ -69,29 +70,37 @@ export default function AnalyzeForm() {
         }
       }
       setResult(data);
+      setSaldoRestante(data.usoRestante)
     } catch (err: unknown) {
       let errDetail = "Hubo un problema al analizar el CV.";
-      if(err instanceof SinSaldoError) {
+      if (err instanceof SinSaldoError) {
         errDetail = err.detail
+        setSaldoRestante(0);
       }
       setError(
-        `  ${
-          err instanceof BlankPDFError
-            ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
-            : errDetail
+        `  ${err instanceof BlankPDFError
+          ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
+          : errDetail
         }`
       );
     } finally {
       setLoading(false);
     }
   };
-
+  const iconoSaldo = saldoRestante > 1 ? (<Info className="stroke-neutral-200" />) : (<TriangleAlert className="stroke-yellow-400" />);
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 m-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+        <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text pb-4">
           📄 Subir Currículum para Análisis
         </CardTitle>
+        <Alert className="bg-slate-700 border-gray-800 text-grey-300 pt-4">
+          {iconoSaldo}
+          <AlertTitle>Te queda{saldoRestante !== 1 ? "n" : ""} {saldoRestante} intento{saldoRestante !== 1 ? "s" : ""}</AlertTitle>
+          <AlertDescription>
+            <a href="/candidate/payment" className="text-blue-300 hover:underline">Recarga tu saldo aquí</a>.
+          </AlertDescription>
+        </Alert>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* 1er Campo: Profesión */}
