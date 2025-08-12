@@ -46,7 +46,7 @@ export function Navbar() {
           </Link>
           {pathname.split("/").includes("candidate") && (
             <Link
-              href="/candidate/signin"
+              href="/candidate/signup"
               onClick={() => setIsOpen(false)}
               className="block text-lg text-gray-300 hover:text-blue-500"
             >
@@ -133,7 +133,7 @@ export function Navbar() {
             Contáctanos
           </Link>
           <Link
-            href="/candidate/signin"
+            href="/candidate/signup"
             onClick={() => setIsOpen(false)}
             className="block text-lg text-gray-300 hover:text-blue-500"
           >
