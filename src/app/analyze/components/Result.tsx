@@ -36,9 +36,17 @@ export default function Result({ result }: { result: AnalysisResponse }) {
           <strong>✅ Puntaje:</strong>{" "}
           <span
             className={
-              result.decision === "Selected"
-                ? "text-green-400 font-bold"
-                : "text-red-400 font-bold"
+              result.decision === "Alto"
+            ? "text-green-500 font-bold"
+            : result.decision === "Promedio Alto"
+            ? "text-lime-500 font-bold"
+            : result.decision === "Promedio Bajo"
+            ? "text-yellow-500 font-bold"
+            : result.decision === "Bajo"
+            ? "text-orange-500 font-bold"
+            : result.decision === "Deficiente"
+            ? "text-red-600 font-bold"
+            : "text-gray-500 font-bold"
             }
           >
             {result.decision}
