@@ -18,11 +18,17 @@ export function AnalisisDialogBody({ analysis }: { analysis: AnalysisItem }) {
           <h3 className="font-semibold">Decisión:</h3>
           <p
             className={`font-medium ${
-              analysis.decision === "Puntaje Alto"
-                ? "text-green-500"
-                : analysis.decision === "Puntaje Medio"
-                ? "text-yellow-500"
-                : "text-red-500"
+              analysis.decision === "Alto"
+              ? "text-green-500 font-bold"
+              : analysis.decision === "Promedio Alto"
+              ? "text-lime-500 font-bold"
+              : analysis.decision === "Promedio Bajo"
+              ? "text-yellow-500 font-bold"
+              : analysis.decision === "Bajo"
+              ? "text-orange-500 font-bold"
+              : analysis.decision === "Deficiente"
+              ? "text-red-600 font-bold"
+              : "text-gray-500 font-bold"
             }`}
           >
             {analysis.decision}

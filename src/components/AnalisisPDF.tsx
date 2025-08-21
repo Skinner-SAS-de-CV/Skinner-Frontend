@@ -12,7 +12,7 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem }) => (
       <View className="mx-10 m-10" fixed>
         {/* Da un aviso de que requiere alt pero este componente no tiene ese prop */}
         <Image
-          src="/skinner-logo5.png"
+          src="/skinner-logo5.png" 
           className="w-[50px] h-[50px] rounded-lg object-cover"
         />
       </View>
@@ -33,11 +33,18 @@ export const AnalisisPDF = ({ analysis }: { analysis: AnalysisItem }) => (
           <Text className="font-semibold">Decisión:</Text>
           <Text
             className={`font-medium ${
-              analysis.decision === "Puntaje Alto"
+              analysis.decision === "Alto"
                 ? "text-green-500"
-                : analysis.decision === "Puntaje Medio"
+                : analysis.decision === "Promedio Alto"
+                ? "text-lime-500"
+                : analysis.decision === "Promedio Bajo"
                 ? "text-yellow-500"
-                : "text-red-500"
+                : analysis.decision === "Bajo"
+                ? "text-orange-500" 
+                : analysis.decision === "Deficiente"
+                ? "text-red-500"
+                : "text-gray-500"
+
             }`}
           >
             {" "}
