@@ -4,7 +4,7 @@ export const analysisItemSchema = z.object({
   id: z.number(),
   file_name: z.string(),
   job_title: z.string(),
-  match_score: z.number().transform((val) => (val * 10).toFixed(2)),
+  match_score: z.number().transform((val) => val.toFixed(2)),
   name: z.string(),
   created_at: z.string(),
   decision: z.string(),
