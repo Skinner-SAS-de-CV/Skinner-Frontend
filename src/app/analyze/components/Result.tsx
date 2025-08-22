@@ -19,7 +19,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
           <h1>Resultados</h1>
           <PDFDownloadLink
             document={<AnalisisPDF analysis={analysis} />}
-            fileName={analysis.file_name}
+            fileName={`${analysis.name} - analisis.pdf`}
           >
             {({ loading }) => (loading ? "Cargando documento..." : <Save />)}
           </PDFDownloadLink>
