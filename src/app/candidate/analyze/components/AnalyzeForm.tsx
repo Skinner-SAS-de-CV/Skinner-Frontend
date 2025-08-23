@@ -40,6 +40,7 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
     }
     setError(null);
     setLoading(true);
+    setResult(null);
 
     const formData = new FormData();
     formData.append("file", file);
