@@ -79,6 +79,7 @@ export default function AnalyzeForm({
     }
     setError(null);
     setLoading(true);
+    setResult(null);
 
     const formData = new FormData();
     formData.append("file", file);
