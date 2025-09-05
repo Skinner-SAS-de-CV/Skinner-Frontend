@@ -12,9 +12,12 @@ const clientsSchema = z.array(clientSchema);
 
 export type Client = z.infer<typeof clientSchema>;
 
-export const getClients = async (): Promise<Client[]> => {
+export const getClients = async (token: string | null): Promise<Client[]> => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/clients/`);
+    const response = await axios.get(`${BACKEND_URL}/clients/`, { headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      });
     return clientsSchema.parse(response.data);
   } catch (error: unknown) {
     console.error("Error al obtener clientes:", error);

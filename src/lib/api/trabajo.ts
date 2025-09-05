@@ -6,6 +6,13 @@ import z from "zod/v4";
 const jobSchema = z.object({
   id: z.number(),
   title: z.string(),
+  // nombre_del_cliente: z.string(),
+  // titulo_de_trabajo: z.string(),
+  // perfil_del_trabajador: z.string(),
+  // funciones_del_trabajo: z.string(),
+  // habilidades: z.string(),
+  // created_at: z.string().optional(),
+  // update_at: z.string().optional(),
 });
 
 const jobsSchema = z.array(jobSchema);
@@ -28,10 +35,14 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 // Esta función utiliza el endpoint para obtener trabajos por cliente,
 // el endpoint /obtener_trabajos_por_cliente/{id}
 // devuelve los trabajos asociados a ese cliente.
-export const getJobsByClient = async (id: string): Promise<Job[]> => {
+export const getJobsByClient = async (id: string, token: string | null): Promise<Job[]> => {
   try {
     const response = await axios.get(
-      `${BACKEND_URL}/obtener_trabajos_por_cliente/${id}`
+      `${BACKEND_URL}/trabajos`,
+      { headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      }
     );
     return jobsSchema.parse(response.data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

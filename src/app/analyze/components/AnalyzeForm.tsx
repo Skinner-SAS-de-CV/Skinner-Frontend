@@ -38,7 +38,8 @@ export default function AnalyzeForm({
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const data = await getClients();
+        const token = await getToken();
+        const data = await getClients(token);
         setClients(data);
         // Selecciona el primer cliente si hay alguno
         if (data.length > 0) {
@@ -56,7 +57,8 @@ export default function AnalyzeForm({
     const fetchJobs = async () => {
       if (!selectedClient) return;
       try {
-        const data = await getJobsByClient(selectedClient);
+        const token = await getToken();
+        const data = await getJobsByClient(selectedClient, token);
         setJobs(data);
         // Selecciona el primer trabajo si existe
         if (data.length > 0) {
