@@ -50,7 +50,7 @@ export default function AnalyzeForm({
       }
     };
     fetchClients();
-  }, []);
+  }, [getToken]);
 
   // Cada vez que cambie selectedClient, obtener los trabajos para ese cliente
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function AnalyzeForm({
       }
     };
     fetchJobs();
-  }, [selectedClient]);
+  }, [getToken, selectedClient]);
 
   //Función para enviar el CV al endpoint /analyze/
   const handleSubmit = async () => {
