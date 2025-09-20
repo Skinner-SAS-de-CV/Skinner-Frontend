@@ -18,7 +18,7 @@ const jobSchema = z.object({
 const jobsSchema = z.array(jobSchema);
 
 export const addJobParamsSchema = z.object({
-    nombre_del_cliente: z.string(),
+    nombre_del_cliente: z.string().optional(),
     titulo_de_trabajo: z.string(),
     perfil_del_trabajador: z.string(),
     funciones_del_trabajo: z.string(),
@@ -68,7 +68,9 @@ export const addJob = async ({
   token,
 }: AddJobParams): Promise<void> => {
   const formData = new FormData();
-  formData.append("nombre_del_cliente", nombre_del_cliente);
+  if(nombre_del_cliente ){
+    formData.append("nombre_del_cliente", nombre_del_cliente);
+  }
   formData.append("titulo_de_trabajo", titulo_de_trabajo);
   formData.append("perfil_del_trabajador", perfil_del_trabajador);
   formData.append("funciones_del_trabajo", funciones_del_trabajo);
