@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/lib/api";
-import { Client, getClients } from "@/lib/api/cliente";
+import { ClientResponse, getClients } from "@/lib/api/cliente";
 import { getJobsByClient, Job as ApiJob } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export default function AnalyzeForm({
   const [error, setError] = useState<string | null>(null);
 
   // Estados para manejar clientes, trabajos y selecciones
-  const [clients, setClients] = useState<Client[]>([]);
+  const [clients, setClients] = useState<ClientResponse>();
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [jobs, setJobs] = useState<ApiJob[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
@@ -42,8 +42,8 @@ export default function AnalyzeForm({
         const data = await getClients(token);
         setClients(data);
         // Selecciona el primer cliente si hay alguno
-        if (data.length > 0) {
-          setSelectedClient(String(data[0].id));
+        if (data.clientes.length > 0) {
+          setSelectedClient(String(data.clientes[0].id));
         }
       } catch (err) {
         console.error("Error al obtener clientes:", err);
@@ -126,6 +126,7 @@ export default function AnalyzeForm({
       setLoading(false);
     }
   };
+  const isSkinnerUser = clients?.name === "Skinner";
 
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
@@ -141,7 +142,7 @@ export default function AnalyzeForm({
       </CardHeader>
       <CardContent className="space-y-6">
         {/* 1er Dropdown: Cliente */}
-        <div>
+        {isSkinnerUser && <div>
           <label className="text-gray-300 font-medium">
             Selecciona el Cliente:
           </label>
@@ -150,13 +151,13 @@ export default function AnalyzeForm({
             onChange={(e) => setSelectedClient(e.target.value)}
             className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
           >
-            {clients.map((client) => (
+            {clients.clientes.map((client) => (
               <option key={client.id} value={client.id}>
                 {client.name}
               </option>
             ))}
           </select>
-        </div>
+        </div>}
 
         {/* 2do Dropdown: Trabajo */}
         <div>
