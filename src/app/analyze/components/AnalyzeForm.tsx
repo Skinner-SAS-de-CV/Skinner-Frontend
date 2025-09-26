@@ -42,7 +42,7 @@ export default function AnalyzeForm({
         const data = await getClients(token);
         setClients(data);
         // Selecciona el primer cliente si hay alguno
-        if (data.clientes.length > 0) {
+        if (data && data?.clientes?.length > 0) {
           setSelectedClient(String(data.clientes[0].id));
         }
       } catch (err) {
@@ -151,7 +151,7 @@ export default function AnalyzeForm({
             onChange={(e) => setSelectedClient(e.target.value)}
             className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
           >
-            {clients.clientes.map((client) => (
+            {clients?.clientes?.map((client) => (
               <option key={client.id} value={client.id}>
                 {client.name}
               </option>
