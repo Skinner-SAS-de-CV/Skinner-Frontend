@@ -54,14 +54,17 @@ export function Navbar() {
             </Link>
           )}
           <SignedIn>
-            <Link
-              href="/candidate/analyze"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Analizar CV
-            </Link>
-            {user?.publicMetadata.role === "admin" && (
+            {
+              user?.publicMetadata.role !== "recruiter" && (
+                <Link
+                  href="/candidate/analyze"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Analizar CV
+                </Link>)
+            }
+            {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <>
                 <Link
                   href="/register"
@@ -140,14 +143,17 @@ export function Navbar() {
             Regístrate
           </Link>
           <SignedIn>
-            <Link
-              href="/candidate/analyze"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Analizar CV
-            </Link>
-            {user?.publicMetadata.role === "admin" && (
+            {
+              user?.publicMetadata.role !== "recruiter" && (
+                <Link
+                  href="/candidate/analyze"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Analizar CV
+                </Link>)
+            }
+            {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <>
                 <Link
                   href="/register"
