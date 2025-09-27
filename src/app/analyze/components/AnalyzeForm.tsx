@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/lib/api";
 import { ClientResponse, getClients } from "@/lib/api/cliente";
-import { getJobsByClient, Job as ApiJob } from "@/lib/api/trabajo";
+import { getJobsByClient, JobResponse } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
@@ -31,7 +31,7 @@ export default function AnalyzeForm({
   // Estados para manejar clientes, trabajos y selecciones
   const [clients, setClients] = useState<ClientResponse>();
   const [selectedClient, setSelectedClient] = useState<string>("");
-  const [jobs, setJobs] = useState<ApiJob[]>([]);
+  const [jobs, setJobs] = useState<JobResponse>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [nombre, setNombre] = useState<string>("");
 

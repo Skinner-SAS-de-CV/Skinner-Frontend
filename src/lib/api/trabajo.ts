@@ -6,16 +6,20 @@ import z from "zod/v4";
 const jobSchema = z.object({
   id: z.number(),
   title: z.string(),
-  // nombre_del_cliente: z.string(),
-  // titulo_de_trabajo: z.string(),
-  // perfil_del_trabajador: z.string(),
-  // funciones_del_trabajo: z.string(),
-  // habilidades: z.string(),
-  // created_at: z.string().optional(),
-  // update_at: z.string().optional(),
+  nombre_del_cliente: z.string(),
+  titulo_de_trabajo: z.string(),
+  perfil_del_trabajador: z.string(),
+  funciones_del_trabajo: z.string(),
+  habilidades: z.string(),
+  created_at: z.string().optional(),
+  update_at: z.string().optional(),
 });
 
-const jobsSchema = z.array(jobSchema);
+const jobsResponseSchema = z.array(jobSchema.pick({
+  id: true,
+  title: true,
+}));
+
 
 export const addJobParamsSchema = z.object({
     nombre_del_cliente: z.string().optional(),
@@ -28,14 +32,14 @@ export const addJobParamsSchema = z.object({
 
 type AddJobParams = z.infer<typeof addJobParamsSchema>;
 
-export type Job = z.infer<typeof jobSchema>;
+export type JobResponse = z.infer<typeof jobsResponseSchema>;
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // Esta función utiliza el endpoint para obtener trabajos por cliente,
 // el endpoint /obtener_trabajos_por_cliente/{id}
 // devuelve los trabajos asociados a ese cliente.
-export const getJobsByClient = async (id: string, token: string | null): Promise<Job[]> => {
+export const getJobsByClient = async (id: string, token: string | null): Promise<JobResponse> => {
   try {
     const response = await axios.get(
       `${BACKEND_URL}/trabajos`,
@@ -44,7 +48,7 @@ export const getJobsByClient = async (id: string, token: string | null): Promise
         },
       }
     );
-    return jobsSchema.parse(response.data);
+    return jobsResponseSchema.parse(response.data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.response) {
