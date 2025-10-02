@@ -16,6 +16,7 @@ const isPublicRoute = createRouteMatcher([
 // Ruta para onboarding de candidatos
 const isOnboardingRoute = createRouteMatcher(["/candidate/onboard"]);
 const isCandidateRoute = createRouteMatcher(["/candidate(.*)"]);
+const isRecruiterRoute = createRouteMatcher(["/recruiter(.*)", "/analyze(.*)", "/register(.*)"]);
 
 export default clerkMiddleware(
   async (auth, req) => {
@@ -29,7 +30,7 @@ export default clerkMiddleware(
     if (
       userId &&
       !sessionClaims?.metadata?.onboardingComplete &&
-      sessionClaims?.metadata?.role !== "admin" &&
+      !["admin", "recruiter"].includes(sessionClaims?.metadata?.role || "") &&
       !isPublicRoute(req)
     ) {
       const onboardingUrl = new URL("/candidate/onboard", req.url);
@@ -42,7 +43,7 @@ export default clerkMiddleware(
       if (
         userId &&
         !isCandidateRoute(req) &&
-        sessionClaims?.metadata?.role !== "admin" &&
+        !["admin", "recruiter"].includes(sessionClaims?.metadata?.role || "") &&
         !isOnboardingRoute(req)
       ) {
         // Enviar usar a analizar cv por ahora, eventualmente irá a home
@@ -50,10 +51,18 @@ export default clerkMiddleware(
         return NextResponse.redirect(analyzeUrl);
       }
 
-      return;
+      // Si es reclutador, no dejar entrar a rutas de candidato
+      if (
+        userId &&
+        !isRecruiterRoute(req) && ["recruiter"].includes(sessionClaims?.metadata?.role || "")
+      ) {
+        // redireccionar a /analyze por ahora, eventualmente irá a home
+        const analyzeUrl = new URL("/analyze", req.url);
+        return NextResponse.redirect(analyzeUrl);
+      }
     }
   },
-  { debug: process.env.NODE_ENV === "production" ? false : true }
+  { debug: process.env.NODE_ENV === "production" ? false : true}
 );
 
 export const config = {
