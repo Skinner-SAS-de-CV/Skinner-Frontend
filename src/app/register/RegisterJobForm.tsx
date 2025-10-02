@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 
 const RegisterJobForm = () => {
-  const { getToken } = useAuth();
+  const { getToken, orgSlug } = useAuth();
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -67,18 +67,21 @@ const RegisterJobForm = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="text-gray-300 font-medium">
-                  Nombre del Cliente:
-                </label>
-                <Input
-                  type="text"
-                  value={nombre_del_cliente}
-                  onChange={(e) => setNombreDelCliente(e.target.value)}
-                  required
-                  className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+              {
+                orgSlug && orgSlug.startsWith("skinner") && <div>
+                  <label className="text-gray-300 font-medium">
+                    Nombre del Cliente:
+                  </label>
+                  <Input
+                    type="text"
+                    value={nombre_del_cliente}
+                    onChange={(e) => setNombreDelCliente(e.target.value)}
+                    required
+                    className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  />
+
+                </div>
+              }
               <div>
                 <label className="text-gray-300 font-medium">
                   Título del Trabajo:
@@ -141,3 +144,4 @@ const RegisterJobForm = () => {
 };
 
 export default RegisterJobForm;
+

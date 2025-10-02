@@ -81,7 +81,7 @@ export const addJob = async ({
   formData.append("habilidades", habilidades);
 
   try {
-    const response = await axios.post(`${BACKEND_URL}/agregar_trabajo/`, formData, {
+    const response = await axios.post(`${BACKEND_URL}/trabajos/`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
