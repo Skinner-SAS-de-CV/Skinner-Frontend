@@ -33,7 +33,7 @@ export const jobColumns: ColumnDef<JobRow>[] = [
       const id = row.getValue("id") as number;
       return (
         <Link
-          href={`/recruiter/trabajos/${id}`}
+          href={`/recruiter/jobs/${id}`}
           className="text-blue-300 hover:underline"
         >
           {id}
@@ -49,7 +49,7 @@ export const jobColumns: ColumnDef<JobRow>[] = [
       const title = row.getValue("title") as string;
       return (
         <Link
-          href={`/recruiter/trabajos/${id}`}
+          href={`/recruiter/jobs/${id}`}
           className="text-blue-300 hover:underline"
         >
           {title}
