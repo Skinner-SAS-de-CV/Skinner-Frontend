@@ -8,14 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Info, Loader2, TriangleAlert } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import Result from "./Result";
-import { API_URL } from "@/lib/api";
 import { BlankPDFError, SinSaldoError } from "@/lib/errors";
 import { CandidateAnalysisItem } from "@/app/types/AnalysisItem";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { getCandidateAnalysis } from "@/lib/api/analisis";
 
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function AnalyzeForm({ saldo }: { saldo: number }) {
   const [saldoRestante, setSaldoRestante] = useState<number>(saldo);
@@ -50,11 +49,7 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
     try {
       const token = await getToken();
       // TODO: usar el nuevo endpoint
-      const response = await fetch(`${BACKEND_URL || API_URL}/feedbackCandidate/`, {
-        method: "POST",
-        body: formData,
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await getCandidateAnalysis(formData, token);
 
       const data = await response.json();
       if (!response.ok) {

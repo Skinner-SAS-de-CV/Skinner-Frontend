@@ -1,7 +1,6 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { API_URL } from "@/lib/api";
 import { ClientResponse, getClients } from "@/lib/api/cliente";
 import { getJobsByClient, JobResponse } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
@@ -12,6 +11,7 @@ import { useAuth } from "@clerk/nextjs";
 import { AnalysisResponse } from "./AnalysisResponse";
 import Result from "./Result";
 import { BlankPDFError } from "@/lib/errors";
+import { getAnalysis } from "@/lib/api/analisis";
 
 export default function AnalyzeForm({
   toggleDerecha,
@@ -94,11 +94,7 @@ export default function AnalyzeForm({
 
     try {
       const token = await getToken();
-      const response = await fetch(`${API_URL}/analyze/`, {
-        method: "POST",
-        body: formData,
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await getAnalysis(formData, token);
 
       const data = await response.json();
       if (!response.ok) {
@@ -115,10 +111,9 @@ export default function AnalyzeForm({
       setResult(data);
     } catch (err) {
       setError(
-        `  ${
-          err instanceof BlankPDFError
-            ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
-            : "Hubo un problema al analizar el CV."
+        `  ${err instanceof BlankPDFError
+          ? "Error al analizar el CV: el archivo no contiene texto. Asegúrate de subir un PDF o DOCX con texto editable. No se admiten archivos escaneados."
+          : "Hubo un problema al analizar el CV."
         }`
       );
       console.error("Error al analizar el currículum:", err);
@@ -130,7 +125,7 @@ export default function AnalyzeForm({
 
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
-      {(toggleDerecha && toggleIzquierda) &&<div className="flex justify-between -mb-9">
+      {(toggleDerecha && toggleIzquierda) && <div className="flex justify-between -mb-9">
         <Button className="bg-gray-900" onClick={toggleIzquierda}>&lt;</Button>
         <Button className="bg-gray-900" onClick={toggleDerecha}>&gt;</Button>
       </div>
