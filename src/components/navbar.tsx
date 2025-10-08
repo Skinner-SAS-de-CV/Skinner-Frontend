@@ -67,7 +67,7 @@ export function Navbar() {
             {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <>
                 <Link
-                  href="/recruiter/trabajos"
+                  href="/recruiter/jobs"
                   onClick={() => setIsOpen(false)}
                   className="block text-lg text-gray-300 hover:text-blue-500"
                 >
@@ -164,7 +164,7 @@ export function Navbar() {
             {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <>
                 <Link
-                  href="/recruiter/trabajos"
+                  href="/recruiter/jobs"
                   onClick={() => setIsOpen(false)}
                   className="block text-lg text-gray-300 hover:text-blue-500"
                 >
