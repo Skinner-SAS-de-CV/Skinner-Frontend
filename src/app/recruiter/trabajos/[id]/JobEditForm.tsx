@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,8 +12,8 @@ import { useAuth } from "@clerk/nextjs";
 
 const EditJobForm = () => {
   const { getToken, orgSlug } = useAuth();
-  const searchParams = useSearchParams();
-  const jobId = searchParams.get("id");
+  const params = useParams();
+  const jobId = params.id;
   
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
@@ -38,15 +38,14 @@ const EditJobForm = () => {
         const token = await getToken();
         const jobData = await getJobById(Number(jobId), token);
         
-        setNombreDelCliente(jobData.nombre_del_cliente);
-        setTituloDeTrabajo(jobData.titulo_de_trabajo);
-        setPerfilDelTrabajador(jobData.perfil_del_trabajador);
-        setFuncionesDelTrabajo(jobData.funciones_del_trabajo);
-        setHabilidades(jobData.habilidades);
+        setNombreDelCliente(jobData.clientes.name);
+        setTituloDeTrabajo(jobData.title);
+        setPerfilDelTrabajador(jobData.perfil_del_trabajador.map((el) => el.name).join('\n'));
+        setFuncionesDelTrabajo(jobData.funciones_del_trabajo.map((el) => el.title).join('\n'));
+        setHabilidades(jobData.habilidades.map((el) => el.name).join('\n'));
       } catch (error) {
         console.error("Error al cargar el trabajo:", error);
         toast.error("❌ Error al cargar los datos del trabajo");
-        router.push("/");
       } finally {
         setLoadingData(false);
       }
