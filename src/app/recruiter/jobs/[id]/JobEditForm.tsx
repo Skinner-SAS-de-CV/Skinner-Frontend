@@ -102,7 +102,7 @@ const EditJobForm = () => {
       <Card className="w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 max-w-[1000px]">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
-            ✏️ Editar Trabajo
+            ✏️ Editar Puesto
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -135,7 +135,7 @@ const EditJobForm = () => {
             </div>
             <div>
               <label className="text-gray-300 font-medium">
-                Perfil del Trabajador:
+                Perfil del Puesto:
               </label>
               <Textarea
                 value={perfil_del_trabajador}
@@ -146,7 +146,7 @@ const EditJobForm = () => {
             </div>
             <div>
               <label className="text-gray-300 font-medium">
-                Funciones del Trabajo:
+                Funciones del Puesto:
               </label>
               <Textarea
                 value={funciones_del_trabajo}

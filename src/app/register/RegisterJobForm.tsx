@@ -84,7 +84,7 @@ const RegisterJobForm = () => {
               }
               <div>
                 <label className="text-gray-300 font-medium">
-                  Título del Trabajo:
+                  Título del Puesto:
                 </label>
                 <Input
                   type="text"
@@ -96,7 +96,7 @@ const RegisterJobForm = () => {
               </div>
               <div>
                 <label className="text-gray-300 font-medium">
-                  Perfil del Trabajador:
+                  Perfil del Puesto:
                 </label>
                 <Textarea
                   value={perfil_del_trabajador}
@@ -107,7 +107,7 @@ const RegisterJobForm = () => {
               </div>
               <div>
                 <label className="text-gray-300 font-medium">
-                  Funciones del Trabajo:
+                  Funciones del Puesto:
                 </label>
                 <Textarea
                   value={funciones_del_trabajo}
