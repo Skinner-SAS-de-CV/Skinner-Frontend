@@ -43,7 +43,7 @@ export const jobColumns: ColumnDef<JobRow>[] = [
   },
   {
     accessorKey: "title",
-    header: "Trabajo",
+    header: "Puesto",
     cell: ({ row }) => {
       const id = row.getValue("id") as number;
       const title = row.getValue("title") as string;
