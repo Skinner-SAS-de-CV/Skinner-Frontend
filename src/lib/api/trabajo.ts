@@ -73,7 +73,6 @@ export type Job = z.infer<typeof jobSchema>;
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // Esta función utiliza el endpoint para obtener trabajos por cliente,
-// el endpoint /obtener_trabajos_por_cliente/{id}
 // devuelve los trabajos asociados a ese cliente.
 export const getJobsByClient = async (id: string, token: string | null): Promise<JobResponse> => {
   try {

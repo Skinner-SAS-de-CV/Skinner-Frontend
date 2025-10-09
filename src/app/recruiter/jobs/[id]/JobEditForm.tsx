@@ -14,7 +14,7 @@ const EditJobForm = () => {
   const { getToken, orgSlug } = useAuth();
   const params = useParams();
   const jobId = params.id;
-  
+
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -37,7 +37,7 @@ const EditJobForm = () => {
       try {
         const token = await getToken();
         const jobData = await getJobById(Number(jobId), token);
-        
+
         setNombreDelCliente(jobData.clientes.name);
         setTituloDeTrabajo(jobData.title);
         setPerfilDelTrabajador(jobData.perfil_del_trabajador.map((el) => el.name).join('\n'));
@@ -70,15 +70,10 @@ const EditJobForm = () => {
         habilidades,
         token,
       });
-      
+
       await updateJob(data);
 
       toast.success("✅ Trabajo actualizado exitosamente.");
-      router.push(
-        `/analyze?client=${encodeURIComponent(
-          nombre_del_cliente
-        )}&job=${encodeURIComponent(titulo_de_trabajo)}`
-      );
     } catch (error) {
       console.error("Error al actualizar el trabajo:", error);
       toast.error(
