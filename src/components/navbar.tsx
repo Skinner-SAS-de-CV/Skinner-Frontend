@@ -71,7 +71,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block text-lg text-gray-300 hover:text-blue-500"
                 >
-                  Mis Trabajos
+                  Mis Puestos
                 </Link>
               
                 <Link
@@ -168,7 +168,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block text-lg text-gray-300 hover:text-blue-500"
                 >
-                  Mis Trabajos
+                  Mis Puestos
                 </Link>
                 <Link
                   href="/register"

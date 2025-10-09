@@ -123,7 +123,7 @@ const EditJobForm = () => {
             )}
             <div>
               <label className="text-gray-300 font-medium">
-                Título del Trabajo:
+                Titulo del Puesto:
               </label>
               <Input
                 type="text"
