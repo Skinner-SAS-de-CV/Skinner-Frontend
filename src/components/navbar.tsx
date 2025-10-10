@@ -79,6 +79,15 @@ export function Navbar() {
                 >
                   Mis Puestos
                 </Link>
+
+                <Link
+                  href="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg text-gray-300 hover:text-blue-500"
+                >
+                  Registrar
+                </Link>
+                
                 <Link
                   href="/analyze"
                   onClick={() => setIsOpen(false)}
