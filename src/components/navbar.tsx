@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/components/logo";
 import { Menu, X } from "lucide-react";
-import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 export function Navbar() {
@@ -44,15 +44,21 @@ export function Navbar() {
           >
             Contáctanos
           </Link>
-          {pathname.split("/").includes("candidate") && (
-            <Link
-              href="/candidate/signup"
-              onClick={() => setIsOpen(false)}
-              className="block text-lg text-gray-300 hover:text-blue-500"
-            >
-              Regístrate
-            </Link>
-          )}
+          <SignedOut>
+            {pathname.split("/").includes("candidate") && (
+              <Link
+                href="/candidate/signup"
+                onClick={() => setIsOpen(false)}
+                className="block text-lg text-gray-300 hover:text-blue-500"
+              >
+                Regístrate
+              </Link>)}
+            {!pathname.split("/").includes("candidate") && (
+              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
+                className="block text-lg text-gray-300 hover:text-blue-500">
+                Iniciar Sesión
+              </Link>)}
+          </SignedOut>
           <SignedIn>
             {
               user?.publicMetadata.role !== "recruiter" && (
@@ -73,7 +79,7 @@ export function Navbar() {
                 >
                   Mis Puestos
                 </Link>
-              
+
                 <Link
                   href="/register"
                   onClick={() => setIsOpen(false)}
@@ -81,6 +87,7 @@ export function Navbar() {
                 >
                   Registrar
                 </Link>
+                
                 <Link
                   href="/analyze"
                   onClick={() => setIsOpen(false)}
@@ -143,13 +150,21 @@ export function Navbar() {
           >
             Contáctanos
           </Link>
-          <Link
-            href="/candidate/signup"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Regístrate
-          </Link>
+          <SignedOut>
+            {pathname.split("/").includes("candidate") && (
+              <Link
+                href="/candidate/signup"
+                onClick={() => setIsOpen(false)}
+                className="block text-lg text-gray-300 hover:text-blue-500"
+              >
+                Regístrate
+              </Link>)}
+            {!pathname.split("/").includes("candidate") && (
+              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
+                className="block text-lg text-gray-300 hover:text-blue-500">
+                Iniciar Sesión
+              </Link>)}
+          </SignedOut>
           <SignedIn>
             {
               user?.publicMetadata.role !== "recruiter" && (
