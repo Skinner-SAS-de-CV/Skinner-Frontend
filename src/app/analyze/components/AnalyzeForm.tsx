@@ -162,7 +162,7 @@ export default function AnalyzeForm({
         {/* 2do Dropdown: Trabajo */}
         <div>
           <label className="text-gray-300 font-medium">
-            Selecciona el Trabajo:
+            Selecciona el Puesto:
           </label>
           <select
             value={selectedJob}
