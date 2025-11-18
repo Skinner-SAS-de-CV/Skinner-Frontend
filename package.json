@@ -41,7 +41,7 @@
     "react-simple-typewriter": "^5.0.1",
     "react-tsparticles": "^2.12.2",
     "swiper": "^11.2.4",
-    "tailwind-merge": "^3.0.1",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "tsparticles": "^3.8.1",
     "tsparticles-engine": "^2.12.0",

@@ -1,218 +1,125 @@
 "use client";
-
-import Link from "next/link";
-import { useState } from "react";
-import Logo from "@/components/logo";
-import { Menu, X } from "lucide-react";
-import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import Link from "next/link"
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "./ui/navigation-menu"
 import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+
+const menuRecruiter = [
+    { title: "Mis Puestos", href: "/recruiter/jobs" },
+    { title: "Registrar", href: "/register" },
+    { title: "Analizar", href: "/analyze" },
+    { title: "Buscador", href: "/recruiter/search" },
+];
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-  const { user } = useUser();
-  const pathname = usePathname();
-  return (
-    <nav className="bg-gray-900 shadow-md">
-      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-        {/* Logo a la izquierda */}
-        <div className="flex items-center">
-          <Logo />
-        </div>
+    const pathname = usePathname();
+    const { user } = useUser();
+    const InciarCandidatoORecruiter = pathname.split("/").includes("candidate") ? <Link
+        href="/candidate/signin"
+        className="block text-lg text-gray-300 hover:text-blue-500"
+    >
+        Iniciar Sesión
+    </Link> : <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
+        className="block text-lg text-gray-300 hover:text-blue-500">
+        Iniciar Sesión
+    </Link>;
+    return (
+        <NavigationMenu className="bg-gray-900 shadow-md">
+            <NavigationMenuList className="flex-wrap">
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
 
-        {/* Menú para escritorio: enlaces y botón juntos en el mismo contenedor */}
-        <div className="hidden sm:flex items-center space-x-6">
-          <Link href="/" className="text-lg text-gray-300 hover:text-blue-500">
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
-            Quiénes Somos
-          </Link>
-          <Link
-            href="/candidate/home"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
-            Candidatos
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Contáctanos
-          </Link>
-          <SignedOut>
-            {pathname.split("/").includes("candidate") && (
-              <Link
-                href="/candidate/signup"
-                onClick={() => setIsOpen(false)}
-                className="block text-lg text-gray-300 hover:text-blue-500"
-              >
-                Regístrate
-              </Link>)}
-            {!pathname.split("/").includes("candidate") && (
-              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
-                className="block text-lg text-gray-300 hover:text-blue-500">
-                Iniciar Sesión
-              </Link>)}
-          </SignedOut>
-          <SignedIn>
-            {
-              user?.publicMetadata.role !== "recruiter" && (
-                <Link
-                  href="/candidate/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar CV
-                </Link>)
-            }
-            {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
-              <>
-                <Link
-                  href="/recruiter/jobs"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Mis Puestos
-                </Link>
+                        <Link href="/" className="text-lg text-gray-300 hover:text-blue-500">
+                            Home
+                        </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <Link
+                            href="/about"
+                            className="text-lg text-gray-300 hover:text-blue-500"
+                        >
+                            ¿Quiénes Somos?
+                        </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <Link
+                            href="/candidate/home"
+                            className="text-lg text-gray-300 hover:text-blue-500"
+                        >
+                            Candidatos
+                        </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <Link
+                            href="/contact"
+                            className="block text-lg text-gray-300 hover:text-blue-500"
+                        >
+                            Contáctanos
+                        </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <SignedOut>
+                    {
+                        pathname.split("/").includes("candidate") &&
+                        <NavigationMenuItem>
+                            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                <Link
+                                    href="/candidate/signup"
+                                    className="block text-lg text-gray-300 hover:text-blue-500"
+                                >
+                                    Regístrate
+                                </Link>
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+                    }
+                    <NavigationMenuItem>
+                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                            {InciarCandidatoORecruiter}
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                </SignedOut>
+                <SignedIn>
+                    {
+                        user?.publicMetadata.role !== "recruiter" && (
+                            <NavigationMenuItem>
+                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
 
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Registrar
-                </Link>
-                
-                <Link
-                  href="/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar
-                </Link>
-                <Link
-                  href="/recruiter/search"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Buscador
-                </Link>
-              </>
-            )}
-            <UserButton />
-          </SignedIn>
-        </div>
+                                    <Link
+                                        href="/candidate/analyze"
+                                        className="block text-lg text-gray-300 hover:text-blue-500"
+                                    >
+                                        Analizar CV
+                                    </Link>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>)
+                    }
+                    {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
+                        <NavigationMenuItem className="">
+                            <NavigationMenuTrigger>Páginas</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className="grid w-[200px] gap-4">
+                                    {
+                                        menuRecruiter.map((item) => <li key={item.title}>
+                                            <NavigationMenuLink asChild>
+                                                <Link href={item.href}>{item.title}</Link>
+                                            </NavigationMenuLink>
+                                        </li>)
+                                    }
 
-        {/* Botón de menú para móviles estilo hamburguesa */}
-        <div className="sm:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-lg text-gray-300 hover:text-white transition"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Menú desplegable para móviles */}
-      {isOpen && (
-        <div className="sm:hidden px-8 pt-4 pb-6 space-y-4">
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Quiénes Somos
-          </Link>
-          <Link
-            href="/candidate/home"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Candidatos
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Contáctanos
-          </Link>
-          <SignedOut>
-            {pathname.split("/").includes("candidate") && (
-              <Link
-                href="/candidate/signup"
-                onClick={() => setIsOpen(false)}
-                className="block text-lg text-gray-300 hover:text-blue-500"
-              >
-                Regístrate
-              </Link>)}
-            {!pathname.split("/").includes("candidate") && (
-              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
-                className="block text-lg text-gray-300 hover:text-blue-500">
-                Iniciar Sesión
-              </Link>)}
-          </SignedOut>
-          <SignedIn>
-            {
-              user?.publicMetadata.role !== "recruiter" && (
-                <Link
-                  href="/candidate/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar CV
-                </Link>)
-            }
-            {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
-              <>
-                <Link
-                  href="/recruiter/jobs"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Mis Puestos
-                </Link>
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Registrar
-                </Link>
-                <Link
-                  href="/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar
-                </Link>
-
-                <Link
-                  href="/recruiter/search"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Buscador
-                </Link>
-              </>
-            )}
-            <UserButton />
-          </SignedIn>
-        </div>
-      )}
-    </nav>
-  );
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>)}
+                </SignedIn>
+                <NavigationMenuItem>
+                    <UserButton />
+                </NavigationMenuItem>
+            </NavigationMenuList>
+        </NavigationMenu>
+    )
 }
