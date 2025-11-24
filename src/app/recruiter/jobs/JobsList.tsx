@@ -19,7 +19,7 @@ export default function JobsList() {
   }, [getToken]);
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen p-10">
+    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen p-10">
       <div className="flex justify-center">
         <div className="w-full max-w-4xl">
           <JobsDataTable columns={jobColumns} data={jobs} />

@@ -111,7 +111,7 @@ export default function Hero() {
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full bg-[#141629]" />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
       <motion.h1
-        className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r text-white"
+        className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-linear-to-r text-white"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.1 }}
@@ -120,7 +120,7 @@ export default function Hero() {
       </motion.h1>
 
         <motion.p
-          className="max-w-[600px] text-4xl sm:text-5xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r text-white"
+          className="max-w-[600px] text-4xl sm:text-5xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -137,7 +137,7 @@ export default function Hero() {
       <Link href="/candidate/signup">
         <Button
           size="lg"
-          className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+          className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
         >
           Registrate <ArrowRight className="ml-2" />
         </Button>
