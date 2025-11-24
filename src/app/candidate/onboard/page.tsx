@@ -109,7 +109,7 @@ export default function Onboarding() {
       <main className="min-h-screen flex justify-center items-center">
         <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+            <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
               Crea tu perfil
             </CardTitle>
           </CardHeader>
@@ -218,7 +218,7 @@ export default function Onboarding() {
             {/* Botón para enviar */}
             <Button
               onClick={handleSubmit}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+              className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
               disabled={loading}
             >
               {loading ? (

@@ -92,7 +92,7 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
   return (
     <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 m-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text pb-4">
+        <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text pb-4">
           📄 Subir Currículum para Análisis
         </CardTitle>
         <Alert className="bg-slate-700 border-gray-800 text-grey-300 pt-4">
@@ -124,14 +124,14 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
             type="file"
             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
             accept=".pdf,.docx"
-            className="file:text-white file:bg-gradient-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="file:text-white file:bg-linear-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Botón para enviar */}
         <Button
           onClick={handleSubmit}
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+          className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
           disabled={loading}
         >
           {loading ? (

@@ -35,11 +35,11 @@ const fadeInUpVariants = {
           return (
             <>
               <main>
-                <section className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
+                <section className="bg-linear-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
                   <div className="w-full">
                     <div className="flex flex-wrap justify-around px-4 gap-6">
                       <div className="lg:w-[40%]">
-                        <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
+                        <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
                           &quot;Revela el talento que hay debajo del papel.&quot;
                         </h1>
                         <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
@@ -65,7 +65,7 @@ const fadeInUpVariants = {
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              className="bg-gradient-to-b from-gray-900 to-gray-800 text-white pb-9"
+              className="bg-linear-to-b from-gray-900 to-gray-800 text-white pb-9"
             >
               <div className="px-4 md:px-6">
                 <motion.div
@@ -77,7 +77,7 @@ const fadeInUpVariants = {
                 </div>       
               
                   <div className="space-y-2">
-                    <h2 className="text-4xl lg:min-h-[55px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntás cómo hacer un currículum que destaque?</h2>
+                    <h2 className="text-4xl lg:min-h-[55px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntás cómo hacer un currículum que destaque?</h2>
                   </div>
                     <p className="max-w-[900px] text-white text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                       Registrate y sigue estos pasos.
@@ -107,7 +107,7 @@ const fadeInUpVariants = {
                     <motion.div
                       key={idx}
                       variants={fadeInUpVariants}
-                      className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5 flex flex-col items-center"
+                      className="bg-linear-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5 flex flex-col items-center"
                     >
                       {step.icon}
                       <h3 className="text-2xl font-semibold text-blue-300 mb-4">{step.title}</h3>
@@ -118,10 +118,10 @@ const fadeInUpVariants = {
               </div>
             </motion.section>
 
-        <section id="about" className="bg-gradient-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32 m-auto">
+        <section id="about" className="bg-linear-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32 m-auto">
             <div className="flex flex-wrap justify-around px-4">
               <div className="lg:w-[40%]">
-                <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
+                <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
                 <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
                 Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas, 
                 habilidades ocultas y áreas de mejora para que sepas exactamente dónde estás y cómo avanzar. 

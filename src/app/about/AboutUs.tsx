@@ -33,8 +33,8 @@ const containerVariants = {
 
 export default function AboutUs() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
-      <main className="flex-grow">
+    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen">
+      <main className="grow">
         <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0 flex">
           {/* Contenido de about */}
           <motion.div
@@ -69,7 +69,7 @@ export default function AboutUs() {
             viewport={{ once: true }}
             variants={fadeInUpVariants}
           >
-            <h1 className="2xl:h-[70px] md:h-[175px] h-[140px] text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6 px-3">
+            <h1 className="2xl:h-[70px] md:h-[175px] h-[140px] text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6 px-3">
               Transformando la adquisición de talentos.
             </h1>
 
@@ -82,7 +82,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                  className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
                 >
                   Contáctanos <ArrowRight className="ml-2" />
                 </Button>
@@ -118,10 +118,10 @@ export default function AboutUs() {
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
           >
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+            <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
               <Target className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
               Nuestra Misión
             </h2>
             <p className="text-gray-300">
@@ -135,10 +135,10 @@ export default function AboutUs() {
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
           >
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+            <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
               <Lightbulb className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
               Nuestra Visión
             </h2>
             <p className="text-gray-300">
@@ -152,10 +152,10 @@ export default function AboutUs() {
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
           >
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+            <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
               <Compass className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
               Nuestro Objetivo
             </h2>
             <p className="text-gray-300">
@@ -169,10 +169,10 @@ export default function AboutUs() {
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition transform duration-300 mt-10"
           >
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+            <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
               <Users className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
               Nuestro Equipo
             </h2>
             <p className="text-gray-300">
@@ -209,7 +209,7 @@ export default function AboutUs() {
           <div className="container mx-auto max-w-6xl">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12"
+              className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-12"
             >
               Nuestros valores fundamentales
             </motion.h2>
@@ -235,7 +235,7 @@ export default function AboutUs() {
                 <motion.div
                   key={idx}
                   variants={fadeInUpVariants}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5"
+                  className="bg-linear-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5"
                 >
                   <div className="flex justify-center items-center mb-6">{val.icon}</div>
                   <h3 className="text-2xl font-semibold text-blue-300 mb-4 text-center">{val.title}</h3>
@@ -274,7 +274,7 @@ export default function AboutUs() {
           <div className="container mx-auto max-w-6xl">
             <motion.h2
               variants={fadeInUpVariants}
-              className="md:h-[60px] text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
+              className="md:h-[60px] text-4xl md:text-5xl text-center font-extrabold text-transparent bg-linear-to-r from-blue-400 to-purple-600 mb-6 bg-clip-text"
             >
               ¿Por qué elegirnos?
             </motion.h2>
@@ -311,7 +311,7 @@ export default function AboutUs() {
                 <motion.div
                   key={i}
                   variants={fadeInUpVariants}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5"
+                  className="bg-linear-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5"
                 >
                   <div className="mb-6">{f.icon}</div>
                   <h3 className="text-2xl font-semibold text-blue-300 mb-4">{f.title}</h3>
@@ -347,7 +347,7 @@ export default function AboutUs() {
           className="py-20 px-4"
         >
           <div className="container mx-auto max-w-4xl">
-            <Card className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 shadow-xl overflow-hidden">
+            <Card className="bg-linear-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 shadow-xl overflow-hidden">
               <CardContent className="p-10">
                 <motion.div variants={fadeInUpVariants} className="text-center">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -361,7 +361,7 @@ export default function AboutUs() {
                     <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
                       <Button
                         size="lg"
-                        className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                        className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
                       >
                         Solicitar una demo
                       </Button>
@@ -370,7 +370,7 @@ export default function AboutUs() {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                        className="px-6 py-6 bg-linear-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
                       >
                         Contactar con ventas
                       </Button>
