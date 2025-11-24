@@ -19,49 +19,47 @@ const alertVariants = cva(
   }
 )
 
-const Alert = (
-  {
-    ref,
+type AlertProps = React.ComponentPropsWithoutRef<"div"> &
+  VariantProps<typeof alertVariants>
+const Alert = ({
     className,
     variant,
     ...props
-  }
-) => (<div
-  ref={ref}
+}: AlertProps) => (
+  <div
   role="alert"
   className={cn(alertVariants({ variant }), className)}
+  data-slot="alert"
   {...props}
-/>)
+  />
+)
 Alert.displayName = "Alert"
 
-const AlertTitle = (
-  {
-    ref,
+type AlertTitleProps = React.ComponentPropsWithoutRef<"h5">
+const AlertTitle = ({
     className,
     ...props
-  }: React.HTMLAttributes<HTMLHeadingElement> & {
-    ref: React.RefObject<HTMLParagraphElement>;
-  }
-) => (<h5
-  ref={ref}
+}: AlertTitleProps) => (
+  <h5
   className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+  data-slot="alert-title"
   {...props}
-/>)
+  />
+)
 AlertTitle.displayName = "AlertTitle"
 
-const AlertDescription = (
-  {
-    ref,
+type AlertDescriptionProps = React.ComponentPropsWithoutRef<"div">
+const AlertDescription = ({
     className,
     ...props
-  }: React.HTMLAttributes<HTMLParagraphElement> & {
-    ref: React.RefObject<HTMLParagraphElement>;
-  }
-) => (<div
-  ref={ref}
+}: AlertDescriptionProps) => (
+  <div
   className={cn("text-sm [&_p]:leading-relaxed", className)}
+  data-slot="alert-description"
   {...props}
-/>)
+  />
+)
 AlertDescription.displayName = "AlertDescription"
 
 export { Alert, AlertTitle, AlertDescription }
+

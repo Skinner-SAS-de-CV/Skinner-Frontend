@@ -7,16 +7,12 @@ import { cn } from "@/lib/utils"
 
 const Separator = (
   {
-    ref,
     className,
     orientation = "horizontal",
     decorative = true,
     ...props
-  }: React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> & {
-    ref: React.RefObject<React.ElementRef<typeof SeparatorPrimitive.Root>>;
-  }
+  }: React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
 ) => (<SeparatorPrimitive.Root
-  ref={ref}
   decorative={decorative}
   orientation={orientation}
   className={cn(
@@ -24,6 +20,7 @@ const Separator = (
     orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
     className
   )}
+  data-slot="separator"
   {...props}
 />)
 Separator.displayName = SeparatorPrimitive.Root.displayName
