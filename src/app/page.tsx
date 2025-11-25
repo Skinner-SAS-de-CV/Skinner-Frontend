@@ -31,7 +31,7 @@ function ElegantShape({
         <div
           className={cn(
             "absolute inset-0 rounded-full",
-            "bg-linear-to-r to-transparent",
+            "bg-gradient-to-r to-transparent",
             gradient,
             "backdrop-blur-[2px] border-2 border-white/15",
             "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
@@ -56,7 +56,7 @@ export default function HeroSection() {
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-900">
-      <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 via-transparent to-purple-500/5 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 blur-3xl" />
 
       {/* Formas geométricas animadas */}
       <div className="absolute inset-0 overflow-hidden">
@@ -78,19 +78,20 @@ export default function HeroSection() {
           className="flex justify-center mb-6"
         >
           <div
-            className="rounded-full shadow-lg"
+            className="relative rounded-full shadow-lg"
             style={{
-              width: 230,     
-              height: 226,    
-              overflow: "hidden",
+              width: 240,
+              height: 230,
+              overflow: "",
             }}
           >
             <Image
               src="/skinner-logo4.png"
-              alt="Empresa Logo"
-              width={260}
-              height={235}
-              className="object-contain w-200 h-200"
+              alt="Skinner Logo"
+              fill
+              sizes="230px"
+              priority
+              className="object-contain"
             />
           </div>
         </motion.div>
@@ -100,7 +101,7 @@ export default function HeroSection() {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 md:px-12"
+          className="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 md:px-12"
         >
           Sistemas inteligentes de gestión administrativa
         </motion.h1>

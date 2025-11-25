@@ -109,7 +109,7 @@ export default function Features() {
 
         {/* CARD DE POR QUÉ ELEGIRNOS */}
         <motion.div variants={fadeInUpVariants}>
-          <Card className="bg-linear-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 shadow-xl h-full">
+          <Card className="bg-linear-to-br from-blue-900 to-purple-900 border-blue-500/20 shadow-xl h-full">
             <CardContent className="p-6 md:p-10">
               <motion.div variants={fadeInUpVariants} className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
