@@ -78,19 +78,20 @@ export default function HeroSection() {
           className="flex justify-center mb-6"
         >
           <div
-            className="rounded-full shadow-lg"
+            className="relative rounded-full shadow-lg"
             style={{
-              width: 230,     
-              height: 226,    
-              overflow: "hidden",
+              width: 240,
+              height: 230,
+              overflow: "",
             }}
           >
             <Image
               src="/skinner-logo4.png"
-              alt="Empresa Logo"
-              width={260}
-              height={235}
-              className="object-contain w-200 h-200"
+              alt="Skinner Logo"
+              fill
+              sizes="230px"
+              priority
+              className="object-contain"
             />
           </div>
         </motion.div>

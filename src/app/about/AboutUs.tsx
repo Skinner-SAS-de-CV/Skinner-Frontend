@@ -347,7 +347,7 @@ export default function AboutUs() {
           className="py-20 px-4"
         >
           <div className="container mx-auto max-w-4xl">
-            <Card className="bg-linear-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 shadow-xl overflow-hidden">
+            <Card className="bg-linear-to-r from-blue-800 to-purple-900 border-blue-500/20 shadow-xl overflow-hidden">
               <CardContent className="p-10">
                 <motion.div variants={fadeInUpVariants} className="text-center">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
