@@ -31,7 +31,7 @@ function ElegantShape({
         <div
           className={cn(
             "absolute inset-0 rounded-full",
-            "bg-gradient-to-r to-transparent",
+            "bg-linear-to-r to-transparent",
             gradient,
             "backdrop-blur-[2px] border-2 border-white/15",
             "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
