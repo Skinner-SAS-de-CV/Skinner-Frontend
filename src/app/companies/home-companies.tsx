@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
 import { ResumeMatchGraph } from './components/ResumeMatchGraph';
 import {
   FileText,
@@ -14,17 +13,18 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
+import { Separator } from "@radix-ui/react-separator";
 
+{/*
 type Candidate = {
   name: string;
   title: string;
   score: number;
   avatar?: string;
-};
+}; */}
+
 {
-  /* aca los logos de las empresas */
-}
+  /* aca los logos de las empresas  lineas de abajo - 425-459
 const partners = [
   { name: "asep", src: "/ccsb.png", href: "https://https://ccsbso.org" },
   {
@@ -32,7 +32,9 @@ const partners = [
     src: "/llantas-bariloch_logo.png",
     href: "https://llantasbariloche.com/",
   },
-];
+]; */
+  
+}
 
 function AnimatedNumber({
   value,
@@ -74,185 +76,10 @@ function AnimatedNumber({
       {suffix}
     </span>
   );
-}
+} 
 
-function MatchGraph({
-  jobTitle,
-  candidates,
-  height = 420,
-  autoRotateMs = 2200,
-}: {
-  jobTitle: string;
-  candidates: Candidate[];
-  height?: number;
-  autoRotateMs?: number;
-}) {
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    const id = setInterval(
-      () => setActive((i) => (i + 1) % candidates.length),
-      autoRotateMs
-    );
-    return () => clearInterval(id);
-  }, [autoRotateMs, candidates.length]);
-
-  // Posiciones normalizadas (0-100) en círculo alrededor del centro (50,50)
-  const center = { x: 50, y: 50 };
-  const clamp = (v: number, min: number, max: number) =>
-    Math.max(min, Math.min(max, v));
-  // Usamos radios elípticos para separar mejor arriba/abajo y acercar izquierda/derecha
-  const radiusX = 26; // menos ancho para que los laterales no se alejen mucho
-  const radiusY = 44; // más alto para que top/bottom no se peguen al panel central
-  const positions = candidates.map((_, i) => {
-    const angle = (i / candidates.length) * Math.PI * 2 - Math.PI / 2; // inicia arriba
-    const px = center.x + radiusX * Math.cos(angle);
-    const py = center.y + radiusY * Math.sin(angle);
-    // Evitar que se corten en los bordes
-    return {
-      x: clamp(px, 8, 92),
-      y: clamp(py, 10, 90),
-    };
-  });
-
-  return (
-    <div className="relative w-full" style={{ height }}>
-      {/* Glow background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-3xl opacity-20 item-center" />
-
-      {/* SVG lines layer */}
-      <svg
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#274cda" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#8337e8" stopOpacity="0.9" />
-          </linearGradient>
-          v
-        </defs>
-        {candidates.map((c, i) => (
-          <motion.line
-            key={`line-${c.name}`}
-            x1={center.x}
-            y1={center.y}
-            x2={positions[i]?.x ?? 50}
-            y2={positions[i]?.y ?? 50}
-            stroke={i === active ? "url(#lineGrad)" : "rgba(255,255,255,0.18)"}
-            strokeWidth={1}
-            strokeLinecap="round"
-            initial={false}
-            animate={
-              i === active
-                ? { strokeDashoffset: [12, 0] }
-                : { strokeDashoffset: 0 }
-            }
-            transition={{
-              repeat: i === active ? Infinity : 0,
-              duration: 1.2,
-              ease: "linear",
-            }}
-            strokeDasharray={i === active ? "4 6" : "0 0"}
-          />
-        ))}
-
-        {/* orbit dots for aesthetics */}
-        {candidates.map((c, i) => (
-          <circle
-            key={`dot-${c.name}`}
-            cx={positions[i]?.x ?? 50}
-            cy={positions[i]?.y ?? 50}
-            r="0.7"
-            fill="#ffffff"
-            opacity={i === active ? 0.85 : 0.35}
-          />
-        ))}
-      </svg>
-
-      {/* Center node */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 w-[290px]">
-        <p className="text-sm text-gray-300">Puesto objetivo</p>
-        <div className="flex items-center justify-between mt-1">
-          <h3 className="text-2xl font-bold">{jobTitle}</h3>
-          <div className="relative w-12 h-12">
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: `conic-gradient(#a78bfa ${
-                  candidates[active].score * 3.6
-                }deg, rgba(255,255,255,0.1) 0deg)`,
-              }}
-            />
-            <div className="absolute inset-2 rounded-full bg-black/40 flex items-center justify-center text-sm">
-              {candidates[active].score}%
-            </div>
-          </div>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-xs text-gray-300">
-          <div className="bg-white/5 rounded-lg p-2 text-center">
-            Habilidades
-          </div>
-          <div className="bg-white/5 rounded-lg p-2 text-center">
-            Experiencia
-          </div>
-          <div className="bg-white/5 rounded-lg p-2 text-center">Cultura</div>
-        </div>
-      </div>
-
-      {/* Candidate nodes */}
-      {candidates.map((c, i) => {
-        const pos = positions[i] ?? center;
-        const initials = c.name
-          .split(" ")
-          .map((n) => n[0])
-          .join("")
-          .slice(0, 4)
-          .toUpperCase();
-        return (
-          <motion.div
-            key={`cand-${c.name}`}
-            className={`absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer`}
-            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
-            onMouseEnter={() => setActive(i)}
-            whileHover={{ scale: 1.05 }}
-          >
-            <div
-              className={`relative w-16 h-16 rounded-full overflow-hidden border ${
-                i === active
-                  ? "border-purple-400/70 ring-4 ring-purple-500/20"
-                  : "border-white/20"
-              }`}
-            >
-              {c.avatar ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={c.avatar}
-                  alt={c.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500/40 to-pink-500/40 text-white font-semibold">
-                  {initials}
-                </div>
-              )}
-            </div>
-            <div className="mt-2 text-center">
-              <p
-                className={`text-sm ${
-                  i === active ? "text-white" : "text-gray-300"
-                }`}
-              >
-                {c.name}
-              </p>
-              <p className="text-xs text-gray-400">{c.title}</p>
-            </div>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
+/* MatchGraph removido, no me gustaba mucho pero se puede mejorar por si el otro no les parece.*/
+{/* este es otro carrousel de matching}
 function GraphsCarousel({
   graphs,
   intervalMs = 5000,
@@ -291,7 +118,7 @@ function GraphsCarousel({
       </div>
     </div>
   );
-}
+} */}
 
 export default function Companies() {
   const features = [
@@ -328,47 +155,11 @@ export default function Companies() {
     "Soporte técnico dedicado",
   ];
 
-  const graphs = [
-    {
-      title: "Data Scientist",
-      candidates: [
-        { name: "Diego", title: "Data Scientist", score: 95, avatar: "/1.jpg" },
-        { name: "Ana", title: "ML Engineer", score: 88, avatar: "/2.jpg" },
-        { name: "María", title: "Data Analyst", score: 79, avatar: "/3.jpg" },
-        { name: "Luis", title: "MLOps", score: 84, avatar: "/4.jpg" },
-      ] as Candidate[],
-    },
-    {
-      title: "Frontend Developer",
-      candidates: [
-        { name: "Ana", title: "React Dev", score: 91, avatar: "/1.jpg" },
-        { name: "Luis", title: "Vue Dev", score: 78, avatar: "/4.jpg" },
-        { name: "María", title: "Next.js Dev", score: 86, avatar: "/3.jpg" },
-        { name: "Diego", title: "Angular Dev", score: 72, avatar: "/2.jpg" },
-      ] as Candidate[],
-    },
-    {
-      title: "DevOps Engineer",
-      candidates: [
-        { name: "Luis", title: "DevOps", score: 90, avatar: "/4.jpg" },
-        { name: "María", title: "SRE", score: 82, avatar: "/3.jpg" },
-        { name: "Diego", title: "Cloud Engineer", score: 85, avatar: "/2.jpg" },
-        { name: "Ana", title: "Platform Eng", score: 76, avatar: "/1.jpg" },
-      ] as Candidate[],
-    },
-    {
-      title: "Product Manager",
-      candidates: [
-        { name: "María", title: "PM", score: 88, avatar: "/3.jpg" },
-        { name: "Ana", title: "Assoc. PM", score: 80, avatar: "/1.jpg" },
-        { name: "Diego", title: "Growth PM", score: 83, avatar: "/2.jpg" },
-        { name: "Luis", title: "Tech PM", score: 78, avatar: "/4.jpg" },
-      ] as Candidate[],
-    },
-  ];
+  
+  
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
+    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden w-full min-h-[90vh] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         {/* Fondo moderno: grid + blobs */}
@@ -381,7 +172,7 @@ export default function Companies() {
               backgroundSize: "36px 36px",
             }}
           />
-          <div className="absolute -top-32 -left-32 w-[40rem] h-[40rem] bg-purple-600/20 rounded-full blur-3xl" />
+          <div className="absolute -top-32 -left-32 w-[40rem] h-[40rem] bg-purple-600 rounded-full blur-3xl" />
           <div className="absolute -bottom-32 -right-32 w-[40rem] h-[40rem] bg-pink-600/20 rounded-full blur-3xl" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -391,7 +182,7 @@ export default function Companies() {
 
               <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-center-justify">
                 Encuentra el{" "}
-                <span className="bg-gradient-to-r from-purple-700 to-blue-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-purple-700 to-blue-400 bg-clip-text text-transparent">
                   talento perfecto
                 </span>{" "}
                 en segundos
@@ -421,7 +212,8 @@ export default function Companies() {
                 </Link>
               </div>
 
-              {/* parte de logos de las empresas */}
+
+              {/* parte de logos de las empresas 
 
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex items-center gap-3">
@@ -455,11 +247,11 @@ export default function Companies() {
                   Estamos orgullosos de colaborar con nuestras primeras empresas
                   pioneras:
                 </p>
-              </div>
+              </div> */}
             </div>
             {/* grafico de tiempo analisis*/}
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-blue-400 blur-3xl opacity-30 animate-pulse"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-purple-900 to-blue-400 blur-3xl opacity-30 animate-pulse"></div>
               <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl">
                 <div className="space-y-4">
                   <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4"></div>
@@ -499,10 +291,14 @@ export default function Companies() {
         </div>
       </section>*/}
 
+      <div className="container mx-auto max-w-6xl px-4">
+        <Separator className="my-18 bg-gray-700/50" />
+      </div>
+
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">Visualización de matching por habilidades</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">Visualización de matching por habilidades</h2>
           <ResumeMatchGraph
             height={520}
             resumes={[
@@ -526,7 +322,7 @@ export default function Companies() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
               Características que{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
                 transforman
               </span>
             </h2>
@@ -541,7 +337,7 @@ export default function Companies() {
                 key={idx}
                 className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all hover:transform hover:scale-105 cursor-pointer group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-purple-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -559,7 +355,7 @@ export default function Companies() {
             <div>
               <h2 className="text-4xl font-bold mb-6">
                 ¿Por qué elegir{" "}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
                 </span>
               </h2>
@@ -572,7 +368,7 @@ export default function Companies() {
                 {benefits.map((benefit, idx) => (
                   <div key={idx} className="flex items-start space-x-3 group">
                     <div className="mt-1 flex-shrink-0">
-                      <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-6 h-6 bg-gradient-to-br from-blue-700 to-purple-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-4 h-4" />
                       </div>
                     </div>
@@ -620,7 +416,7 @@ export default function Companies() {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
             Más que un software,{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
               tu partner tecnológico
             </span>
           </h2>
@@ -661,7 +457,7 @@ export default function Companies() {
       {/* CTA Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-2xl p-12 border border-white/10">
+          <div className="bg-linear-to-br from-purple-600 to-grey-800 backdrop-blur-xl rounded-2xl p-12 border border-white/10">
             <h2 className="text-4xl font-bold mb-6">
               ¿Listo para revolucionar tu proceso de selección?
             </h2>
