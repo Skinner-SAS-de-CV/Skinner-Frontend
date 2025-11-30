@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ResumeMatchGraph } from './components/ResumeMatchGraph';
+import { motion } from "framer-motion";
+import { ResumeMatchGraph } from "./components/ResumeMatchGraph";
 import {
   FileText,
   Zap,
@@ -12,16 +13,18 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { Separator } from "@radix-ui/react-separator";
 
-{/*
+{
+  /*
 type Candidate = {
   name: string;
   title: string;
   score: number;
   avatar?: string;
-}; */}
+}; */
+}
 
 {
   /* aca los logos de las empresas  lineas de abajo - 425-459
@@ -33,7 +36,6 @@ const partners = [
     href: "https://llantasbariloche.com/",
   },
 ]; */
-  
 }
 
 function AnimatedNumber({
@@ -64,7 +66,19 @@ function AnimatedNumber({
         frameId = requestAnimationFrame(step);
       }
     };
-
+    {
+      /* Wave Transition */
+    }
+    <div className="relative">
+      <svg
+        className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+        viewBox="0 0 1440 50"
+        fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
+        preserveAspectRatio="none"
+      >
+        <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+      </svg>
+    </div>;
     frameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(frameId);
@@ -76,10 +90,11 @@ function AnimatedNumber({
       {suffix}
     </span>
   );
-} 
+}
 
 /* MatchGraph removido, no me gustaba mucho pero se puede mejorar por si el otro no les parece.*/
-{/* este es otro carrousel de matching}
+{
+  /* este es otro carrousel de matching}
 function GraphsCarousel({
   graphs,
   intervalMs = 5000,
@@ -118,29 +133,30 @@ function GraphsCarousel({
       </div>
     </div>
   );
-} */}
+} */
+}
 
 export default function Companies() {
   const features = [
     {
-      icon: <Brain className="w-6 h-6" />,
+      icon: <Brain className="w-8 h-8 md:w-9 md:h-9" />,
       title: "Matching Inteligente",
       description:
         "Algoritmo avanzado que compara candidatos con requisitos del puesto en segundos",
     },
     {
-      icon: <FileText className="w-6 h-6" />,
+      icon: <FileText className="w-8 h-8 md:w-9 md:h-9" />,
       title: "Reportes PDF",
       description:
         "Genera análisis detallados y profesionales listos para compartir",
     },
     {
-      icon: <Zap className="w-6 h-6" />,
+      icon: <Zap className="w-8 h-8 md:w-9 md:h-9" />,
       title: "Súper Sencillo",
       description: "Interfaz intuitiva que no requiere capacitación técnica",
     },
     {
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users className="w-8 h-8 md:w-9 md:h-9" />,
       title: "Para Todos",
       description: "Ideal para empresas con o sin departamento de RRHH",
     },
@@ -155,14 +171,24 @@ export default function Companies() {
     "Soporte técnico dedicado",
   ];
 
-  
-  
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  } as const;
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12 },
+    },
+  } as const;
 
   return (
     <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden w-full min-h-[90vh] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        {/* Fondo moderno: grid + blobs */}
+        {/* Fondo */}
         <div className="absolute -z-10 inset-0 pointer-events-none">
           <div
             className="absolute inset-0 opacity-20"
@@ -211,7 +237,6 @@ export default function Companies() {
                   </Button>
                 </Link>
               </div>
-
 
               {/* parte de logos de las empresas 
 
@@ -291,33 +316,78 @@ export default function Companies() {
         </div>
       </section>*/}
 
-      <div className="container mx-auto max-w-6xl px-4">
-        <Separator className="my-18 bg-gray-700/50" />
+      {/* Wave Transition */}
+      <div className="relative">
+        <svg
+          className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+          viewBox="0 0 1440 50"
+          fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
+          preserveAspectRatio="none"
+        >
+          <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+        </svg>
       </div>
 
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">Visualización de matching por habilidades</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+            Visualización de matching por habilidades
+          </h2>
           <ResumeMatchGraph
             height={520}
             resumes={[
-              { name: 'Ana Gómez', avatar: '/1.jpg', skills: ['Python','SQL','AWS','Pandas','Machine Learning'], experience: 4, education: 'Lic. Informática', matchScore: 92 },
-              { name: 'Diego Pérez', avatar: '/2.jpg', skills: ['JavaScript','React','TypeScript','Node.js','AWS'], experience: 5, education: 'Ing. Sistemas', matchScore: 88 },
-              { name: 'María López', avatar: '/3.jpg', skills: ['Data Analysis','SQL','PowerBI','Python','AWS'], experience: 3, education: 'Lic. Estadística', matchScore: 84 },
-              { name: 'Luis Torres', avatar: '/4.jpg', skills: ['DevOps','Docker','Kubernetes','AWS','CI/CD'], experience: 6, education: 'Ing. Informática', matchScore: 90 },
+              {
+                name: "Ana Gómez",
+                avatar: "/1.jpg",
+                skills: ["Python", "SQL", "AWS", "Pandas", "Machine Learning"],
+                experience: 4,
+                education: "Lic. Informática",
+                matchScore: 92,
+              },
+              {
+                name: "Diego Pérez",
+                avatar: "/2.jpg",
+                skills: ["JavaScript", "React", "TypeScript", "Node.js", "AWS"],
+                experience: 5,
+                education: "Ing. Sistemas",
+                matchScore: 88,
+              },
+              {
+                name: "María López",
+                avatar: "/3.jpg",
+                skills: ["Data Analysis", "SQL", "PowerBI", "Python", "AWS"],
+                experience: 3,
+                education: "Lic. Estadística",
+                matchScore: 84,
+              },
+              {
+                name: "Luis Torres",
+                avatar: "/4.jpg",
+                skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
+                experience: 6,
+                education: "Ing. Informática",
+                matchScore: 90,
+              },
             ]}
             jobRequirements={{
-              skills: ['Python','SQL','AWS','Machine Learning'],
+              skills: ["Python", "SQL", "AWS", "Machine Learning"],
               minExperience: 3,
-              education: 'Lic.',
+              education: "Lic.",
             }}
           />
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <motion.section
+        id="features"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUpVariants}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
@@ -331,22 +401,34 @@ export default function Companies() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+          >
             {features.map((feature, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all hover:transform hover:scale-105 cursor-pointer group"
+                variants={fadeInUpVariants}
+                whileHover={{ y: -2 }}
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-purple-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
+                <Card className="bg-gradient-to-br from-grey-900 to-blue-900/40 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
+                  <CardContent className="p-8">
+                    <div className="w-14 h-14 text-blue-400 mb-4 mx-auto">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-blue-400 text-center">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-300 text-justify-center">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Benefits Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
