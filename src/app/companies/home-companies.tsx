@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-
+import Image from "next/image";
 {
   /*
 type Candidate = {
@@ -92,50 +92,6 @@ function AnimatedNumber({
   );
 }
 
-/* MatchGraph removido, no me gustaba mucho pero se puede mejorar por si el otro no les parece.*/
-{
-  /* este es otro carrousel de matching}
-function GraphsCarousel({
-  graphs,
-  intervalMs = 5000,
-}: {
-  graphs: { title: string; candidates: Candidate[] }[];
-  intervalMs?: number;
-}) {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const id = setInterval(
-      () => setIdx((i) => (i + 1) % graphs.length),
-      intervalMs
-    );
-    return () => clearInterval(id);
-  }, [graphs.length, intervalMs]);
-
-  return (
-    <div className="relative">
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 item-justify-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={graphs[idx].title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35 }}
-          >
-            <MatchGraph
-              jobTitle={graphs[idx].title}
-              candidates={graphs[idx].candidates}
-              height={460}
-              autoRotateMs={1700}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-} */
-}
-
 export default function Companies() {
   const features = [
     {
@@ -184,6 +140,23 @@ export default function Companies() {
     },
   } as const;
 
+  // Animación del cuadro de métricas: aparece, se mantiene ~1.6s y desaparece
+    const timeCardVariants = {
+      hidden: { opacity: 0, scale: 0.98, y: 16 },
+      visible: {
+        opacity: [0, 1, 1, 0],
+        scale: [0.98, 1, 1, 0.98],
+        y: [16, 0, 0, 16],
+        transition: { duration: 2.2, times: [0, 0.2, 0.85, 1], ease: "easeOut" },
+      },
+    };
+
+  // Animación del logo: aparece después de que el cuadro se oculta
+  const logoAfterCardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { delay: 3, duration: 2, ease: "easeOut" } },
+  } as const;
+
   return (
     <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
@@ -208,7 +181,7 @@ export default function Companies() {
 
               <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-center-justify">
                 Encuentra el{" "}
-                <span className="bg-linear-to-r from-purple-700 to-blue-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-purple-500 to-blue-900 text-transparent">
                   talento perfecto
                 </span>{" "}
                 en segundos
@@ -274,52 +247,66 @@ export default function Companies() {
                 </p>
               </div> */}
             </div>
-            {/* grafico de tiempo analisis*/}
-            <div className="relative">
-              <div className="absolute inset-0 bg-linear-to-r from-purple-900 to-blue-400 blur-3xl opacity-30 animate-pulse"></div>
-              <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl">
+            {/* grafico de tiempo analisis (secuencial: primero gráfico, luego logo) */}
+            <motion.div
+              className="relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.6 } } }}
+            >
+              {/* glow de fondo */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-purple-900 to-blue-900 blur-3xl opacity-30"
+                variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+              />
+
+              {/* tarjeta del gráfico */}
+              <motion.div
+                className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-10 md:p-12 min-h-[240px] md:min-h-[280px] border border-white/20 shadow-2xl"
+                variants={timeCardVariants}
+              >
                 <div className="space-y-4">
-                  <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4"></div>
-                  <div className="h-4 bg-gradient-to-r from-pink-400 to-transparent rounded w-1/2"></div>
+                  <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4" />
+                  <div className="h-4 bg-gradient-to-r from-pink-400 to-transparent rounded w-1/2" />
                   <div className="grid grid-cols-2 gap-4 pt-4">
                     <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                       <div className="text-3xl font-bold text-purple-400">
                         <AnimatedNumber value={95} suffix="%" duration={1.8} />
                       </div>
-                      <div className="text-sm text-gray-400">
-                        Match Promedio
-                      </div>
+                      <div className="text-sm text-gray-400">Match Promedio</div>
                     </div>
                     <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                       <div className="text-3xl font-bold text-pink-400">
-                        <AnimatedNumber value={3} suffix="min" duration={1.4} />
+                        <AnimatedNumber value={3} suffix="min" duration={1.8} />
                       </div>
-                      <div className="text-sm text-gray-400">
-                        Tiempo Análisis
-                      </div>
+                      <div className="text-sm text-gray-400">Tiempo Análisis</div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+
+              {/* logo Skinner que aparece después */}
+              <motion.div
+                className="absolute left-20 -top-8 -translate-x-1/2 w-80 h-80 z-10"
+                variants={logoAfterCardVariants}
+              >
+                <div className="relative w-full h-full">
+                  <Image src="/skinner-logo5.png" 
+                  alt="Skinner" 
+                  fill sizes="" 
+                  className="object-contain" />
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Sección aparte: Carrusel de grafos 
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl  sm:text-4xl font-bold text-center mb-10">
-            Match ideal
-          </h2>
-          <GraphsCarousel graphs={graphs} intervalMs={5000} />
-        </div>
-      </section>*/}
-
       {/* Wave Transition */}
       <div className="relative">
         <svg
-          className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+          className="left-0 right-0 -top-1 text-gray-800 w-full z-10 pt-10"
           viewBox="0 0 1440 50"
           fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
           preserveAspectRatio="none"
