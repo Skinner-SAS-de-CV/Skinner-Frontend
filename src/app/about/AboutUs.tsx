@@ -1,5 +1,5 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
@@ -33,7 +33,7 @@ const containerVariants = {
 
 export default function AboutUs() {
   return (
-    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen">
+    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen scrollbar scrollbar-thumb-orange-50">
       <main className="grow">
         <section className="overflow-hidden w-full min-h-[90vh] text-center text-white mx-0 px-0 flex">
           {/* Contenido de about */}
