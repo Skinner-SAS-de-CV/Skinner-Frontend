@@ -288,14 +288,18 @@ export default function Companies() {
 
               {/* logo Skinner que aparece después */}
               <motion.div
-                className="absolute left-20 -top-8 -translate-x-1/2 w-80 h-80 z-10"
+                className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
                 variants={logoAfterCardVariants}
               >
-                <div className="relative w-full h-full">
-                  <Image src="/skinner-logo5.png" 
-                  alt="Skinner" 
-                  fill sizes="" 
-                  className="object-contain" />
+                <div className="relative w-[clamp(160px,22vw,300px)] h-[clamp(180px,22vw,600px)]">
+                  <Image
+                    src="/skinner-logo5.png"
+                    alt="Skinner"
+                    fill
+                    sizes="(max-width: 700px) 130px, (max-width: 800px) 200px, (max-width: 1024px) 170px, 160px"
+                    className="object-contain"
+                    priority
+                  />
                 </div>
               </motion.div>
             </motion.div>
