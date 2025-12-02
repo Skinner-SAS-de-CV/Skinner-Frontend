@@ -25,7 +25,7 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en" className="scrollbar scrollbar-track-gray-800 scrollbar-thumb-gray-600 bg-gray-800">
+      <html lang="en" className="bg-gray-800">
         <body className={inter.className}>
           {children}
           <Toaster position="top-right" />
