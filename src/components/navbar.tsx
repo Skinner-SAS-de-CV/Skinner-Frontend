@@ -39,7 +39,7 @@ export function AppNavbar(props: NavbarProps) {
   const { user } = useUser();
   return (
     <NavbarProvider>
-      <Navbar intent="inset" {...props}>
+      <Navbar {...props}>
         <NavbarStart>
           <Link
             className="flex items-center gap-x-2 font-medium"
@@ -62,7 +62,7 @@ export function AppNavbar(props: NavbarProps) {
           </SignedOut>
           <SignedIn>
             {
-              user?.publicMetadata.role !== "recruiter" &&  (
+              user?.publicMetadata.role !== "recruiter" && (
                 <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/analyze">Analizar CV</NavbarItem>
               )
             }
@@ -85,9 +85,6 @@ export function AppNavbar(props: NavbarProps) {
         </NavbarSection>
         <NavbarSpacer />
         <NavbarSection className="max-md:hidden">
-          <Button intent="plain" size="sq-sm" aria-label="Search for products">
-            <MagnifyingGlassIcon />
-          </Button>
 
           <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
           <SignedIn>
@@ -96,7 +93,7 @@ export function AppNavbar(props: NavbarProps) {
           </SignedIn>
         </NavbarSection>
       </Navbar>
-      <NavbarMobile className="bg-gray-800 text-white">
+      <NavbarMobile className="bg-gray-900 text-white">
         <NavbarTrigger />
         <NavbarSpacer />
         <Button intent="plain" size="sq-sm" aria-label="Search for products">
