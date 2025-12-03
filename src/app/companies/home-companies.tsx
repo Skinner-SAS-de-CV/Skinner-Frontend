@@ -263,20 +263,20 @@ export default function Companies() {
 
               {/* tarjeta del gráfico */}
               <motion.div
-                className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-10 md:p-12 min-h-[240px] md:min-h-[280px] border border-white/20 shadow-2xl"
+className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[220px] md:min-h-[260px] border border-white/20 shadow-2xl"
                 variants={timeCardVariants}
               >
-                <div className="space-y-4">
+<div className="space-y-3">
                   <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4" />
                   <div className="h-4 bg-gradient-to-r from-pink-400 to-transparent rounded w-1/2" />
-                  <div className="grid grid-cols-2 gap-4 pt-4">
-                    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+<div className="grid grid-cols-2 gap-3 pt-3">
+<div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-purple-400">
                         <AnimatedNumber value={95} suffix="%" duration={1.8} />
                       </div>
                       <div className="text-sm text-gray-400">Match Promedio</div>
                     </div>
-                    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+<div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-pink-400">
                         <AnimatedNumber value={3} suffix="min" duration={1.8} />
                       </div>
@@ -288,10 +288,10 @@ export default function Companies() {
 
               {/* logo Skinner que aparece después */}
               <motion.div
-                className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+                className="absolute inset-0 z-10 flex items-center justify-center"
                 variants={logoAfterCardVariants}
               >
-                <div className="relative w-[clamp(160px,22vw,300px)] h-[clamp(180px,22vw,600px)]">
+                <div className="relative w-[clamp(160px,28vw,350px)] h-[clamp(180px,30vw,350px)]">
                   <Image
                     src="/skinner-logo5.png"
                     alt="Skinner"
@@ -308,9 +308,9 @@ export default function Companies() {
       </section>
 
       {/* Wave Transition */}
-      <div className="relative">
+      <div className="relative -mt6 sm:-mt-8">
         <svg
-          className="left-0 right-0 -top-1 text-gray-800 w-full z-10 pt-10"
+          className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
           viewBox="0 0 1440 50"
           fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
           preserveAspectRatio="none"
