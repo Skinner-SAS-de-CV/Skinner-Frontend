@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { cubicBezier, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -50,7 +50,7 @@ export default function HeroSection() {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 1, delay: 0.5 + i * 0.2, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: 1, delay: 0.5 + i * 0.2, ease: cubicBezier(0.25, 0.4, 0.25, 1) },
     }),
   };
 
@@ -113,8 +113,8 @@ export default function HeroSection() {
           animate="visible"
           className="mt-6 text-lg sm:text-xl text-gray-200"
         >
-          Nuestra plataforma integra inteligencia artificial avanzada y gestión 
-          estratégica del talento humano, optimizando los procesos administrativos 
+          Nuestra plataforma integra inteligencia artificial avanzada y gestión
+          estratégica del talento humano, optimizando los procesos administrativos
           y fortaleciendo la infrastructura tecnológica y operativa de las organizaciones.
         </motion.p>
 
@@ -128,9 +128,9 @@ export default function HeroSection() {
             <Button size="lg" className="px-6 py-3 text-white text-lg bg-blue-600 hover:bg-blue-700 rounded-full shadow-lg">
               Candidatos
             </Button>
-          </Link>  
-        </motion.div>               
-        
+          </Link>
+        </motion.div>
+
       </div>
     </div>
   );

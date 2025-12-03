@@ -7,8 +7,8 @@ export default function AboutPage() {
   return (
     <PageContainer>
       <CandidateHome />
-      <Hero />      
-      <Features />      
+      <Hero />
+      <Features />
     </PageContainer>
   );
 }

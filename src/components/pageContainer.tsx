@@ -1,11 +1,11 @@
-import { Navbar } from "@/components/navbar"
+import { AppNavbar as Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export default function PageContainer({children}: React.PropsWithChildren) {
   return (
     <div className="min-h-screen">
-      <Navbar />
-      <main className="bg-gray-800">
+      <Navbar className="bg-gray-900 text-white border-0" />
+      <main>
         {children}
       </main>
       <Footer />

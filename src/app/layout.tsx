@@ -25,7 +25,7 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en">
+      <html lang="en" className="bg-gray-800">
         <body className={inter.className}>
           {children}
           <Toaster position="top-right" />

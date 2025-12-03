@@ -1,5 +1,5 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
