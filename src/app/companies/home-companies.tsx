@@ -122,7 +122,7 @@ export default function Companies() {
     "Reduce el tiempo de selección en un 70%",
     "Elimina sesgos en el proceso de evaluación",
     "Análisis basado en habilidades y funciones reales",
-    "Compatible con múltiples formatos de CV",
+    "Compatible con PDF, Word",
     "Escalable según tus necesidades",
     "Soporte técnico dedicado",
   ];
@@ -322,7 +322,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12">
             Visualización de matching por habilidades
           </h2>
           <ResumeMatchGraph
@@ -330,19 +330,19 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
             resumes={[
               {
                 name: "Ana Gómez",
-                avatar: "/1.jpg",
+                avatar: "/4.jpg",
                 skills: ["Python", "SQL", "AWS", "Pandas", "Machine Learning"],
                 experience: 4,
                 education: "Lic. Informática",
-                matchScore: 92,
+                matchScore: 90,
               },
               {
-                name: "Diego Pérez",
+                name: "José Rubio",
                 avatar: "/2.jpg",
                 skills: ["JavaScript", "React", "TypeScript", "Node.js", "AWS"],
                 experience: 5,
                 education: "Ing. Sistemas",
-                matchScore: 88,
+                matchScore: 40,
               },
               {
                 name: "María López",
@@ -350,21 +350,37 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 skills: ["Data Analysis", "SQL", "PowerBI", "Python", "AWS"],
                 experience: 3,
                 education: "Lic. Estadística",
-                matchScore: 84,
+                matchScore: 82,
               },
               {
-                name: "Luis Torres",
-                avatar: "/4.jpg",
+                name: "William Lopez",
+                avatar: "/1.jpg",
                 skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
-                experience: 6,
+                experience: 2,
                 education: "Ing. Informática",
-                matchScore: 90,
+                matchScore: 68,
+              },
+                            {
+                name: "Juan Vasquez",
+                avatar: "/5.jpg",
+                skills: ["DevOps", "Docker", "Kubernetes", "AWS", "Python", "Machine Learning","SQL","Deep Learning"],
+                experience: 5,
+                education: "Data Science",
+                matchScore: 92,
+              },
+                            {
+                name: "Joceline Watson",
+                avatar: "/6.jpg",
+                skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
+                experience: 2,
+                education: "Ing. Informática",
+                matchScore: 50,
               },
             ]}
             jobRequirements={{
               skills: ["Python", "SQL", "AWS", "Machine Learning"],
-              minExperience: 3,
-              education: "Lic.",
+              minExperience: 5,
+              education: "Data Science",
             }}
           />
         </div>
@@ -381,13 +397,10 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Características que{" "}
-              <span className="bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
-                transforman
-              </span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+              Características que transforman
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-gray-300">
               Todo lo que necesitas para optimizar tu proceso de selección
             </p>
           </div>
@@ -402,12 +415,12 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 variants={fadeInUpVariants}
                 whileHover={{ y: -2 }}
               >
-                <Card className="bg-gradient-to-br from-grey-900 to-blue-900/40 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
+                <Card className="bg-gradient-to-br from-gray-900/40 to-purple-900/40 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
                   <CardContent className="p-8">
                     <div className="w-14 h-14 text-blue-400 mb-4 mx-auto">
                       {feature.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-blue-400 text-center">
+                    <h3 className="text-xl font-semibold mb-2 text-blue-300 text-center">
                       {feature.title}
                     </h3>
                     <p className="text-gray-300 text-justify-center">
@@ -426,13 +439,13 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
                 ¿Por qué elegir{" "}
                 <span className="bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
                 </span>
               </h2>
-              <p className="text-xl text-gray-400 mb-8">
+              <p className="text-xl text-gray-300 mb-8">
                 Diseñado específicamente para recursos humanos modernos que
                 buscan eficiencia y precisión
               </p>
@@ -441,7 +454,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 {benefits.map((benefit, idx) => (
                   <div key={idx} className="flex items-start space-x-3 group">
                     <div className="mt-1 flex-shrink-0">
-                      <div className="w-6 h-6 bg-gradient-to-br from-blue-700 to-purple-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-6 h-6 bg-gradient-to-br from-blue-700 to-blue-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-4 h-4" />
                       </div>
                     </div>
@@ -487,7 +500,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
             Más que un software,{" "}
             <span className="bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
               tu partner tecnológico

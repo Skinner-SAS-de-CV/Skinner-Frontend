@@ -26,6 +26,16 @@ interface ResumeMatchGraphProps {
 export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: ResumeMatchGraphProps) {
   const [activeResume, setActiveResume] = useState(0);
   const [animationCycle, setAnimationCycle] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar mobile para usar altura auto
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const onChange = (e: MediaQueryListEvent | MediaQueryList) => setIsMobile('matches' in e ? e.matches : (e as MediaQueryList).matches);
+    onChange(mql);
+    mql.addEventListener?.('change', onChange );
+    return () => mql.removeEventListener?.('change', onChange );
+  }, []);
 
   // Auto-cycle
   useEffect(() => {
@@ -42,13 +52,12 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
   const matchedSkills = currentResume.skills.filter((skill) =>
     jobRequirements.skills.some((req) => req.toLowerCase() === skill.toLowerCase())
   );
-  const skillMatchPercentage = Math.round((matchedSkills.length / jobRequirements.skills.length) * 100);
 
   return (
-    <div className="relative w-full" style={{ height }}>
-      <div className="absolute inset-0 flex">
+    <div className="relative w-full overflow-hidden" style={{ height: isMobile ? 'auto' : height }}>
+      <div className="flex flex-col md:flex-row h-full">
         {/* Izquierda: CV */}
-        <div className="flex-1 flex items-center justify-center p-8">
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeResume}
@@ -59,7 +68,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
               className="relative"
             >
               {/* Tarjeta CV */}
-              <div className="w-64 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
+              <div className="w-full max-w-xs bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className="relative">
@@ -93,7 +102,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                     <GraduationCap className="w-4 h-4 text-purple-400" />
                     Educación
                   </div>
-                  <p className="text-white text-sm font-medium">{currentResume.education}</p>
+                  <p className="text-gray-300 text-sm font-medium">{currentResume.education}</p>
                 </div>
 
                 {/* Habilidades */}
@@ -137,7 +146,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
         </div>
 
         {/* Centro: conexiones */}
-        <div className="flex-1 flex items-center justify-center relative">
+        <div className="flex-1 flex items-center justify-center relative min-h-[220px] sm:min-h-[260px] md:min-h-0">
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: "visible" }}>
             {/* Líneas con partícula */}
             {matchedSkills.map((_, idx) => {
@@ -195,7 +204,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
             key={animationCycle}
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
-            className="relative z-10 w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 shadow-lg shadow-purple-500/50 flex items-center justify-center"
+            className="relative z-10 w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600 shadow-lg shadow-purple-500/50 flex items-center justify-center"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 animate-ping opacity-20" />
             <div className="relative text-center">
@@ -206,7 +215,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
         </div>
 
         {/* Derecha: requisitos */}
-        <div className="flex-1 flex items-center justify-center p-8">
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -219,8 +228,8 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-white">Requisitos del puesto</h3>
-                <p className="text-xs text-gray-400">Posición Senior</p>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Requisitos del puesto</h3>
+                <p className="text-xs text-gray-400">Data Science</p>
               </div>
             </div>
 
@@ -228,7 +237,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
             <div className="mb-4">
               <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
                 <Code className="w-4 h-4 text-blue-400" />
-                Habilidades requeridas
+                <span className="text-gray-300">Habilidades requeridas</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {jobRequirements.skills.map((skill, idx) => {
@@ -286,7 +295,7 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
       </div>
 
       {/* Indicadores inferiores */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="mt-4 md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 flex justify-center gap-2">
         {resumes.map((_, idx) => (
           <motion.button
             key={idx}
