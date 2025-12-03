@@ -85,8 +85,7 @@ const DialogDescription = ({ className, ref, ...props }: DialogDescriptionProps)
   />
 )
 
-interface DialogBodyProps extends React.ComponentProps<"div"> {}
-const DialogBody = ({ className, ...props }: DialogBodyProps) => (
+const DialogBody = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="dialog-body"
     className={twMerge(
@@ -98,8 +97,7 @@ const DialogBody = ({ className, ...props }: DialogBodyProps) => (
   />
 )
 
-interface DialogFooterProps extends React.ComponentProps<"div"> {}
-const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
+const DialogFooter = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       data-slot="dialog-footer"
@@ -139,8 +137,6 @@ const DialogCloseIcon = ({ className, ...props }: CloseButtonIndicatorProps) => 
 export type {
   DialogHeaderProps,
   DialogTitleProps,
-  DialogBodyProps,
-  DialogFooterProps,
   DialogDescriptionProps,
   CloseButtonIndicatorProps,
 }

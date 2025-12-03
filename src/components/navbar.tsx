@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/intentui/menu"
 
 
-import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingBagIcon } from "@heroicons/react/24/outline"
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import { Button } from "@/components/ui/intentui/button"
 import Link from "next/link"
 import {
