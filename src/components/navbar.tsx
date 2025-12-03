@@ -6,8 +6,7 @@ import {
 } from "@/components/ui/intentui/menu"
 
 
-import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
-import { Button } from "@/components/ui/intentui/button"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import {
   Navbar,
@@ -57,8 +56,8 @@ export function AppNavbar(props: NavbarProps) {
           <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
           <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
           <SignedOut>
-            {pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/signup">Regístrate</NavbarItem>)}
-            {!pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
           </SignedOut>
           <SignedIn>
             {
@@ -85,22 +84,24 @@ export function AppNavbar(props: NavbarProps) {
         </NavbarSection>
         <NavbarSpacer />
         <NavbarSection className="max-md:hidden">
-
-          <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
           <SignedIn>
-
+            <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
             <UserButton />
           </SignedIn>
+          <SignedOut>
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+          </SignedOut>
         </NavbarSection>
       </Navbar>
       <NavbarMobile className="bg-gray-900 text-white">
         <NavbarTrigger />
         <NavbarSpacer />
-        <Button intent="plain" size="sq-sm" aria-label="Search for products">
-          <MagnifyingGlassIcon />
-        </Button>
-        <NavbarSeparator className="mr-2.5" />
-        <UserButton />
+        <SignedIn>
+          <NavbarSeparator className="mr-2.5" />
+          <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
+          <UserButton />
+        </SignedIn>
       </NavbarMobile>
     </NavbarProvider>
   )
