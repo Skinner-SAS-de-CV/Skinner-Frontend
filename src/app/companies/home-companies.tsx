@@ -179,9 +179,9 @@ export default function Companies() {
             <div className="space-y-8 animate-fade-in">
               <div className="inline-block"></div>
 
-              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 mb-6 px-3 text-center-justify">
+              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3 text-center-justify">
                 Encuentra el{" "}
-                <span className="bg-linear-to-r from-purple-500 to-blue-900 text-transparent">
+                <span className="bg-linear-to-r bg-clip-text from-purple-500 to-blue-900 text-transparent">
                   talento perfecto
                 </span>{" "}
                 en segundos
@@ -196,7 +196,7 @@ export default function Companies() {
                 <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
                   <Button
                     size="sm"
-                    className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                    className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
                   >
                     Solicitar una demo
                   </Button>
@@ -204,7 +204,7 @@ export default function Companies() {
                 <Link href="/contact">
                   <Button
                     size="sm"
-                    className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                    className="px-6 py-6 bg-linear-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
                   >
                     Contactar con ventas
                   </Button>
@@ -257,7 +257,7 @@ export default function Companies() {
             >
               {/* glow de fondo */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-900 to-blue-900 blur-3xl opacity-30"
+                className="absolute inset-0 bg-linear-to-r from-purple-900 to-blue-900 blur-3xl opacity-30"
                 variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
               />
 
@@ -267,8 +267,8 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 variants={timeCardVariants}
               >
 <div className="space-y-3">
-                  <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4" />
-                  <div className="h-4 bg-gradient-to-r from-pink-400 to-transparent rounded w-1/2" />
+                  <div className="h-4 bg-linear-to-r from-purple-400 to-transparent rounded w-3/4" />
+                  <div className="h-4 bg-linear-to-r from-pink-400 to-transparent rounded w-1/2" />
 <div className="grid grid-cols-2 gap-3 pt-3">
 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-purple-400">
@@ -322,7 +322,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12">
+          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-12">
             Visualización de matching por habilidades
           </h2>
           <ResumeMatchGraph
@@ -397,7 +397,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
               Características que transforman
             </h2>
             <p className="text-xl text-gray-300">
@@ -415,7 +415,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 variants={fadeInUpVariants}
                 whileHover={{ y: -2 }}
               >
-                <Card className="bg-gradient-to-br from-gray-900/40 to-purple-900/40 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
+                <Card className="bg-gray-800 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
                   <CardContent className="p-8">
                     <div className="w-14 h-14 text-blue-400 mb-4 mx-auto">
                       {feature.icon}
@@ -439,9 +439,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
                 ¿Por qué elegir{" "}
-                <span className="bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
                 </span>
               </h2>
@@ -454,7 +454,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 {benefits.map((benefit, idx) => (
                   <div key={idx} className="flex items-start space-x-3 group">
                     <div className="mt-1 flex-shrink-0">
-                      <div className="w-6 h-6 bg-gradient-to-br from-blue-700 to-blue-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-6 h-6 bg-linear-to-br from-blue-700 to-blue-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-4 h-4" />
                       </div>
                     </div>
@@ -467,8 +467,8 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 blur-3xl opacity-20"></div>
-              <div className="relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+              <div className="absolute inset-0 bg-linear-to-r from-pink-500 to-purple-500 blur-3xl opacity-20"></div>
+              <div className="relative bg-linear-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
                 <Shield className="w-16 h-16 text-purple-400 mb-6" />
                 <h3 className="text-2xl font-bold mb-4">
                   Sistema de Licencias Flexible
@@ -500,9 +500,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
             Más que un software,{" "}
-            <span className="bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
               tu partner tecnológico
             </span>
           </h2>
@@ -552,7 +552,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
               transformar tu departamento de RRHH
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-all">
+              <button className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-all">
                 Agendar Demo Gratuita
               </button>
               <button className="bg-white text-purple-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all">

@@ -54,6 +54,7 @@ export function AppNavbar(props: NavbarProps) {
             Home
           </NavbarItem>
           <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
+          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/companies">Empresas</NavbarItem>
           <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
           <SignedOut>
             {pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
