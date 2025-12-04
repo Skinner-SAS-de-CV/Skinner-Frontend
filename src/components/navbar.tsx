@@ -32,12 +32,6 @@ export function Navbar() {
             Quiénes Somos
           </Link>
           <Link
-            href="/companies"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
-            Empresas
-          </Link>
-          <Link
             href="/candidate/home"
             className="text-lg text-gray-300 hover:text-blue-500"
           >
@@ -141,13 +135,6 @@ export function Navbar() {
             className="block text-lg text-gray-300 hover:text-blue-500"
           >
             Quiénes Somos
-          </Link>
-          <Link
-            href="/companies"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Empresas
           </Link>
           <Link
             href="/candidate/home"
