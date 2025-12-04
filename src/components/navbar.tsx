@@ -1,218 +1,108 @@
-"use client";
+"use client"
+import {
+  Menu,
+  MenuContent,
+  MenuItem,
+} from "@/components/ui/intentui/menu"
 
-import Link from "next/link";
-import { useState } from "react";
-import Logo from "@/components/logo";
-import { Menu, X } from "lucide-react";
-import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
 
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-  const { user } = useUser();
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
+import Link from "next/link"
+import {
+  Navbar,
+  NavbarGap,
+  NavbarItem,
+  NavbarMobile,
+  type NavbarProps,
+  NavbarProvider,
+  NavbarSection,
+  NavbarSeparator,
+  NavbarSpacer,
+  NavbarStart,
+  NavbarTrigger,
+} from "@/components/ui/intentui/navbar"
+import { Separator } from "@/components/ui/separator"
+import Logo from "./logo"
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs"
+import { usePathname } from "next/navigation"
+
+const categories = [
+  { id: 1, label: "Mis Puestos", url: "/recruiter/jobs" },
+  { id: 2, label: "Registrar Nuevo Puesto", url: "/register" },
+  { id: 3, label: "Analizar", url: "/analyze" },
+  { id: 4, label: "Buscador", url: "/recruiter/search" }
+]
+
+export function AppNavbar(props: NavbarProps) {
   const pathname = usePathname();
+  const { user } = useUser();
   return (
-    <nav className="bg-gray-900 shadow-md">
-      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-        {/* Logo a la izquierda */}
-        <div className="flex items-center">
-          <Logo />
-        </div>
-
-        {/* Menú para escritorio: enlaces y botón juntos en el mismo contenedor */}
-        <div className="hidden sm:flex items-center space-x-6">
-          <Link href="/" className="text-lg text-gray-300 hover:text-blue-500">
-            Home
-          </Link>
+    <NavbarProvider>
+      <Navbar {...props}>
+        <NavbarStart>
           <Link
-            href="/about"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
-            Quiénes Somos
-          </Link>
-          <Link
-            href="/candidate/home"
-            className="text-lg text-gray-300 hover:text-blue-500"
-          >
-            Candidatos
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Contáctanos
-          </Link>
-          <SignedOut>
-            {pathname.split("/").includes("candidate") && (
-              <Link
-                href="/candidate/signup"
-                onClick={() => setIsOpen(false)}
-                className="block text-lg text-gray-300 hover:text-blue-500"
-              >
-                Regístrate
-              </Link>)}
-            {!pathname.split("/").includes("candidate") && (
-              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
-                className="block text-lg text-gray-300 hover:text-blue-500">
-                Iniciar Sesión
-              </Link>)}
-          </SignedOut>
-          <SignedIn>
-            {
-              user?.publicMetadata.role !== "recruiter" && (
-                <Link
-                  href="/candidate/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar CV
-                </Link>)
-            }
-            {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
-              <>
-                <Link
-                  href="/recruiter/jobs"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Mis Puestos
-                </Link>
-
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Registrar
-                </Link>
-                
-                <Link
-                  href="/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar
-                </Link>
-                <Link
-                  href="/recruiter/search"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Buscador
-                </Link>
-              </>
-            )}
-            <UserButton />
-          </SignedIn>
-        </div>
-
-        {/* Botón de menú para móviles estilo hamburguesa */}
-        <div className="sm:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-lg text-gray-300 hover:text-white transition"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Menú desplegable para móviles */}
-      {isOpen && (
-        <div className="sm:hidden px-8 pt-4 pb-6 space-y-4">
-          <Link
+            className="flex items-center gap-x-2 font-medium"
+            aria-label="Goto home"
             href="/"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
           >
+            <Logo />
+          </Link>
+        </NavbarStart>
+        <NavbarGap />
+        <NavbarSection>
+          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/" isCurrent>
             Home
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Quiénes Somos
-          </Link>
-          <Link
-            href="/candidate/home"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Candidatos
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block text-lg text-gray-300 hover:text-blue-500"
-          >
-            Contáctanos
-          </Link>
+          </NavbarItem>
+          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
+          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
           <SignedOut>
-            {pathname.split("/").includes("candidate") && (
-              <Link
-                href="/candidate/signup"
-                onClick={() => setIsOpen(false)}
-                className="block text-lg text-gray-300 hover:text-blue-500"
-              >
-                Regístrate
-              </Link>)}
-            {!pathname.split("/").includes("candidate") && (
-              <Link href="/recruiter/signin?redirect_url=recruiter/jobs/"
-                className="block text-lg text-gray-300 hover:text-blue-500">
-                Iniciar Sesión
-              </Link>)}
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
           </SignedOut>
           <SignedIn>
             {
               user?.publicMetadata.role !== "recruiter" && (
-                <Link
-                  href="/candidate/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar CV
-                </Link>)
+                <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/analyze">Analizar CV</NavbarItem>
+              )
             }
             {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
-              <>
-                <Link
-                  href="/recruiter/jobs"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Mis Puestos
-                </Link>
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Registrar
-                </Link>
-                <Link
-                  href="/analyze"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Analizar
-                </Link>
-
-                <Link
-                  href="/recruiter/search"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-gray-300 hover:text-blue-500"
-                >
-                  Buscador
-                </Link>
-              </>
+              <Menu>
+                <NavbarItem className="hover:bg-gray-800 hover:text-blue-500">
+                  Menú
+                  <ChevronDownIcon className="col-start-3" />
+                </NavbarItem>
+                <MenuContent popover={{ className: "border-0" }} className="bg-gray-800  text-white min-w-(--trigger-width) sm:min-w-56" items={categories}>
+                  {(item) => (
+                    <MenuItem className="bg-gray-800 hover:text-blue-500" id={item.id} textValue={item.label} href={item.url}>
+                      {item.label}
+                    </MenuItem>
+                  )}
+                </MenuContent>
+              </Menu>
             )}
+          </SignedIn>
+        </NavbarSection>
+        <NavbarSpacer />
+        <NavbarSection className="max-md:hidden">
+          <SignedIn>
+            <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
             <UserButton />
           </SignedIn>
-        </div>
-      )}
-    </nav>
-  );
+          <SignedOut>
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+          </SignedOut>
+        </NavbarSection>
+      </Navbar>
+      <NavbarMobile className="bg-gray-900 text-white">
+        <NavbarTrigger />
+        <NavbarSpacer />
+        <SignedIn>
+          <NavbarSeparator className="mr-2.5" />
+          <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
+          <UserButton />
+        </SignedIn>
+      </NavbarMobile>
+    </NavbarProvider>
+  )
 }
