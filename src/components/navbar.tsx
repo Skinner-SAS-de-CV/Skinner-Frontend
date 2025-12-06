@@ -16,12 +16,10 @@ import {
   type NavbarProps,
   NavbarProvider,
   NavbarSection,
-  NavbarSeparator,
   NavbarSpacer,
   NavbarStart,
   NavbarTrigger,
 } from "@/components/ui/intentui/navbar"
-import { Separator } from "@/components/ui/separator"
 import Logo from "./logo"
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs"
 import { usePathname } from "next/navigation"
@@ -50,31 +48,31 @@ export function AppNavbar(props: NavbarProps) {
         </NavbarStart>
         <NavbarGap />
         <NavbarSection>
-          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/" isCurrent>
+          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/" isCurrent>
             Home
           </NavbarItem>
-          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
+          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
           <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/companies">Empresas</NavbarItem>
-          <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
+          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
           <SignedOut>
-            {pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
-            {!pathname.split("/").includes("candidate") && (<NavbarItem className="hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
           </SignedOut>
           <SignedIn>
             {
               user?.publicMetadata.role !== "recruiter" && (
-                <NavbarItem className="hover:bg-gray-800 hover:text-blue-500" href="/candidate/analyze">Analizar CV</NavbarItem>
+                <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/candidate/analyze">Analizar CV</NavbarItem>
               )
             }
             {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <Menu>
-                <NavbarItem className="hover:bg-gray-800 hover:text-blue-500">
+                <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500">
                   Menú
                   <ChevronDownIcon className="col-start-3" />
                 </NavbarItem>
                 <MenuContent popover={{ className: "border-0" }} className="bg-gray-800  text-white min-w-(--trigger-width) sm:min-w-56" items={categories}>
                   {(item) => (
-                    <MenuItem className="bg-gray-800 hover:text-blue-500" id={item.id} textValue={item.label} href={item.url}>
+                    <MenuItem className="sm:text-md bg-gray-800 hover:text-blue-500" id={item.id} textValue={item.label} href={item.url}>
                       {item.label}
                     </MenuItem>
                   )}
@@ -86,7 +84,6 @@ export function AppNavbar(props: NavbarProps) {
         <NavbarSpacer />
         <NavbarSection className="max-md:hidden">
           <SignedIn>
-            <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
             <UserButton />
           </SignedIn>
           <SignedOut>
@@ -99,8 +96,6 @@ export function AppNavbar(props: NavbarProps) {
         <NavbarTrigger />
         <NavbarSpacer />
         <SignedIn>
-          <NavbarSeparator className="mr-2.5" />
-          <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
           <UserButton />
         </SignedIn>
       </NavbarMobile>
