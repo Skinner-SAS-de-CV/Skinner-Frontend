@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 import { ResumeMatchGraph } from "./components/ResumeMatchGraph";
 import {
   FileText,
@@ -66,19 +66,17 @@ function AnimatedNumber({
         frameId = requestAnimationFrame(step);
       }
     };
-    {
-      /* Wave Transition */
-    }
-    <div className="relative">
-      <svg
-        className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
-        viewBox="0 0 1440 50"
-        fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
-        preserveAspectRatio="none"
-      >
-        <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
-      </svg>
-    </div>;
+        {/* Wave Transition */}
+        <div className="relative bg-gray-900">
+          <svg
+            className="left-0 right-0 -top-1 text-gray-900 w-full z-10"
+            viewBox="0 0 1440 50"
+            fill="rgba(60, 90, 102, 3)" // Color oscuro con opacidad
+            preserveAspectRatio="none"
+          >
+            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+          </svg>
+        </div>
     frameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(frameId);
@@ -93,6 +91,8 @@ function AnimatedNumber({
 }
 
 export default function Companies() {
+  const [openLicense, setOpenLicense] = useState<null | "empresarial" | "corporativa">(null);
+
   const features = [
     {
       icon: <Brain className="w-8 h-8 md:w-9 md:h-9" />,
@@ -147,7 +147,7 @@ export default function Companies() {
         opacity: [0, 1, 1, 0],
         scale: [0.98, 1, 1, 0.98],
         y: [16, 0, 0, 16],
-        transition: { duration: 2.2, times: [0, 0.2, 0.85, 1], ease: "easeOut" },
+        transition: { duration: 2.2, times: [0, 0.2, 0.85, 1], ease: easeOut },
       },
     };
 
@@ -160,7 +160,7 @@ export default function Companies() {
   return (
     <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden w-full min-h-[90vh] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden w-full min-h-[90vh] pt-30 pb-20 lg:pb-10 px-4 sm:px-6 lg:px-8">
         {/* Fondo */}
         <div className="absolute -z-10 inset-0 pointer-events-none">
           <div
@@ -179,9 +179,9 @@ export default function Companies() {
             <div className="space-y-8 animate-fade-in">
               <div className="inline-block"></div>
 
-              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3 text-center-justify">
+              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 mb-6 px-3 text-center-justify">
                 Encuentra el{" "}
-                <span className="bg-linear-to-r bg-clip-text from-purple-500 to-blue-900 text-transparent">
+                <span className="bg-linear-to-r bg-clip-text from-blue-500/60 to-purple-400/900 text-transparent">
                   talento perfecto
                 </span>{" "}
                 en segundos
@@ -264,7 +264,7 @@ export default function Companies() {
               {/* tarjeta del gráfico */}
               <motion.div
 className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[220px] md:min-h-[260px] border border-white/20 shadow-2xl"
-                variants={timeCardVariants}
+                variants={timeCardVariants}  
               >
 <div className="space-y-3">
                   <div className="h-4 bg-linear-to-r from-purple-400 to-transparent rounded w-3/4" />
@@ -307,22 +307,23 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         </div>
       </section>
 
-      {/* Wave Transition */}
-      <div className="relative -mt6 sm:-mt-8">
-        <svg
-          className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
-          viewBox="0 0 1440 50"
-          fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
-          preserveAspectRatio="none"
-        >
-          <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
-        </svg>
-      </div>
+   {/* Wave Transition */}
+      <div className="relative -mt-4 sm:-mt-6 lg:-mt-12">
+          <svg
+            className="relative block w-full -translate-y-1 text-gray-800 z-20 pointer events-none"
+            viewBox="0 0 1440 50"
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+          </svg>
+        </div>
+
 
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-12">
+          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-10">
             Visualización de matching por habilidades
           </h2>
           <ResumeMatchGraph
@@ -332,7 +333,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 name: "Ana Gómez",
                 avatar: "/4.jpg",
                 skills: ["Python", "SQL", "AWS", "Pandas", "Machine Learning"],
-                experience: 4,
+                experience: 3,
                 education: "Lic. Informática",
                 matchScore: 90,
               },
@@ -362,7 +363,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
               },
                             {
                 name: "Juan Vasquez",
-                avatar: "/5.jpg",
+                avatar: "/6.jpg",
                 skills: ["DevOps", "Docker", "Kubernetes", "AWS", "Python", "Machine Learning","SQL","Deep Learning"],
                 experience: 5,
                 education: "Data Science",
@@ -370,7 +371,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
               },
                             {
                 name: "Joceline Watson",
-                avatar: "/6.jpg",
+                avatar: "/5.jpg",
                 skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
                 experience: 2,
                 education: "Ing. Informática",
@@ -379,7 +380,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
             ]}
             jobRequirements={{
               skills: ["Python", "SQL", "AWS", "Machine Learning"],
-              minExperience: 5,
+              minExperience: 3,
               education: "Data Science",
             }}
           />
@@ -439,7 +440,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
+              <h2 className="text-4xl md:text-4xl font-extrabold text-transparent text-center bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
                 ¿Por qué elegir{" "}
                 <span className="bg-linear-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
@@ -478,17 +479,51 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                   corporaciones, tenemos el plan perfecto para ti.
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                    <span>Licencia Individual</span>
-                    <ChevronRight className="w-5 h-5 text-purple-400" />
+                  <div className="space-y-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenLicense(openLicense === "empresarial" ? null : "empresarial")
+                      }
+                      className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      <span>Licencia Empresarial</span>
+                      <ChevronRight
+                        className={`w-5 h-5 text-purple-400 transition-transform ${
+                          openLicense === "empresarial" ? "rotate-90" : ""
+                        }`}
+                      />
+                    </button>
+                    {openLicense === "empresarial" && (
+                      <p className="text-sm text-gray-300 text-left">
+                        Ideal para pymes y equipos en crecimiento. Incluye acceso para varios
+                        usuarios, actualizaciones periódicas y soporte por correo.
+                      </p>
+                    )}
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                    <span>Licencia Empresarial</span>
-                    <ChevronRight className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                    <span>Licencia Corporativa</span>
-                    <ChevronRight className="w-5 h-5 text-purple-400" />
+
+                  <div className="space-y-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenLicense(openLicense === "corporativa" ? null : "corporativa")
+                      }
+                      className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      <span>Licencia Corporativa</span>
+                      <ChevronRight
+                        className={`w-5 h-5 text-purple-400 transition-transform ${
+                          openLicense === "corporativa" ? "rotate-90" : ""
+                        }`}
+                      />
+                    </button>
+                    {openLicense === "corporativa" && (
+                      <p className="text-sm text-gray-300 text-left">
+                        Pensada para grandes organizaciones con múltiples áreas de RRHH. Ofrece
+                        funcionalidades avanzadas, soporte dedicado y acuerdos de nivel de
+                        servicio.
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -500,9 +535,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white to-white mb-6">
             Más que un software,{" "}
-            <span className="bg-linear-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
               tu partner tecnológico
             </span>
           </h2>
@@ -540,28 +575,49 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-linear-to-br from-purple-600 to-grey-800 backdrop-blur-xl rounded-2xl p-12 border border-white/10">
-            <h2 className="text-4xl font-bold mb-6">
-              ¿Listo para revolucionar tu proceso de selección?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Agenda una demo gratuita y descubre cómo TalentMatch AI puede
-              transformar tu departamento de RRHH
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-all">
-                Agendar Demo Gratuita
-              </button>
-              <button className="bg-white text-purple-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
-                Hablar con Ventas
-              </button>
-            </div>
+        {/* CTA Section */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUpVariants}
+          className="py-20 px-4"
+        >
+          <div className="container mx-auto max-w-4xl">
+            <Card className="bg-linear-to-r from-blue-800 to-purple-900 border-blue-500/20 shadow-xl overflow-hidden">
+              <CardContent className="p-10">
+                <motion.div variants={fadeInUpVariants} className="text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    ¿Listo para transformar su proceso de contratación?
+                  </h2>
+                  <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Descubra cómo nuestra plataforma impulsada por IA puede ayudarle a encontrar los mejores talentos
+                    para su empresa de manera más rápida y eficiente.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
+                      <Button
+                        size="lg"
+                        className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                      >
+                        Solicitar una demo
+                      </Button>
+                    </Link>
+                    <Link href="/contact">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="px-6 py-6 bg-linear-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                      >
+                        Contactar con ventas
+                      </Button>
+                    </Link>
+                  </div>
+                </motion.div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-      </section>
+        </motion.section>
     </div>
   );
 }
