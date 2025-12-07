@@ -30,7 +30,7 @@
     "date-fns": "^4.1.0",
     "lucide-react": "^0.475.0",
     "motion": "^12.23.24",
-    "next": "^15.4.1",
+    "next": "^15.4.8",
     "react": "^19.0.0",
     "react-aria-components": "^1.13.0",
     "react-day-picker": "^9.6.7",
