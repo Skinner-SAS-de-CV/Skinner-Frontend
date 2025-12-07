@@ -223,12 +223,12 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
             className="w-64 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-              <div className="w-12 h-12 rounded-md bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+            <div className="flex gap-3 mb-6 pb-4 border-b border-white/10">
+              <div className="w-14 h-12 rounded-md bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl md:text-2xl font-extrabold bg-clip-text bg-gradient-to-r from-white text-center">Requisitos del puesto</h3>
+                <h3 className="text-2xl md:text-2xl font-extrabold text-white text-center">Requisitos del puesto</h3>
                 <p className="text-xs text-gray-400 text-center">Data Science</p>
               </div>
             </div>

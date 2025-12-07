@@ -177,9 +177,8 @@ export default function Companies() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
-              <div className="inline-block"></div>
 
-              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 mb-6 px-3 text-center-justify">
+              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 mb-6 text-center-justify">
                 Encuentra el{" "}
                 <span className="bg-linear-to-r bg-clip-text from-blue-500/60 to-purple-400/900 text-transparent">
                   talento perfecto
