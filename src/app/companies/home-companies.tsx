@@ -272,13 +272,13 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
 <div className="grid grid-cols-2 gap-3 pt-3">
 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-purple-400">
-                        <AnimatedNumber value={95} suffix="%" duration={1.8} />
+                        <AnimatedNumber value={95} suffix="%" duration={1.5} />
                       </div>
                       <div className="text-sm text-gray-400">Match Promedio</div>
                     </div>
 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-pink-400">
-                        <AnimatedNumber value={3} suffix="min" duration={1.8} />
+                        <AnimatedNumber value={3} suffix="min" duration={1.5} />
                       </div>
                       <div className="text-sm text-gray-400">Tiempo Análisis</div>
                     </div>
@@ -323,7 +323,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-10">
+          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 leading-[1.2] md:leading-[1.15] pb-1 md:pb-2 mb-12">
             Visualización de matching por habilidades
           </h2>
           <ResumeMatchGraph
@@ -519,9 +519,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                     </button>
                     {openLicense === "corporativa" && (
                       <p className="text-sm text-gray-300 text-left">
-                        Pensada para grandes organizaciones con múltiples áreas de RRHH. Ofrece
-                        funcionalidades avanzadas, soporte dedicado y acuerdos de nivel de
-                        servicio.
+                        Para organizaciones y agencias de RR. HH. que gestionan múltiples empresas y 
+                        altos volúmenes de vacantes, permitiéndoles centralizar puestos, agregar nuevas compañías 
+                        y administrar todo su proceso de selección desde una sola plataforma.
                       </p>
                     )}
                   </div>

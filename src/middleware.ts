@@ -12,6 +12,7 @@ const isPublicRoute = createRouteMatcher([
   "/privacy(.*)",
   "/about(.*)",
   "/contact",
+  "/companies(.*)",
 ]);
 // Ruta para onboarding de candidatos
 const isOnboardingRoute = createRouteMatcher(["/candidate/onboard"]);
