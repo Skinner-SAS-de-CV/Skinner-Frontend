@@ -23,7 +23,11 @@ interface ResumeMatchGraphProps {
   height?: number;
 }
 
-export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: ResumeMatchGraphProps) {
+export function ResumeMatchGraph({
+  resumes,
+  jobRequirements,
+  height = 500,
+}: ResumeMatchGraphProps) {
   const [activeResume, setActiveResume] = useState(0);
   const [animationCycle, setAnimationCycle] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -31,10 +35,11 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
   // Detectar mobile para usar altura auto
   useEffect(() => {
     const mql = window.matchMedia("(max-width: 768px)");
-    const onChange = (e: MediaQueryListEvent | MediaQueryList) => setIsMobile('matches' in e ? e.matches : (e as MediaQueryList).matches);
+    const onChange = (e: MediaQueryListEvent | MediaQueryList) =>
+      setIsMobile("matches" in e ? e.matches : (e as MediaQueryList).matches);
     onChange(mql);
-    mql.addEventListener?.('change', onChange );
-    return () => mql.removeEventListener?.('change', onChange );
+    mql.addEventListener?.("change", onChange);
+    return () => mql.removeEventListener?.("change", onChange);
   }, []);
 
   // Auto-cycle
@@ -50,14 +55,18 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
 
   // Coincidencia de habilidades
   const matchedSkills = currentResume.skills.filter((skill) =>
-    jobRequirements.skills.some((req) => req.toLowerCase() === skill.toLowerCase())
+    jobRequirements.skills.some(
+      (req) => req.toLowerCase() === skill.toLowerCase()
+    )
   );
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: isMobile ? 'auto' : height }}>
-      <div className="flex flex-col md:flex-row h-full">
-        {/* Izquierda: CV */}
-        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ height: isMobile ? "auto" : height }}
+    >
+      <div className="flex flex-col md:flex-row h-full md:items-stretch">
+        <div className="flex-1 flex md:h-full md:items-stretch justify-center p-4 sm:p-6 md:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeResume}
@@ -65,12 +74,12 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 50, scale: 0.9 }}
               transition={{ duration: 0.5 }}
-              className="relative"
+              className="relative md:h-full md:w-full md:max-w-sm"
             >
               {/* Tarjeta CV */}
-              <div className="w-full max-w-xs bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
+              <div className="w-full md:h-full max-w-sm bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl flex flex-col gap-3 md:justify-start">
                 {/* Header */}
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-4">
                   <div className="relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -88,8 +97,10 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                     </motion.div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-white text-lg">{currentResume.name}</h3>
-                    <div className="flex items-center gap-1 text-xs text-gray-400">
+                    <h3 className="font-bold text-white text-lg">
+                      {currentResume.name}
+                    </h3>
+                    <div className="flex items-center gap-1 text-md text-gray-400">
                       <Briefcase className="w-3 h-3" />
                       {currentResume.experience} años exp.
                     </div>
@@ -102,7 +113,9 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                     <GraduationCap className="w-4 h-4 text-purple-400" />
                     Educación
                   </div>
-                  <p className="text-gray-300 text-sm font-medium">{currentResume.education}</p>
+                  <p className="text-gray-300 text-sm font-medium">
+                    {currentResume.education}
+                  </p>
                 </div>
 
                 {/* Habilidades */}
@@ -147,7 +160,10 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
 
         {/* Centro: conexiones */}
         <div className="flex-1 flex items-center justify-center relative min-h-[220px] sm:min-h-[260px] md:min-h-0">
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: "visible" }}>
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ overflow: "visible" }}
+          >
             {/* Líneas con partícula */}
             {matchedSkills.map((_, idx) => {
               const startX = "5%";
@@ -179,7 +195,12 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                     fill="url(#particleGradient)"
                     initial={{ cx: startX }}
                     animate={{ cx: [startX, endX] }}
-                    transition={{ duration: 2, delay: idx * 0.3, repeat: Number.POSITIVE_INFINITY, repeatDelay: 1 }}
+                    transition={{
+                      duration: 2,
+                      delay: idx * 0.3,
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatDelay: 1,
+                    }}
                   />
                 </g>
               );
@@ -187,7 +208,13 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
 
             {/* Gradientes */}
             <defs>
-              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="lineGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#a855f7" stopOpacity="0.2" />
                 <stop offset="50%" stopColor="#ec4899" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
@@ -208,28 +235,36 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 animate-ping opacity-20" />
             <div className="relative text-center">
-              <div className="text-3xl font-bold text-white">{currentResume.matchScore}%</div>
-              <div className="text-xs text-purple-100 uppercase tracking-wide">Match</div>
+              <div className="text-3xl font-bold text-white">
+                {currentResume.matchScore}%
+              </div>
+              <div className="text-xs text-purple-100 uppercase tracking-wide">
+                Match
+              </div>
             </div>
           </motion.div>
         </div>
 
         {/* Derecha: requisitos */}
-        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="flex-1 flex md:h-full md:items-stretch justify-center p-4 sm:p-6 md:p-8">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-64 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
+            className="w-full md:h-full max-w-sm bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl flex flex-col gap-3 md:justify-start"
           >
             {/* Header */}
-            <div className="flex gap-3 mb-6 pb-4 border-b border-white/10">
+            <div className="flex gap-3 mb-4 pb-3 border-b border-white/10">
               <div className="w-14 h-12 rounded-md bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl md:text-2xl font-extrabold text-white text-center">Requisitos del puesto</h3>
-                <p className="text-xs text-gray-400 text-center">Data Science</p>
+                <h3 className="text-2xl md:text-2xl font-extrabold text-white text-center">
+                  Requisitos del puesto
+                </h3>
+                <p className="text-md text-gray-400 text-center">
+                  Data Science
+                </p>
               </div>
             </div>
 
@@ -241,7 +276,9 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
               </div>
               <div className="flex flex-wrap gap-2">
                 {jobRequirements.skills.map((skill, idx) => {
-                  const ok = matchedSkills.some((s) => s.toLowerCase() === skill.toLowerCase());
+                  const ok = matchedSkills.some(
+                    (s) => s.toLowerCase() === skill.toLowerCase()
+                  );
                   return (
                     <motion.div
                       key={idx}
@@ -249,7 +286,9 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * idx }}
                       className={`px-2 py-1 rounded-lg text-xs font-medium ${
-                        ok ? "bg-green-500/20 text-green-300 border border-green-500/30" : "bg-white/5 text-gray-400 border border-white/10"
+                        ok
+                          ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                          : "bg-white/5 text-gray-400 border border-white/10"
                       }`}
                     >
                       {skill}
@@ -266,7 +305,9 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                 Experiencia
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white font-medium">{jobRequirements.minExperience}+ años</span>
+                <span className="text-white font-medium">
+                  {jobRequirements.minExperience}+ años
+                </span>
                 {currentResume.experience >= jobRequirements.minExperience && (
                   <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-green-400" />
@@ -282,8 +323,12 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
                 Educación
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white font-medium text-sm">{jobRequirements.education}</span>
-                {currentResume.education.toLowerCase().includes(jobRequirements.education.toLowerCase()) && (
+                <span className="text-white font-medium text-sm">
+                  {jobRequirements.education}
+                </span>
+                {currentResume.education
+                  .toLowerCase()
+                  .includes(jobRequirements.education.toLowerCase()) && (
                   <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-green-400" />
                   </div>
@@ -300,7 +345,9 @@ export function ResumeMatchGraph({ resumes, jobRequirements, height = 500 }: Res
           <motion.button
             key={idx}
             onClick={() => setActiveResume(idx)}
-            className={`h-2 rounded-full transition-all cursor-pointer ${idx === activeResume ? "w-8 bg-purple-500" : "w-2 bg-white/20"}`}
+            className={`h-2 rounded-full transition-all cursor-pointer ${
+              idx === activeResume ? "w-8 bg-purple-500" : "w-2 bg-white/20"
+            }`}
             whileHover={{ scale: 1.2 }}
           />
         ))}

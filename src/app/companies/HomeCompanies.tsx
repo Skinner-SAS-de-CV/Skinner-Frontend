@@ -66,17 +66,19 @@ function AnimatedNumber({
         frameId = requestAnimationFrame(step);
       }
     };
-        {/* Wave Transition */}
-        <div className="relative bg-gray-900">
-          <svg
-            className="left-0 right-0 -top-1 text-gray-900 w-full z-10"
-            viewBox="0 0 1440 50"
-            fill="rgba(60, 90, 102, 3)" // Color oscuro con opacidad
-            preserveAspectRatio="none"
-          >
-            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
-          </svg>
-        </div>
+    {
+      /* Wave Transition */
+    }
+    <div className="relative bg-gray-900">
+      <svg
+        className="left-0 right-0 -top-1 text-gray-900 w-full z-10"
+        viewBox="0 0 1440 50"
+        fill="rgba(60, 90, 102, 3)" // Color oscuro con opacidad
+        preserveAspectRatio="none"
+      >
+        <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+      </svg>
+    </div>;
     frameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(frameId);
@@ -91,7 +93,9 @@ function AnimatedNumber({
 }
 
 export default function Companies() {
-  const [openLicense, setOpenLicense] = useState<null | "empresarial" | "corporativa">(null);
+  const [openLicense, setOpenLicense] = useState<
+    null | "empresarial" | "corporativa"
+  >(null);
 
   const features = [
     {
@@ -141,24 +145,28 @@ export default function Companies() {
   } as const;
 
   // Animación del cuadro de métricas: aparece, se mantiene ~1.6s y desaparece
-    const timeCardVariants = {
-      hidden: { opacity: 0, scale: 0.98, y: 16 },
-      visible: {
-        opacity: [0, 1, 1, 0],
-        scale: [0.98, 1, 1, 0.98],
-        y: [16, 0, 0, 16],
-        transition: { duration: 2.2, times: [0, 0.2, 0.85, 1], ease: easeOut },
-      },
-    };
+  const timeCardVariants = {
+    hidden: { opacity: 0, scale: 0.98, y: 16 },
+    visible: {
+      opacity: [0, 1, 1, 0],
+      scale: [0.98, 1, 1, 0.98],
+      y: [16, 0, 0, 16],
+      transition: { duration: 2.2, times: [0, 0.2, 0.85, 1], ease: easeOut },
+    },
+  };
 
   // Animación del logo: aparece después de que el cuadro se oculta
   const logoAfterCardVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { delay: 3, duration: 2, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { delay: 3, duration: 2, ease: "easeOut" },
+    },
   } as const;
 
   return (
-    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden w-full min-h-[90vh] pt-30 pb-20 lg:pb-10 px-4 sm:px-6 lg:px-8">
         {/* Fondo */}
@@ -252,34 +260,41 @@ export default function Companies() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.6 } } }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.6 } },
+              }}
             >
               {/* glow de fondo */}
               <motion.div
-                className="absolute inset-0 bg-linear-to-r from-purple-900 to-blue-900 blur-3xl opacity-30"
+                className="absolute inset-0 bg-gradient-to-r from-purple-900 to-blue-900 blur-3xl opacity-30"
                 variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
               />
 
               {/* tarjeta del gráfico */}
               <motion.div
-className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[220px] md:min-h-[260px] border border-white/20 shadow-2xl"
-                variants={timeCardVariants}  
+                className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[220px] md:min-h-[260px] border border-white/20 shadow-2xl"
+                variants={timeCardVariants}
               >
-<div className="space-y-3">
-                  <div className="h-4 bg-linear-to-r from-purple-400 to-transparent rounded w-3/4" />
-                  <div className="h-4 bg-linear-to-r from-pink-400 to-transparent rounded w-1/2" />
-<div className="grid grid-cols-2 gap-3 pt-3">
-<div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                <div className="space-y-3">
+                  <div className="h-4 bg-gradient-to-r from-purple-400 to-transparent rounded w-3/4" />
+                  <div className="h-4 bg-gradient-to-r from-pink-400 to-transparent rounded w-1/2" />
+                  <div className="grid grid-cols-2 gap-3 pt-3">
+                    <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-purple-400">
                         <AnimatedNumber value={95} suffix="%" duration={1.5} />
                       </div>
-                      <div className="text-sm text-gray-400">Match Promedio</div>
+                      <div className="text-sm text-gray-400">
+                        Match Promedio
+                      </div>
                     </div>
-<div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                    <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <div className="text-3xl font-bold text-pink-400">
                         <AnimatedNumber value={3} suffix="min" duration={1.5} />
                       </div>
-                      <div className="text-sm text-gray-400">Tiempo Análisis</div>
+                      <div className="text-sm text-gray-400">
+                        Tiempo Análisis
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -306,18 +321,17 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         </div>
       </section>
 
-   {/* Wave Transition */}
+      {/* Wave Transition */}
       <div className="relative -mt-4 sm:-mt-6 lg:-mt-12">
-          <svg
-            className="relative block w-full -translate-y-1 text-gray-800 z-20 pointer events-none"
-            viewBox="0 0 1440 50"
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
-          </svg>
-        </div>
-
+        <svg
+          className="relative block w-full -translate-y-1 text-gray-800 z-20 pointer-events-none"
+          viewBox="0 0 1440 50"
+          fill="currentColor"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,10 C360,50 1080,0 1440,20 L1440,60 L0,60Z" />
+        </svg>
+      </div>
 
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
@@ -337,7 +351,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 matchScore: 90,
               },
               {
-                name: "José Rubio",
+                name: "Carlos Martínez",
                 avatar: "/2.jpg",
                 skills: ["JavaScript", "React", "TypeScript", "Node.js", "AWS"],
                 experience: 5,
@@ -353,22 +367,31 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 matchScore: 82,
               },
               {
-                name: "William Lopez",
+                name: "Alberto Ruiz",
                 avatar: "/1.jpg",
                 skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
                 experience: 2,
                 education: "Ing. Informática",
                 matchScore: 68,
               },
-                            {
-                name: "Juan Vasquez",
+              {
+                name: "Benjamín Torres",
                 avatar: "/6.jpg",
-                skills: ["DevOps", "Docker", "Kubernetes", "AWS", "Python", "Machine Learning","SQL","Deep Learning"],
+                skills: [
+                  "DevOps",
+                  "Docker",
+                  "Kubernetes",
+                  "AWS",
+                  "Python",
+                  "Machine Learning",
+                  "SQL",
+                  "Deep Learning",
+                ],
                 experience: 5,
                 education: "Data Science",
                 matchScore: 92,
               },
-                            {
+              {
                 name: "Joceline Watson",
                 avatar: "/5.jpg",
                 skills: ["DevOps", "Docker", "Kubernetes", "AWS", "CI/CD"],
@@ -397,7 +420,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
               Características que transforman
             </h2>
             <p className="text-xl text-gray-300">
@@ -415,15 +438,15 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                 variants={fadeInUpVariants}
                 whileHover={{ y: -2 }}
               >
-                <Card className="bg-gray-800 border-blue-500/20 shadow-xl h-full hover:border-blue-500/40 transition-colors">
-                  <CardContent className="p-8">
-                    <div className="w-14 h-14 text-blue-400 mb-4 mx-auto">
+                <Card className="h-full rounded-2xl bg-gradient-to-br from-blue-900/20 to-gray-900/40 border border-blue-500/20 shadow-xl hover:border-blue-500/40 transition-colors">
+                  <CardContent className="p-6 md:p-7 h-full flex flex-col items-center text-center gap-2">
+                    <div className="w-12 h-12 md:w-14 md:h-14 text-blue-400 mb-3">
                       {feature.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-blue-300 text-center">
+                    <h3 className="text-lg md:text-xl font-semibold mb-1 text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-300 text-justify-center">
+                    <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -441,7 +464,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
             <div>
               <h2 className="text-4xl md:text-4xl font-extrabold text-transparent text-center bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
                 ¿Por qué elegir{" "}
-                <span className="bg-linear-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
                 </span>
               </h2>
@@ -452,9 +475,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
 
               <div className="space-y-4">
                 {benefits.map((benefit, idx) => (
-                  <div key={idx} className="flex items-start space-x-3 group">
+                  <div key={idx} className="flex items-center space-x-3 group">
                     <div className="mt-1 flex-shrink-0">
-                      <div className="w-6 h-6 bg-linear-to-br from-blue-700 to-blue-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-6 h-6 bg-gradient-to-br from-blue-700 to-blue-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-4 h-4" />
                       </div>
                     </div>
@@ -467,8 +490,8 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 bg-linear-to-r from-pink-500 to-purple-500 blur-3xl opacity-20"></div>
-              <div className="relative bg-linear-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 blur-3xl opacity-20"></div>
+              <div className="relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
                 <Shield className="w-16 h-16 text-purple-400 mb-6" />
                 <h3 className="text-2xl font-bold mb-4">
                   Sistema de Licencias Flexible
@@ -482,7 +505,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                     <button
                       type="button"
                       onClick={() =>
-                        setOpenLicense(openLicense === "empresarial" ? null : "empresarial")
+                        setOpenLicense(
+                          openLicense === "empresarial" ? null : "empresarial"
+                        )
                       }
                       className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                     >
@@ -495,8 +520,8 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                     </button>
                     {openLicense === "empresarial" && (
                       <p className="text-sm text-gray-300 text-left">
-                        Ideal para pymes y equipos en crecimiento. Incluye acceso para varios
-                        usuarios, actualizaciones periódicas y soporte por correo.
+                        Ideal para pymes, empresas sin departamento de RR. HH. y empresas en crecimiento. 
+                        Incluye acceso para varios usuarios, actualizaciones periódicas y soporte por correo.
                       </p>
                     )}
                   </div>
@@ -505,7 +530,9 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                     <button
                       type="button"
                       onClick={() =>
-                        setOpenLicense(openLicense === "corporativa" ? null : "corporativa")
+                        setOpenLicense(
+                          openLicense === "corporativa" ? null : "corporativa"
+                        )
                       }
                       className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                     >
@@ -518,9 +545,7 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
                     </button>
                     {openLicense === "corporativa" && (
                       <p className="text-sm text-gray-300 text-left">
-                        Para organizaciones y agencias de RR. HH. que gestionan múltiples empresas y 
-                        altos volúmenes de vacantes, permitiéndoles centralizar puestos, agregar nuevas compañías 
-                        y administrar todo su proceso de selección desde una sola plataforma.
+                        Para grandes organizaciones con múltiples filiales. Ofrece funcionalidades avanzadas y soporte dedicado.
                       </p>
                     )}
                   </div>
@@ -574,49 +599,50 @@ className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-6 md:p-8 min-h-[2
         </div>
       </section>
 
-        {/* CTA Section */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUpVariants}
-          className="py-20 px-4"
-        >
-          <div className="container mx-auto max-w-4xl">
-            <Card className="bg-linear-to-r from-blue-800 to-purple-900 border-blue-500/20 shadow-xl overflow-hidden">
-              <CardContent className="p-10">
-                <motion.div variants={fadeInUpVariants} className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                    ¿Listo para transformar su proceso de contratación?
-                  </h2>
-                  <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Descubra cómo nuestra plataforma impulsada por IA puede ayudarle a encontrar los mejores talentos
-                    para su empresa de manera más rápida y eficiente.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
-                      <Button
-                        size="lg"
-                        className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
-                      >
-                        Solicitar una demo
-                      </Button>
-                    </Link>
-                    <Link href="/contact">
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        className="px-6 py-6 bg-linear-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
-                      >
-                        Contactar con ventas
-                      </Button>
-                    </Link>
-                  </div>
-                </motion.div>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.section>
+      {/* CTA Section */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUpVariants}
+        className="py-20 px-4"
+      >
+        <div className="container mx-auto max-w-4xl">
+          <Card className="bg-gradient-to-r from-blue-800 to-purple-900 border-blue-500/20 shadow-xl overflow-hidden">
+            <CardContent className="p-10">
+              <motion.div variants={fadeInUpVariants} className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  ¿Listo para transformar su proceso de contratación?
+                </h2>
+                <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                  Descubra cómo nuestra plataforma impulsada por IA puede
+                  ayudarle a encontrar los mejores talentos para su empresa de
+                  manera más rápida y eficiente.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
+                    <Button
+                      size="lg"
+                      className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                    >
+                      Solicitar una demo
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                    >
+                      Contactar con ventas
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </div>
+      </motion.section>
     </div>
   );
 }
