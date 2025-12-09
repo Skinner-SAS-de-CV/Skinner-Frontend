@@ -5,6 +5,8 @@ import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 import { esES } from "@clerk/localizations";
 import { dark } from "@clerk/themes";
+import Script from "next/script";
+import GAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +27,26 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en" className="bg-gray-800">
+      <html lang="es" className="bg-gray-800">
+        <head>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);} 
+              window.gtag = window.gtag || gtag;
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                page_path: window.location.pathname
+              });
+            `}
+          </Script>
+        </head>
         <body className={inter.className}>
+          <GAnalytics />
           {children}
           <Toaster position="top-right" />
         </body>
