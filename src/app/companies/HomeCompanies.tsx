@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { easeOut, motion } from "framer-motion";
 import { ResumeMatchGraph } from "./components/ResumeMatchGraph";
+
 import {
   FileText,
   Zap,
@@ -185,7 +186,6 @@ export default function Companies() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
-
               <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 mb-6 text-center-justify">
                 Encuentra el{" "}
                 <span className="bg-linear-to-r bg-clip-text from-blue-500/60 to-purple-400/900 text-transparent">
@@ -520,8 +520,10 @@ export default function Companies() {
                     </button>
                     {openLicense === "empresarial" && (
                       <p className="text-sm text-gray-300 text-left">
-                        Ideal para pymes, empresas sin departamento de RR. HH. y empresas en crecimiento. 
-                        Incluye acceso para varios usuarios, actualizaciones periódicas y soporte por correo.
+                        Ideal para pymes, empresas sin departamento de RR. HH. y
+                        empresas en crecimiento. Incluye acceso para varios
+                        usuarios, actualizaciones periódicas y soporte por
+                        correo.
                       </p>
                     )}
                   </div>
@@ -545,7 +547,8 @@ export default function Companies() {
                     </button>
                     {openLicense === "corporativa" && (
                       <p className="text-sm text-gray-300 text-left">
-                        Para grandes organizaciones con múltiples filiales. Ofrece funcionalidades avanzadas y soporte dedicado.
+                        Para grandes organizaciones con múltiples filiales.
+                        Ofrece funcionalidades avanzadas y soporte dedicado.
                       </p>
                     )}
                   </div>
