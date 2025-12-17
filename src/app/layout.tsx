@@ -8,6 +8,7 @@ import { dark } from "@clerk/themes";
 import { WebVitals } from "../components/_components/web-vitals";
 import { GoogleTagManager } from "@next/third-parties/google";
 import GtmPageView from "../components/_components/GtmPageView";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,7 +46,11 @@ export default function RootLayout({
           ) : null}
 
           {/* Pageviews en cambios de ruta (SPA) */}
-          {isProd && gtmId ? <GtmPageView /> : null}
+          {isProd && gtmId ? (
+            <Suspense fallback={null}>
+              <GtmPageView />
+            </Suspense>
+          ) : null}
 
           {/* Métricas propias */}
           <WebVitals />
