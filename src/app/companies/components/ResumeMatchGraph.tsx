@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Briefcase, GraduationCap, Code, Award, Star } from "lucide-react";
 
+
 export interface Resume {
   name: string;
   avatar: string;
