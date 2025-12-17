@@ -63,7 +63,7 @@ export default clerkMiddleware(
       }
     }
   },
-  { debug: process.env.NODE_ENV === "production" ? false : false}
+  { debug: process.env.NODE_ENV === "production" ? false : true}
 );
 
 export const config = {
