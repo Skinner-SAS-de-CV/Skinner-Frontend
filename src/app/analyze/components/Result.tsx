@@ -54,11 +54,11 @@ export default function Result({ result }: { result: AnalysisResponse }) {
         </div>
         <div>
           <strong>💡 Análisis:</strong>
-          <div className="p-6 rounded-lg">
+          <div className="p-2 rounded-lg text-left whitespace-pre-line leading-none hyphens-auto">
             <div className="prose prose-sm md:prose-base max-w-none">
               <Markdown>{result.feedback.feedback}</Markdown>
             </div>
-            <div className="text-center mt-6 pt-4 border-t text-sm text-gray-500">
+            <div className="text-center pt-2 border-t text-gray-500">
               Información procesada por www.skinnersv.net
             </div>
           </div>
