@@ -13,7 +13,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
     feedback: result.feedback.feedback,
   });
   return (
-    <Card className="mt-6 bg-gray-800 md:p-5 rounded-lg shadow-md border border-gray-700">
+    <Card className="mt-6 w-full w-auto bg-gray-800 rounded-lg shadow-md border border-gray-700 sm:-mx-2 md:-mx-8">
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
           <h1>Resultados</h1>
@@ -25,7 +25,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
           </PDFDownloadLink>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3 text-white">
+      <CardContent className="space-y-2 text-white">
         <div>
           <strong>📄 Archivo:</strong> {result.file_name}
         </div>
@@ -54,9 +54,11 @@ export default function Result({ result }: { result: AnalysisResponse }) {
         </div>
         <div>
           <strong>💡 Análisis:</strong>
-          <div className="pl-6 text-justify">
-            <Markdown>{result.feedback.feedback}</Markdown>
-            <div className="text-center">
+          <div className="p-2 rounded-lg text-left whitespace-pre-line leading-none hyphens-auto">
+            <div className="prose prose-sm md:prose-base max-w-none">
+              <Markdown>{result.feedback.feedback}</Markdown>
+            </div>
+            <div className="text-center pt-2 border-t text-gray-500">
               Información procesada por www.skinnersv.net
             </div>
           </div>
