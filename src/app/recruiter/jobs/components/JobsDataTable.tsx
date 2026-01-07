@@ -17,8 +17,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export type JobRow = {
   id: number;
@@ -62,14 +65,54 @@ export const jobColumns: ColumnDef<JobRow>[] = [
 interface JobsDataTableProps {
   columns: ColumnDef<JobRow, unknown>[];
   data: JobRow[];
+  onDelete: (id: number) => Promise<void>;
 }
 
-export function JobsDataTable({ columns, data }: JobsDataTableProps) {
+export function JobsDataTable({ columns, data, onDelete }: JobsDataTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  const handleDelete = async (id: number) => {
+    if (confirm("¿Estás seguro de que deseas eliminar este puesto?")) {
+      setDeletingId(id);
+      try {
+        await onDelete(id);
+        toast.success("Puesto eliminado correctamente");
+      } catch (error) {
+        toast.error("Error al eliminar el puesto");
+        console.error(error);
+      } finally {
+        setDeletingId(null);
+      }
+    }
+  };
+
+  const columnsWithActions: ColumnDef<JobRow>[] = [
+    ...columns,
+    {
+      id: "actions",
+      header: "Acciones",
+      cell: ({ row }) => {
+        const id = row.getValue("id") as number;
+        return (
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={() => handleDelete(id)}
+            disabled={deletingId === id}
+            className="gap-2"
+          >
+            <Trash2 className="h-4 w-4" />
+            {deletingId === id ? "Eliminando..." : "Eliminar"}
+          </Button>
+        );
+      },
+    },
+  ];
 
   const table = useReactTable({
     data,
-    columns,
+    columns: columnsWithActions,
     state: {
       sorting,
     },
@@ -104,10 +147,7 @@ export function JobsDataTable({ columns, data }: JobsDataTableProps) {
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {flexRender(
-                      cell.column.columnDef.cell,
-                      cell.getContext()
-                    )}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
               </TableRow>
