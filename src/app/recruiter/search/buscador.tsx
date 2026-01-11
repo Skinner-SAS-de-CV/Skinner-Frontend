@@ -7,6 +7,7 @@ import TablaAnalisis from "./components/TablaAnalisis";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnalysisItem, analysisItemsSchema } from "../../types/AnalysisItem";
+import { deleteAnalysis } from "@/lib/api/analisis";
 
 
 export default function ReclutadorDashboard() {
@@ -19,7 +20,7 @@ export default function ReclutadorDashboard() {
 
   const { getToken } = useAuth();
 
-  useEffect( () => {  
+  useEffect( () => {
     const fetchAnalisis = async () => {
       const token = await getToken();
       if (!token) {
@@ -34,12 +35,19 @@ export default function ReclutadorDashboard() {
     const data = await res.json();
     const analisisItems = analysisItemsSchema.parse(data);
     setAnalisis(analisisItems);
-    setTotalPages(Math.ceil(data.length / itemsPerPage)); 
+    setTotalPages(Math.ceil(data.length / itemsPerPage));
     }
     fetchAnalisis();
   }, [name, jobTitle, getToken]);
 
-  
+  const handleDelete = async (id: number) => {
+    const token = await getToken();
+    await deleteAnalysis({ id, token });
+    setAnalisis((prevAnalisis) => prevAnalisis.filter((item) => item.id !== id));
+    setTotalPages(Math.ceil((analisis.length - 1) / itemsPerPage));
+  };
+
+
 
   // Datos paginados (se corta el array para mostrar solo los de la página actual)
   const paginatedData = analisis.slice(
@@ -76,7 +84,7 @@ export default function ReclutadorDashboard() {
 
       <div className="flex justify-center">
         <div className="w-full max-w-6xl">
-          <TablaAnalisis data={paginatedData} /> 
+          <TablaAnalisis data={paginatedData} onDelete={handleDelete} /> 
         </div>
       </div>
       
