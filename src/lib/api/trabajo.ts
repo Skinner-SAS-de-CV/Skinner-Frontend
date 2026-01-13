@@ -40,6 +40,11 @@ export const updateJobParamsSchema = z.object({
   token: z.string().nullable(),
 });
 
+export const deleteJobParamsSchema = z.object({
+  id: z.number(),
+  token: z.string().nullable(),
+});
+
 export const getJobResponseSchema = z.object({
   id: z.number(),
   title: z.string(),
@@ -65,6 +70,7 @@ type GetJobResponse = z.infer<typeof getJobResponseSchema>;
 
 type AddJobParams = z.infer<typeof addJobParamsSchema>;
 type UpdateJobParams = z.infer<typeof updateJobParamsSchema>;
+type DeleteJobParams = z.infer<typeof deleteJobParamsSchema>;
 
 
 export type JobResponse = z.infer<typeof jobsResponseSchema>;
@@ -200,3 +206,29 @@ export const updateJob = async ({
     throw error;
   }
 };
+
+// Borrar tarabajo por si el usuario se confunde y no quiere tener mas ese puesto.
+export const deleteJob = async ({
+  id,
+  token,
+  }: DeleteJobParams): Promise<{ message: string }> => {
+    try {
+      const response = await axios.delete(`${BACKEND_URL}/trabajos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Respuesta del servidor:", response.data);
+      return response.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response) {
+        console.error("Error en la respuesta del servidor", error.response.data);
+      } else if (error.request){
+        console.error("No se recibio respuesta del servidor:", error.request);
+      } else {
+        console.error("Error al configurar la solicitud", error.message);
+      }
+      throw error;
+    }
+  };

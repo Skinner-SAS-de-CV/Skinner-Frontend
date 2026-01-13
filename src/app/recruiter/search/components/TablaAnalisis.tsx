@@ -2,6 +2,11 @@ import { AnalisisDataTable } from "@/app/recruiter/search/components/AnalisisDat
 import { columns } from "./columns";
 import { AnalysisItem } from "../../../types/AnalysisItem";
 
-export default function TablaAnalisis({ data }: { data: AnalysisItem[] }) {
-  return <AnalisisDataTable columns={columns} data={data} />;
+interface TablaAnalisisProps {
+  data: AnalysisItem[];
+  onDelete?: (id: number) => Promise<void>;
+}
+
+export default function TablaAnalisis({ data, onDelete }: TablaAnalisisProps) {
+  return <AnalisisDataTable columns={columns} data={data} onDelete={onDelete} />;
 }
