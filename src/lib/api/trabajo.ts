@@ -220,6 +220,7 @@ export const deleteJob = async ({
       });
       console.log("Respuesta del servidor:", response.data);
       return response.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response) {
         console.error("Error en la respuesta del servidor", error.response.data);
