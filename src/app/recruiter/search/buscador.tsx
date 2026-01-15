@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { API_URL } from "@/lib/api";
 import { useAuth } from "@clerk/nextjs";
 import TablaAnalisis from "./components/TablaAnalisis";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { AnalysisItem, analysisItemsSchema } from "../../types/AnalysisItem";
 import { deleteAnalysis } from "@/lib/api/analisis";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function ReclutadorDashboard() {
   const [analisis, setAnalisis] = useState<AnalysisItem[]>([]);
@@ -29,7 +29,7 @@ export default function ReclutadorDashboard() {
       }
     console.log("Token:", token); // Verifica que el token se obtenga correctamente
     const res = await fetch(
-      `${API_URL}/analisis/?name=${name}&job_title=${jobTitle}`,
+      `${BACKEND_URL}/analisis/?name=${name}&job_title=${jobTitle}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     const data = await res.json();
