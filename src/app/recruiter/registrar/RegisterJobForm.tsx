@@ -10,7 +10,7 @@ import { addJob, addJobParamsSchema } from "@/lib/api/trabajo";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 
-const RegisterJobForm = () => {
+const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
   const { getToken } = useAuth();
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -20,6 +20,7 @@ const RegisterJobForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(true); // Estado para mostrar/ocultar el formulario
   const router = useRouter();
+  console.log("Es premium:", esPremium); // se quejaba esLint
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

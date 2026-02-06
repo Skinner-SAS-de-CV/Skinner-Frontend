@@ -10,7 +10,7 @@ import { deleteAnalysis } from "@/lib/api/analisis";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export default function ReclutadorDashboard() {
+export default function ReclutadorDashboard({ esPremium }: { esPremium: boolean }) {
   const [analisis, setAnalisis] = useState<AnalysisItem[]>([]);
   const [name, setName] = useState("");
   const [jobTitle, setJobTitle] = useState("");
@@ -19,6 +19,7 @@ export default function ReclutadorDashboard() {
   const itemsPerPage = 10;
 
   const { getToken } = useAuth();
+  console.log("Es premium:", esPremium);
 
   useEffect( () => {
     const fetchAnalisis = async () => {
