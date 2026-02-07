@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { addJob, addJobParamsSchema } from "@/lib/api/trabajo";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
+import { isPremium } from "@/lib/api/roles";
 
-const RegisterJobForm = () => {
-  const { getToken, orgSlug } = useAuth();
+const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
+  const { getToken } = useAuth();
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -20,8 +21,26 @@ const RegisterJobForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(true); // Estado para mostrar/ocultar el formulario
+  const [isPremiumClient, setIsPremiumClient] = useState(false);
+
+  // aca el useEffect para los de Premium maje
+
+  useEffect(() => {
+    const checkPremium = async () => {
+      try {
+        const token = await getToken();
+        const response = await isPremium(token);
+        setIsPremiumClient(response.result);
+      } catch (error) {
+        console.error("Error al verificar si es premium:", error);
+      }
+    };
+    checkPremium();
+  }, [getToken]);
   const router = useRouter();
 
+  console.log("Es premium:", esPremium); // se quejaba esLint
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -68,7 +87,7 @@ const RegisterJobForm = () => {
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               {
-                orgSlug && orgSlug.startsWith("skinner") && <div>
+                isPremiumClient && <div>
                   <label className="text-gray-300 font-medium">
                     Nombre del Cliente:
                   </label>

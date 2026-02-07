@@ -9,9 +9,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { getJobById, updateJob, updateJobParamsSchema } from "@/lib/api/trabajo";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
+import { isPremium } from "@/lib/api/roles";
 
 const EditJobForm = () => {
-  const { getToken, orgSlug } = useAuth();
+  const { getToken } = useAuth();
   const params = useParams();
   const jobId = params.id;
 
@@ -23,7 +24,21 @@ const EditJobForm = () => {
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isPremiumClient, setIsPremiumClient] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const checkPremium = async () => {
+      try {
+        const token = await getToken();
+        const response = await isPremium(token);
+        setIsPremiumClient(response.result);
+      } catch (error) {
+        console.error("Error al verificar si es premium:", error);
+      }
+    };
+    checkPremium();
+  }, [getToken]);
 
   // Cargar los datos del trabajo al montar el componente
   useEffect(() => {
@@ -107,7 +122,7 @@ const EditJobForm = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
-            {orgSlug && orgSlug.startsWith("skinner") && (
+            {isPremiumClient && (
               <div>
                 <label className="text-gray-300 font-medium">
                   Nombre del Cliente:

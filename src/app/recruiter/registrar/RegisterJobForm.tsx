@@ -1,6 +1,7 @@
+// este register es para joma
 "use client";
 
-import { useState } from "react";
+import { useState} from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ import { addJob, addJobParamsSchema } from "@/lib/api/trabajo";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 
-const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
+const RegisterJobForm = () => {
   const { getToken } = useAuth();
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
   const [perfil_del_trabajador, setPerfilDelTrabajador] = useState("");
@@ -20,7 +21,7 @@ const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(true); // Estado para mostrar/ocultar el formulario
   const router = useRouter();
-  console.log("Es premium:", esPremium); // se quejaba esLint
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
