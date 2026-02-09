@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 import { isPremium } from "@/lib/api/roles";
 
-const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
+const RegisterJobForm = () => {
   const { getToken } = useAuth();
   const [nombre_del_cliente, setNombreDelCliente] = useState("");
   const [titulo_de_trabajo, setTituloDeTrabajo] = useState("");
@@ -39,7 +39,6 @@ const RegisterJobForm = ({ esPremium }: { esPremium: boolean }) => {
   }, [getToken]);
   const router = useRouter();
 
-  console.log("Es premium:", esPremium); // se quejaba esLint
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

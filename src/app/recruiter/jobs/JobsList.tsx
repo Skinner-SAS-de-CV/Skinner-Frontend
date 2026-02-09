@@ -5,10 +5,9 @@ import { useAuth } from "@clerk/nextjs";
 import { getJobsByClient, JobResponse, deleteJob } from "@/lib/api/trabajo";
 import { JobsDataTable, jobColumns } from "./components/JobsDataTable";
 
-export default function JobsList({ esPremium }: { esPremium: boolean }) {
+export default function JobsList() {
   const { getToken } = useAuth();
   const [jobs, setJobs] = useState<JobResponse>([]);
-  console.log("Es premium:", esPremium);
 
   useEffect(() => {
     const fetchJobs = async () => {
