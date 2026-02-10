@@ -1,6 +1,7 @@
+// este register es para joma
 "use client";
 
-import { useState } from "react";
+import { useState} from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ const RegisterJobForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(true); // Estado para mostrar/ocultar el formulario
   const router = useRouter();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
