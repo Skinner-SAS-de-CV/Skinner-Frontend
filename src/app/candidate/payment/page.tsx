@@ -10,7 +10,7 @@ const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 const PaymentPage = () => {
   const { isLoaded, userId, getToken } = useAuth();
   const [paymentDetails] = useState({
-    amount: 5.0,
+    amount: 2.0,
     productName: "Suscripción Standard",
     description: "Acceso completo al analizador de CVs de Skinner",
   });
