@@ -33,12 +33,12 @@ const fadeInUpVariants = {
 
 export default function MainHero() {
   return (
-    <main className="bg-gray-900">
-      <section className="bg-linear-to-b from-gray-900 to-gray-800 w-full py-12 md:py-24 lg:py-32">
+    <main className="bg-surface-900">
+      <section className="gradient-surface w-full py-12 md:py-24 lg:py-32">
         <div className="w-full">
           <div className="flex flex-wrap justify-around px-4 gap-6">
             <div className="lg:w-[40%]">
-              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3 ">
+              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold gradient-brand-text font-display mb-6 px-3 ">
                 &quot;Revela el talento que hay debajo del papel.&quot;
               </h1>
               <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
@@ -64,7 +64,7 @@ export default function MainHero() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={containerVariants}
-        className="bg-linear-to-b from-gray-900 to-gray-800 text-white pb-9"
+        className="gradient-surface text-white pb-9"
       >
         <div className="px-4 md:px-6">
           <motion.div
@@ -72,11 +72,11 @@ export default function MainHero() {
             className="flex flex-col items-center justify-center space-y-4 text-center"
           >
             <div className="container mx-auto max-w-6xl px-4">
-              <Separator className="my-8 bg-gray-700/50" />
+              <Separator className="my-8 bg-surface-700/50" />
             </div>
 
             <div className="space-y-2">
-              <h2 className="text-4xl lg:min-h-[55px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3">¿Te preguntás cómo hacer un currículum que destaque?</h2>
+              <h2 className="text-4xl lg:min-h-[55px] sm:text-5xl md:text-5xl font-extrabold gradient-brand-text font-display mb-6 px-3">¿Te preguntás cómo hacer un currículum que destaque?</h2>
             </div>
             <p className="max-w-[900px] text-white text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Registrate y sigue estos pasos.
@@ -90,26 +90,26 @@ export default function MainHero() {
               {
                 title: "Paso 1",
                 desc: "Crea tu cuenta en nuestra plataforma y accede a la sección de análisis de currículum.",
-                icon: <UserPlus className="text-blue-400 h-10 w-10 mx-auto mb-4" />,
+                icon: <UserPlus className="text-brand-sky h-10 w-10 mx-auto mb-4" />,
               },
               {
                 title: "Paso 2",
                 desc: "Redacta los requisitos del puesto al que estás aplicando y sube tu currículum ya sea en PDF o Word.",
-                icon: <FileText className="text-blue-400 h-10 w-10 mx-auto mb-4" />,
+                icon: <FileText className="text-brand-sky h-10 w-10 mx-auto mb-4" />,
               },
               {
                 title: "Paso 3",
                 desc: "Recibe un análisis detallado de tu currículum, incluyendo recomendaciones personalizadas con base en el puesto de trabajo.",
-                icon: <CheckCircle className="text-blue-400 h-10 w-10 mx-auto mb-4" />,
+                icon: <CheckCircle className="text-brand-sky h-10 w-10 mx-auto mb-4" />,
               },
             ].map((step, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUpVariants}
-                className="bg-linear-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/5 flex flex-col items-center"
+                className="bg-linear-to-br from-surface-800 to-surface-900 p-8 rounded-xl shadow-xl border border-surface-700/50 hover:border-brand-indigo/30 transition-all duration-300 hover:shadow-brand-indigo/5 flex flex-col items-center"
               >
                 {step.icon}
-                <h3 className="text-2xl font-semibold text-blue-300 mb-4">{step.title}</h3>
+                <h3 className="text-2xl font-semibold text-brand-sky mb-4">{step.title}</h3>
                 <p className="text-gray-300 text-lg text-center">{step.desc}</p>
               </motion.div>
             ))}
@@ -117,10 +117,10 @@ export default function MainHero() {
         </div>
       </motion.section>
 
-        <section id="about" className="w-full py-12 md:py-24 lg:py-32 m-auto bg-linear-to-b from-gray-900 to-gray-800">
+        <section id="about" className="w-full py-12 md:py-24 lg:py-32 m-auto gradient-surface">
           <div className="flex flex-wrap justify-around px-4">
             <div className="lg:w-[40%]">
-              <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-purple-600 mb-6 px-3">Sobre nuestro analisis curricular.</h2>
+              <h2 className="text-4xl sm:text-5xl md:text-5xl font-extrabold gradient-brand-text font-display mb-6 px-3">Sobre nuestro analisis curricular.</h2>
               <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-justify">
                 Nuestra plataforma analiza tu currículum y perfil profesional con inteligencia artificial y modelos de lenguaje avanzados. Detecta tus fortalezas,
                 habilidades ocultas y áreas de mejora para que sepas exactamente dónde estás y cómo avanzar.
@@ -142,9 +142,9 @@ export default function MainHero() {
 
 
         {/* Wave Transition */}
-        <div className="relative bg-gray-800">
+        <div className="relative bg-surface-800">
           <svg
-            className="left-0 right-0 -top-1 text-gray-800 w-full z-10"
+            className="left-0 right-0 -top-1 text-surface-800 w-full z-10"
             viewBox="0 0 1440 50"
             fill="rgba(73, 80, 102, 1)" // Color oscuro con opacidad
             preserveAspectRatio="none"

@@ -39,6 +39,24 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  /* Brand palette */
+  --color-brand-indigo: #4f46e5;
+  --color-brand-violet: #7c3aed;
+  --color-brand-sky: #38bdf8;
+  --color-brand-gold: #f59e0b;
+  --color-brand-gold-light: #fbbf24;
+  --color-brand-gold-dark: #d97706;
+
+  /* Brand surfaces (indigo-tinted dark) */
+  --color-surface-950: #0c0a1d;
+  --color-surface-900: #110f24;
+  --color-surface-800: #1a1730;
+  --color-surface-700: #24213d;
+
+  /* Font families */
+  --font-family-display: var(--font-sora), 'Sora', system-ui, sans-serif;
+  --font-family-body: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -84,7 +102,25 @@
 
 @layer utilities {
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family-body);
+  }
+  .font-display {
+    font-family: var(--font-family-display);
+  }
+  .font-body {
+    font-family: var(--font-family-body);
+  }
+  .gradient-brand-text {
+    background-image: linear-gradient(to right, #818cf8, #a78bfa, #38bdf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gradient-cta {
+    background-image: linear-gradient(to right, #f59e0b, #d97706);
+  }
+  .gradient-surface {
+    background-image: linear-gradient(to bottom, #110f24, #1a1730);
   }
 }
 
@@ -116,24 +152,24 @@
   --radius: 0.5rem;
 }
 .dark {
-  --background: hsl(0 0% 3.9%);
+  --background: hsl(252 35% 6%);
   --foreground: hsl(0 0% 98%);
-  --card: hsl(0 0% 3.9%);
+  --card: hsl(252 30% 8%);
   --card-foreground: hsl(0 0% 98%);
-  --popover: hsl(0 0% 3.9%);
+  --popover: hsl(252 30% 8%);
   --popover-foreground: hsl(0 0% 98%);
   --primary: hsl(0 0% 98%);
   --primary-foreground: hsl(0 0% 9%);
-  --secondary: hsl(0 0% 14.9%);
+  --secondary: hsl(252 20% 12%);
   --secondary-foreground: hsl(0 0% 98%);
-  --muted: hsl(0 0% 14.9%);
+  --muted: hsl(252 20% 12%);
   --muted-foreground: hsl(0 0% 63.9%);
-  --accent: hsl(0 0% 14.9%);
+  --accent: hsl(252 20% 12%);
   --accent-foreground: hsl(0 0% 98%);
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(0 0% 14.9%);
-  --input: hsl(0 0% 14.9%);
+  --border: hsl(252 20% 15%);
+  --input: hsl(252 20% 15%);
   --ring: hsl(0 0% 83.1%);
   --chart-1: hsl(220 70% 50%);
   --chart-2: hsl(160 60% 45%);

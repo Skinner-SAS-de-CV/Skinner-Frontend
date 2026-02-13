@@ -60,7 +60,7 @@ export default function ReclutadorDashboard() {
   };
 
   return (
-    <div className="bg-linear-to-b from-gray-900 to-gray-800 text-white min-h-screen p-10">
+    <div className="gradient-surface text-white min-h-screen p-10">
       <div className="flex flex-col md:flex-row gap-4 mb-8 items-center justify-center">
         <Input
           placeholder="Nombre del candidato"

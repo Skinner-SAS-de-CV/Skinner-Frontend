@@ -20,7 +20,7 @@ export function AnalisisDialog({ analysis }: { analysis: AnalysisItem }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="link" className="text-blue-400 hover:underline">
+        <Button variant="link" className="text-brand-sky hover:underline">
           Ver análisis
         </Button>
       </DialogTrigger>

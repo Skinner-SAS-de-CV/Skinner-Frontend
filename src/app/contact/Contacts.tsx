@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { addContact } from "@/lib/api"; 
+import { addContact } from "@/lib/api";
 import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -15,7 +16,6 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,67 +43,101 @@ const ContactForm = () => {
     }
   };
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6 max-w-[9/10] mx-auto m-0">
-      <Card className="w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 max-w-[1000px]">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-blue-400 to-purple-600 text-transparent bg-clip-text">
-            Contáctanos
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-              <label className="text-gray-300 font-medium">Nombre:</label>
-              <Input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+  const formFields = [
+    {
+      label: "Nombre:",
+      type: "text",
+      value: name,
+      onChange: setName,
+      required: true,
+      component: Input,
+    },
+    {
+      label: "Empresa:",
+      type: "text",
+      value: companyName,
+      onChange: setCompanyName,
+      required: true,
+      component: Input,
+    },
+    {
+      label: "Email:",
+      type: "email",
+      value: email,
+      onChange: setEmail,
+      required: true,
+      component: Input,
+    },
+    {
+      label: "¿Cómo le podemos ayudar hoy?",
+      value: message,
+      onChange: setMessage,
+      required: true,
+      component: Textarea,
+    },
+  ];
 
-            <div>
-              <label className="text-gray-300 font-medium">Empresa:</label>
-              <Input
-                type="text"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                required
-                className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <label className="text-gray-300 font-medium">Email:</label>
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <label className="text-gray-300 font-medium">¿Cómo le podemos ayudar hoy?</label>
-              <Textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-                className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
-              disabled={loading}
-            >
-              {loading ? "Enviando..." : "Enviar Mensaje"}
-            </Button>
-          </form>
-          {error && <p className="text-red-400 text-center mt-2">{error}</p>}
-        </CardContent>
-      </Card>
+  return (
+    <div className="relative min-h-screen w-full overflow-hidden bg-surface-950 p-6 flex items-center justify-center">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-indigo/8 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-violet/5 rounded-full filter blur-3xl" />
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative w-full max-w-2xl"
+      >
+        <Card className="relative w-full bg-surface-800/90 backdrop-blur-sm text-white p-8 rounded-2xl shadow-2xl border border-surface-700/50 overflow-hidden">
+          <div className="absolute inset-0 bg-linear-to-br from-brand-indigo/5 via-transparent to-brand-violet/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-brand-indigo via-brand-sky to-brand-violet" />
+          <CardHeader className="relative">
+            <CardTitle className="text-3xl font-bold text-center gradient-brand-text font-display">
+              Contáctanos
+            </CardTitle>
+            <p className="text-gray-400 text-center text-sm mt-2">
+              Cuéntanos sobre tu proyecto y te responderemos a la brevedad
+            </p>
+          </CardHeader>
+          <CardContent className="relative space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {formFields.map((field, i) => (
+                <motion.div
+                  key={field.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                >
+                  <label className="text-gray-300 font-medium text-sm">{field.label}</label>
+                  <field.component
+                    type={field.type}
+                    value={field.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => field.onChange(e.target.value)}
+                    required={field.required}
+                    className="bg-surface-900/80 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo/50 transition-colors"
+                  />
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <Button
+                  type="submit"
+                  className="w-full gradient-cta text-surface-950 font-semibold transition-transform duration-300 shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                  disabled={loading}
+                >
+                  {loading ? "Enviando..." : "Enviar Mensaje"}
+                </Button>
+              </motion.div>
+            </form>
+            {error && <p className="text-red-400 text-center mt-2">{error}</p>}
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 };

@@ -56,10 +56,10 @@ const RegisterJobForm = () => {
 
   return (
     showForm && ( //Renderiza el formulario solo si `showForm` es `true`
-      <div className="flex items-center justify-center min-h-screen bg-gray-950 p-6 max-w-[9/10] mx-auto m-0">
-        <Card className="w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800 max-w-[1000px]">
+      <div className="flex items-center justify-center min-h-screen bg-surface-950 p-6 max-w-[9/10] mx-auto m-0">
+        <Card className="w-full bg-surface-900 text-white p-8 rounded-2xl shadow-lg border border-surface-700 max-w-[1000px]">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+            <CardTitle className="text-2xl font-bold text-center gradient-brand-text font-display">
               📝 Registrar Nuevo Trabajo
             </CardTitle>
           </CardHeader>
@@ -74,7 +74,7 @@ const RegisterJobForm = () => {
                   value={titulo_de_trabajo}
                   onChange={(e) => setTituloDeTrabajo(e.target.value)}
                   required
-                  className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo"
                 />
               </div>
               <div>
@@ -85,7 +85,7 @@ const RegisterJobForm = () => {
                   value={perfil_del_trabajador}
                   onChange={(e) => setPerfilDelTrabajador(e.target.value)}
                   required
-                  className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo"
                 />
               </div>
               <div>
@@ -96,7 +96,7 @@ const RegisterJobForm = () => {
                   value={funciones_del_trabajo}
                   onChange={(e) => setFuncionesDelTrabajo(e.target.value)}
                   required
-                  className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo"
                 />
               </div>
               <div>
@@ -107,12 +107,12 @@ const RegisterJobForm = () => {
                   value={habilidades}
                   onChange={(e) => setHabilidades(e.target.value)}
                   required
-                  className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo"
                 />
               </div>
               <Button
                 type="submit"
-                className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+                className="w-full gradient-cta text-surface-950 font-semibold transition-all duration-300 shadow-lg"
                 disabled={loading}
               >
                 {loading ? "Guardando..." : "Guardar"}
