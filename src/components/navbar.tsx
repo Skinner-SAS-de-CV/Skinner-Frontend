@@ -48,31 +48,31 @@ export function AppNavbar(props: NavbarProps) {
         </NavbarStart>
         <NavbarGap />
         <NavbarSection>
-          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/" isCurrent>
+          <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200" href="/" isCurrent>
             Home
           </NavbarItem>
-          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/about">Quiénes Somos</NavbarItem>
-          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/companies">Empresas</NavbarItem>
-          <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/candidate/home">Candidatos</NavbarItem>
+          <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200" href="/about">Quiénes Somos</NavbarItem>
+          <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200" href="/companies">Empresas</NavbarItem>
+          <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200" href="/candidate/home">Candidatos</NavbarItem>
           <SignedOut>
-            {pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
-            {!pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200 md:hidden" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200 md:hidden" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
           </SignedOut>
           <SignedIn>
             {
               user?.publicMetadata.role !== "recruiter" && (
-                <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500" href="/candidate/analyze">Analizar CV</NavbarItem>
+                <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200" href="/candidate/analyze">Analizar CV</NavbarItem>
               )
             }
             {(user?.publicMetadata.role === "recruiter" || user?.publicMetadata.role === "admin") && (
               <Menu>
-                <NavbarItem className="md:text-md hover:bg-gray-800 hover:text-blue-500">
+                <NavbarItem className="md:text-md hover:bg-surface-800 hover:text-brand-gold transition-colors duration-200">
                   Menú
                   <ChevronDownIcon className="col-start-3" />
                 </NavbarItem>
-                <MenuContent popover={{ className: "border-0" }} className="bg-gray-800  text-white min-w-(--trigger-width) sm:min-w-56" items={categories}>
+                <MenuContent popover={{ className: "border-0" }} className="bg-surface-800 text-white min-w-(--trigger-width) sm:min-w-56" items={categories}>
                   {(item) => (
-                    <MenuItem className="sm:text-md bg-gray-800 hover:text-blue-500" id={item.id} textValue={item.label} href={item.url}>
+                    <MenuItem className="sm:text-md bg-surface-800 hover:text-brand-gold transition-colors duration-200" id={item.id} textValue={item.label} href={item.url}>
                       {item.label}
                     </MenuItem>
                   )}
@@ -87,12 +87,12 @@ export function AppNavbar(props: NavbarProps) {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            {pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/candidate/signup">Regístrate</NavbarItem>)}
-            {!pathname.split("/").includes("candidate") && (<NavbarItem className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
+            {pathname.split("/").includes("candidate") && (<NavbarItem className="gradient-cta text-surface-950 font-bold hover:brightness-110" href="/candidate/signup">Regístrate</NavbarItem>)}
+            {!pathname.split("/").includes("candidate") && (<NavbarItem className="gradient-cta text-surface-950 font-bold hover:brightness-110" href="/recruiter/signin?redirect_url=recruiter/jobs/">Iniciar Sesión</NavbarItem>)}
           </SignedOut>
         </NavbarSection>
       </Navbar>
-      <NavbarMobile className="bg-gray-900 text-white">
+      <NavbarMobile className="bg-surface-900 text-white">
         <NavbarTrigger />
         <NavbarSpacer />
         <SignedIn>

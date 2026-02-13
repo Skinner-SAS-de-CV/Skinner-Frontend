@@ -137,7 +137,7 @@ export default function Hero() {
       <Link href="/candidate/signup">
         <Button
           size="lg"
-          className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+          className="px-6 py-6 text-lg gradient-cta text-surface-950 font-bold hover:brightness-110 rounded-full shadow-lg shadow-brand-indigo/20 w-full sm:w-auto"
         >
           Registrate <ArrowRight className="ml-2" />
         </Button>

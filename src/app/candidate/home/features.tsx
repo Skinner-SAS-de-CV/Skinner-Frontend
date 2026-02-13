@@ -43,7 +43,7 @@ const pricingFeatures = [
 
 export default function Features() {
   return (
-    <div className="bg-gray-800">
+    <div className="bg-surface-800">
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -55,11 +55,11 @@ export default function Features() {
         <div className="container mx-auto max-w-6xl space-y-6">
           {/* CARD DE IMAGEN + PRECIOS */}
           <motion.div variants={fadeInUpVariants}>
-            <Card className="bg-linear-to-br from-gray-900/90 to-black/80 border-gray-700/50 shadow-2xl h-full rounded-xl overflow-hidden">
+            <Card className="bg-linear-to-br from-surface-900/90 to-surface-950/80 border-surface-700/50 shadow-2xl h-full rounded-xl overflow-hidden">
               <CardContent className="p-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 h-full min-h-[500px]">
                   {/* Lado Izquierdo - Imagen */}
-                  <div className="flex items-center justify-center bg-linear-to-br from-blue-900/40 to-purple-900/40 border-blue-500/20 p-4 min-h-[500px] md:min-h-auto">
+                  <div className="flex items-center justify-center bg-linear-to-br from-brand-indigo/40 to-brand-violet/40 border-brand-indigo/20 p-4 min-h-[500px] md:min-h-auto">
                     <div className="relative w-full h-full max-w-[400px] mx-auto">
                       <Image
                         src="/celu.png"
@@ -110,8 +110,10 @@ export default function Features() {
 
           {/* CARD DE POR QUÉ ELEGIRNOS */}
           <motion.div variants={fadeInUpVariants}>
-            <Card className="bg-linear-to-br from-blue-900 to-purple-900 border-blue-500/20 shadow-xl h-full">
-              <CardContent className="p-6 md:p-10">
+            <Card className="relative bg-surface-800/90 backdrop-blur-sm border border-surface-700/50 shadow-2xl h-full overflow-hidden">
+              <div className="absolute inset-0 bg-linear-to-br from-brand-indigo/10 via-transparent to-brand-violet/10 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-brand-indigo via-brand-sky to-brand-violet" />
+              <CardContent className="relative p-6 md:p-10">
                 <motion.div variants={fadeInUpVariants} className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     ¿Por qué deberías elegirnos?
@@ -125,12 +127,12 @@ export default function Features() {
                       variants={fadeInUpVariants}
                       className="flex items-start gap-4"
                     >
-                      <CheckCircle className="text-blue-400 mt-1 shrink-0" size={24} />
+                      <CheckCircle className="text-brand-sky mt-1 shrink-0" size={24} />
                       <div>
                         <h3 className="text-xl font-semibold text-white mb-1">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-300 text-sm text-justify">
+                        <p className="text-gray-400 text-sm text-justify">
                           {feature.description}
                         </p>
                       </div>
@@ -142,7 +144,7 @@ export default function Features() {
                   <Link href="/candidate/signup">
                     <Button
                       size="lg"
-                      className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                      className="px-6 py-6 text-lg gradient-cta text-surface-950 font-bold hover:brightness-110 rounded-full shadow-lg shadow-brand-gold/20 w-full sm:w-auto"
                     >
                       Regístrate <ArrowRight className="ml-2" />
                     </Button>

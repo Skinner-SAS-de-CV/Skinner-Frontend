@@ -70,9 +70,9 @@ function AnimatedNumber({
     {
       /* Wave Transition */
     }
-    <div className="relative bg-gray-900">
+    <div className="relative bg-surface-900">
       <svg
-        className="left-0 right-0 -top-1 text-gray-900 w-full z-10"
+        className="left-0 right-0 -top-1 text-surface-900 w-full z-10"
         viewBox="0 0 1440 50"
         fill="rgba(60, 90, 102, 3)" // Color oscuro con opacidad
         preserveAspectRatio="none"
@@ -167,7 +167,7 @@ export default function Companies() {
   } as const;
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-hidden">
+    <div className="gradient-surface text-white min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden w-full min-h-[90vh] pt-30 pb-20 lg:pb-10 px-4 sm:px-6 lg:px-8">
         {/* Fondo */}
@@ -186,7 +186,7 @@ export default function Companies() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
-              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600 mb-6 text-center-justify">
+              <h1 className="text-4xl sm:min-h-[100px] sm:text-5xl md:text-5xl font-extrabold gradient-brand-text font-display mb-6 text-center-justify">
                 Encuentra el{" "}
                 <span className="bg-linear-to-r bg-clip-text from-blue-500/60 to-purple-400/900 text-transparent">
                   talento perfecto
@@ -203,7 +203,7 @@ export default function Companies() {
                 <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
                   <Button
                     size="sm"
-                    className="px-6 py-6 text-white text-lg bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                    className="px-6 py-6 text-lg gradient-cta text-surface-950 font-bold hover:brightness-110 rounded-full shadow-lg shadow-brand-indigo/20 w-full sm:w-auto"
                   >
                     Solicitar una demo
                   </Button>
@@ -211,7 +211,7 @@ export default function Companies() {
                 <Link href="/contact">
                   <Button
                     size="sm"
-                    className="px-6 py-6 bg-linear-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                    className="px-6 py-6 bg-linear-to-r from-brand-indigo to-brand-violet border-brand-indigo/50 text-white text-lg hover:brightness-110 shadow-brand-indigo/20 rounded-full w-full sm:w-auto"
                   >
                     Contactar con ventas
                   </Button>
@@ -336,7 +336,7 @@ export default function Companies() {
       {/* Sección: Grafo animado por CV (más dinámico) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 leading-[1.2] md:leading-[1.15] pb-1 md:pb-2 mb-12">
+          <h2 className="text-4xl md:text-5xl text-center font-extrabold gradient-brand-text font-display leading-[1.2] md:leading-[1.15] pb-1 md:pb-2 mb-12">
             Visualización de matching por habilidades
           </h2>
           <ResumeMatchGraph
@@ -420,7 +420,7 @@ export default function Companies() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold gradient-brand-text font-display mb-4">
               Características que transforman
             </h2>
             <p className="text-xl text-gray-300">
@@ -438,15 +438,15 @@ export default function Companies() {
                 variants={fadeInUpVariants}
                 whileHover={{ y: -2 }}
               >
-                <Card className="h-full rounded-2xl bg-gradient-to-br from-blue-900/20 to-gray-900/40 border border-blue-500/20 shadow-xl hover:border-blue-500/40 transition-colors">
+                <Card className="h-full rounded-2xl bg-surface-800/80 backdrop-blur-sm border border-surface-700/50 shadow-xl hover:border-brand-indigo/40 hover:shadow-brand-indigo/10 transition-all duration-300">
                   <CardContent className="p-6 md:p-7 h-full flex flex-col items-center text-center gap-2">
-                    <div className="w-12 h-12 md:w-14 md:h-14 text-blue-400 mb-3">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-brand-indigo/10 flex items-center justify-center text-brand-sky mb-3">
                       {feature.icon}
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold mb-1 text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -462,7 +462,7 @@ export default function Companies() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-4xl font-extrabold text-transparent text-center bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 mb-6">
+              <h2 className="text-4xl md:text-4xl font-extrabold gradient-brand-text font-display text-center mb-6">
                 ¿Por qué elegir{" "}
                 <span className="bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
                   Skinner?
@@ -564,7 +564,7 @@ export default function Companies() {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white to-white mb-6">
             Más que un software,{" "}
-            <span className="bg-linear-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+            <span className="gradient-brand-text">
               tu partner tecnológico
             </span>
           </h2>
@@ -611,13 +611,15 @@ export default function Companies() {
         className="py-20 px-4"
       >
         <div className="container mx-auto max-w-4xl">
-          <Card className="bg-gradient-to-r from-blue-800 to-purple-900 border-blue-500/20 shadow-xl overflow-hidden">
-            <CardContent className="p-10">
+          <Card className="relative bg-surface-800/90 backdrop-blur-sm border border-surface-700/50 shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-linear-to-br from-brand-indigo/10 via-transparent to-brand-violet/10 pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-brand-indigo via-brand-sky to-brand-violet" />
+            <CardContent className="relative p-10">
               <motion.div variants={fadeInUpVariants} className="text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                   ¿Listo para transformar su proceso de contratación?
                 </h2>
-                <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
                   Descubra cómo nuestra plataforma impulsada por IA puede
                   ayudarle a encontrar los mejores talentos para su empresa de
                   manera más rápida y eficiente.
@@ -626,7 +628,7 @@ export default function Companies() {
                   <Link href="mailto:info@skinnersv.net?subject=Solicitar un demo">
                     <Button
                       size="lg"
-                      className="px-6 py-6 text-white text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-full shadow-lg shadow-blue-700/20 w-full sm:w-auto"
+                      className="px-6 py-6 text-lg gradient-cta text-surface-950 font-bold hover:brightness-110 rounded-full shadow-lg shadow-brand-gold/20 w-full sm:w-auto"
                     >
                       Solicitar una demo
                     </Button>
@@ -635,7 +637,7 @@ export default function Companies() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="px-6 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-blue-500/50 text-white text-lg hover:from-purple-700 hover:to-purple-900 shadow-purple-700/20 hover:text-white rounded-full w-full sm:w-auto"
+                      className="px-6 py-6 bg-white/10 border-0 text-white text-lg hover:bg-white/20 rounded-full w-full sm:w-auto transition-colors duration-200"
                     >
                       Contactar con ventas
                     </Button>

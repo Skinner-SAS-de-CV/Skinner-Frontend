@@ -55,7 +55,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-900">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-surface-900">
       <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 via-transparent to-purple-500/5 blur-3xl" />
 
       {/* Formas geométricas animadas */}
@@ -101,7 +101,7 @@ export default function HeroSection() {
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-600 md:px-12"
+          className="text-4xl sm:text-6xl font-extrabold gradient-brand-text font-display md:px-12"
         >
           Sistemas inteligentes de gestión administrativa
         </motion.h1>

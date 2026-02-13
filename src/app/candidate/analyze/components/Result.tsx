@@ -8,7 +8,7 @@ import { Save } from "lucide-react";
 export default function Result({ result }: { result: CandidateAnalysisItem }) {
   return (
     <Card
-      className="mt-6 bg-gray-800 md:p-5 rounded-lg shadow-md border border-gray-700"
+      className="mt-6 bg-surface-800 md:p-5 rounded-lg shadow-md border border-surface-700"
     >
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">

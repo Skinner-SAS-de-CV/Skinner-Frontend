@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Sora, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -10,7 +10,17 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import GtmPageView from "../components/_components/GtmPageView";
 import { Suspense } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Skinner",
@@ -32,10 +42,10 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="es" className="bg-gray-800">
+      <html lang="es" className={`${sora.variable} ${dmSans.variable} bg-surface-950`}>
         {/* Inyecta GTM (script) en <head> optimizado por Next */}
         {isProd && gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
-        <body className={inter.className}>
+        <body className="font-body antialiased">
           {/* Fallback <noscript> justo dentro de <body> asi es como decia la docuemntacion*/}
           {isProd && gtmId ? (
             <noscript

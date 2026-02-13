@@ -3,14 +3,14 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-8">
+    <footer className="bg-surface-900 text-white py-8 border-t border-brand-indigo/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Contenedor principal en flex-col para apilar elementos en móviles */}
         <div className="flex flex-col md:flex-row items-center md:justify-between">
           {/* Contenedor para el texto con overflow horizontal */}
           <div className="text-md">
             <span>
-              &copy; 2025 SKINNER S.A.S de C.V.  </span>
+              &copy; 2026 <span className="font-display">SKINNER</span> S.A.S de C.V.  </span>
 
 
              <div className="md:inline">&nbsp; Todos los Derechos Reservados.</div> 
@@ -31,12 +31,12 @@ export function Footer() {
               href="https://x.com/skinner_sv"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500"
+              className="hover:text-brand-gold transition-colors duration-200"
             >
               
               <svg
                 role="img"
-                className="fill-white hover:fill-blue-400 h-6 w-6"
+                className="fill-white hover:fill-brand-gold h-6 w-6 transition-colors duration-200"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -50,11 +50,11 @@ export function Footer() {
               href="https://www.linkedin.com/in/skinner-sas-de-cv"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500"
+              className="hover:text-brand-gold transition-colors duration-200"
             >
               <svg
                 role="img"
-                className="fill-white hover:fill-blue-500 h-6 w-6"
+                className="fill-white hover:fill-brand-gold h-6 w-6 transition-colors duration-200"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -68,7 +68,7 @@ export function Footer() {
               href="mailto:info@skinnersv.net"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500"
+              className="hover:text-brand-gold transition-colors duration-200"
             >
               <Mail size={31} />
             </a>
