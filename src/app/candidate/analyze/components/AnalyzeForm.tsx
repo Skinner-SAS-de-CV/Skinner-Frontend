@@ -118,7 +118,7 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Card className="w-full max-w-2xl bg-surface-900/80 backdrop-blur-sm text-white p-8 rounded-2xl shadow-2xl shadow-brand-indigo/5 border border-surface-700 m-auto relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-full w-1.5 bg-gradient-to-b from-brand-indigo to-brand-violet" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-indigo to-brand-violet" />
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center gradient-brand-text font-display pb-4">
               Subir Curriculum para Analisis
@@ -185,7 +185,8 @@ export default function AnalyzeForm({ saldo }: { saldo: number }) {
             >
               <Button
                 onClick={handleSubmit}
-                className="w-full gradient-cta text-surface-950 font-semibold transition-transform duration-300 shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-gradient-to-r from-brand-indigo to-brand-violet text-white font-semibold
+                          transition-transform duration-300 shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                 disabled={loading}
               >
                 {loading ? (
