@@ -13,7 +13,7 @@ export default function Result({ result }: { result: AnalysisResponse }) {
     feedback: result.feedback.feedback,
   });
   return (
-    <Card className="mt-6 w-full w-auto bg-gray-800 rounded-lg shadow-md border border-gray-700 sm:-mx-2 md:-mx-8">
+    <Card className="mt-6 w-full w-auto bg-surface-800 rounded-lg shadow-md border border-surface-700 sm:-mx-2 md:-mx-8">
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-white flex justify-between items-center">
           <h1>Resultados</h1>

@@ -7,7 +7,7 @@ import { getJobsByClient, JobResponse } from "@/lib/api/trabajo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-
+import { motion } from "motion/react";
 import { useAuth } from "@clerk/nextjs";
 import { AnalysisResponse } from "./AnalysisResponse";
 import Result from "./Result";
@@ -129,14 +129,19 @@ export default function AnalyzeForm({
   const isSkinnerUser = clients?.name === "Skinner";
 
   return (
-    <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+    <Card className="w-full max-w-2xl bg-surface-900/80 backdrop-blur-sm text-white p-8 rounded-2xl shadow-2xl shadow-brand-indigo/5 border border-surface-700 relative overflow-hidden">
       {(toggleDerecha && toggleIzquierda) &&<div className="flex justify-between -mb-9">
-        <Button className="bg-gray-900" onClick={toggleIzquierda}>&lt;</Button>
-        <Button className="bg-gray-900" onClick={toggleDerecha}>&gt;</Button>
+        <Button className="bg-surface-900" onClick={toggleIzquierda}>&lt;</Button>
+        <Button className="bg-surface-900" onClick={toggleDerecha}>&gt;</Button>
       </div>
       }
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+        <CardTitle className="text-2xl font-bold text-center gradient-brand-text font-display">
           📄 Subir Currículum para Análisis
         </CardTitle>
       </CardHeader>
@@ -149,7 +154,7 @@ export default function AnalyzeForm({
           <select
             value={selectedClient}
             onChange={(e) => setSelectedClient(e.target.value)}
-            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
           >
             {clients?.clientes?.map((client) => (
               <option key={client.id} value={client.id}>
@@ -167,7 +172,7 @@ export default function AnalyzeForm({
           <select
             value={selectedJob}
             onChange={(e) => setSelectedJob(e.target.value)}
-            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
           >
             {jobs.map((job) => (
               <option key={job.id} value={job.id}>
@@ -184,7 +189,7 @@ export default function AnalyzeForm({
           </label>
           <Input
             type="text"
-            className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+            className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
             value={nombre}
             onChange={(e) => setNombre(e.currentTarget.value)}
           />
@@ -199,14 +204,14 @@ export default function AnalyzeForm({
             type="file"
             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
             accept=".pdf,.docx"
-            className="file:text-white file:bg-linear-to-r file:rounded-md file:mr-3 file:px-2 file:pb-1 file:from-blue-500 file:to-purple-600 file:transition-all file:duration-300 file:shadow-lg bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="file:text-white file:bg-brand-indigo file:rounded-md file:mr-3 file:px-2 file:pb-1 file:transition-all file:duration-300 file:shadow-lg bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo"
           />
         </div>
 
         {/* Botón para enviar */}
         <Button
           onClick={handleSubmit}
-          className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+          className="w-full gradient-cta text-surface-950 font-semibold transition-all duration-300 shadow-lg"
           disabled={loading}
         >
           {loading ? (
@@ -225,5 +230,6 @@ export default function AnalyzeForm({
         {result && <Result result={result} />}
       </CardContent>
     </Card>
+    </motion.div>
   );
 }

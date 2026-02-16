@@ -105,11 +105,11 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-800">
+    <div className="min-h-screen bg-surface-800">
       <main className="min-h-screen flex justify-center items-center">
-        <Card className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg border border-gray-800">
+        <Card className="w-full max-w-2xl bg-surface-900 text-white p-8 rounded-2xl shadow-lg border border-surface-700">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text">
+            <CardTitle className="text-2xl font-bold text-center gradient-brand-text font-display">
               Crea tu perfil
             </CardTitle>
           </CardHeader>
@@ -119,7 +119,7 @@ export default function Onboarding() {
               <label className="text-gray-300 font-medium">Nombre:</label>
               <Input
                 type="text"
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
                 value={firstname}
                 onChange={(e) => setFirstname(e.currentTarget.value)}
               />
@@ -129,7 +129,7 @@ export default function Onboarding() {
               <label className="text-gray-300 font-medium">Apellido:</label>
               <Input
                 type="text"
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
                 value={lastname}
                 onChange={(e) => setLastname(e.currentTarget.value)}
               />
@@ -141,7 +141,7 @@ export default function Onboarding() {
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
               >
                 <option value="El Salvador">El Salvador</option>
                 <option value="Guatemala">Guatemala</option>
@@ -155,11 +155,11 @@ export default function Onboarding() {
                 </label>
                 <PopoverTrigger
                   asChild
-                  className="w-full bg-gray-800 hover:text-white text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                  className="w-full bg-surface-800 hover:text-white text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
                 >
                   <Button
                     variant={"outline"}
-                    className="w-[280px] justify-start text-left font-normal text-white hover:bg-gray-800"
+                    className="w-[280px] justify-start text-left font-normal text-white hover:bg-surface-800"
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {birthday ? (
@@ -169,13 +169,13 @@ export default function Onboarding() {
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-[280px] p-0 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500">
+                <PopoverContent className="w-[280px] p-0 bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo">
                   <Input
                     value={birthdayInput || ""}
                     onKeyDown={handleKeyPress}
                     onChange={handleInputChange}
                     placeholder="DD/MM/AAAA"
-                    className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                    className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
                   />
                   <Calendar
                     mode="single"
@@ -206,7 +206,7 @@ export default function Onboarding() {
               <select
                 value={selectedNivel}
                 onChange={(e) => setSelectedNivel(e.target.value)}
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 p-2"
+                className="w-full bg-surface-800 text-white border border-surface-700 rounded-lg focus:ring-2 focus:ring-brand-indigo p-2"
               >
                 {niveles.map((nivel) => (
                   <option key={nivel.id} value={nivel.id}>
@@ -218,7 +218,7 @@ export default function Onboarding() {
             {/* Botón para enviar */}
             <Button
               onClick={handleSubmit}
-              className="w-full bg-linear-to-r from-blue-500 to-purple-600 transition-all duration-300 shadow-lg"
+              className="w-full gradient-cta text-surface-950 font-semibold transition-all duration-300 shadow-lg"
               disabled={loading}
             >
               {loading ? (

@@ -78,7 +78,7 @@ export function ResumeMatchGraph({
               className="relative md:h-full md:w-full md:max-w-sm"
             >
               {/* Tarjeta CV */}
-              <div className="w-full md:h-full max-w-sm bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl flex flex-col gap-3 md:justify-start">
+              <div className="w-full md:h-full max-w-sm bg-gradient-to-br from-surface-800/50 to-surface-900/50 backdrop-blur-xl rounded-2xl p-6 border border-surface-700/50 shadow-2xl flex flex-col gap-3 md:justify-start">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative">
@@ -109,7 +109,7 @@ export function ResumeMatchGraph({
                 </div>
 
                 {/* Educación */}
-                <div className="mb-4 pb-4 border-b border-white/10">
+                <div className="mb-4 pb-4 border-b border-surface-700/50">
                   <div className="flex items-center gap-2 text-sm text-gray-400 mb-1">
                     <GraduationCap className="w-4 h-4 text-purple-400" />
                     Educación
@@ -122,7 +122,7 @@ export function ResumeMatchGraph({
                 {/* Habilidades */}
                 <div>
                   <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-                    <Code className="w-4 h-4 text-blue-400" />
+                    <Code className="w-4 h-4 text-brand-sky" />
                     Habilidades
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -137,7 +137,7 @@ export function ResumeMatchGraph({
                           className={`px-2 py-1 rounded-lg text-xs font-medium ${
                             isMatched
                               ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                              : "bg-white/5 text-gray-400 border border-white/10"
+                              : "bg-white/5 text-gray-400 border border-surface-700/50"
                           }`}
                         >
                           {skill}
@@ -252,10 +252,10 @@ export function ResumeMatchGraph({
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full md:h-full max-w-sm bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl flex flex-col gap-3 md:justify-start"
+            className="w-full md:h-full max-w-sm bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-6 border border-surface-700/50 shadow-2xl flex flex-col gap-3 md:justify-start"
           >
             {/* Header */}
-            <div className="flex gap-3 mb-4 pb-3 border-b border-white/10">
+            <div className="flex gap-3 mb-4 pb-3 border-b border-surface-700/50">
               <div className="w-14 h-12 rounded-md bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
@@ -272,7 +272,7 @@ export function ResumeMatchGraph({
             {/* Skills requeridas */}
             <div className="mb-4">
               <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-                <Code className="w-4 h-4 text-blue-400" />
+                <Code className="w-4 h-4 text-brand-sky" />
                 <span className="text-gray-300">Habilidades requeridas</span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -289,7 +289,7 @@ export function ResumeMatchGraph({
                       className={`px-2 py-1 rounded-lg text-xs font-medium ${
                         ok
                           ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                          : "bg-white/5 text-gray-400 border border-white/10"
+                          : "bg-white/5 text-gray-400 border border-surface-700/50"
                       }`}
                     >
                       {skill}

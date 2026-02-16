@@ -37,7 +37,7 @@ export const jobColumns: ColumnDef<JobRow>[] = [
       return (
         <Link
           href={`/recruiter/jobs/${id}`}
-          className="text-blue-300 hover:underline"
+          className="text-brand-sky hover:underline"
         >
           {id}
         </Link>
@@ -53,7 +53,7 @@ export const jobColumns: ColumnDef<JobRow>[] = [
       return (
         <Link
           href={`/recruiter/jobs/${id}`}
-          className="text-blue-300 hover:underline"
+          className="text-brand-sky hover:underline"
         >
           {title}
         </Link>
@@ -123,9 +123,9 @@ export function JobsDataTable({ columns, data, onDelete }: JobsDataTableProps) {
   });
 
   return (
-    <div className="w-full rounded-md border border-white/20 overflow-x-auto ">
+    <div className="w-full rounded-md border border-surface-700/50 overflow-x-auto">
       <Table className="w-full mx-auto">
-        <TableHeader className="bg-white/10">
+        <TableHeader className="bg-brand-indigo/10">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -144,7 +144,7 @@ export function JobsDataTable({ columns, data, onDelete }: JobsDataTableProps) {
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow key={row.id} className="hover:bg-surface-800/50 transition-colors duration-150">
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

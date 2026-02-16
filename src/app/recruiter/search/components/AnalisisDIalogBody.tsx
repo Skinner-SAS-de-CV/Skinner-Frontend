@@ -5,7 +5,7 @@ export function AnalisisDialogBody({ analysis }: { analysis: AnalysisItem }) {
   return (
     <div className="">
       {/* Información resumida */}
-      <div className="grid grid-cols-2 gap-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+      <div className="grid grid-cols-2 gap-4 bg-gray-100 dark:bg-surface-800 p-4 rounded-lg">
         <div>
           <h3 className="font-semibold">Puesto evaluado:</h3>
           <p>{analysis.job_title}</p>
